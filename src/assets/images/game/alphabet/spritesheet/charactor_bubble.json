@@ -1,0 +1,139 @@
+﻿{"frames": {
+
+"비누방울 부는 프레디 인스턴스 10000":
+{
+	"frame": {"x":0,"y":0,"w":253,"h":296},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":38,"y":1,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10001":
+{
+	"frame": {"x":258,"y":0,"w":248,"h":300},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":43,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10002":
+{
+	"frame": {"x":511,"y":0,"w":237,"h":295},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":56,"y":8,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10003":
+{
+	"frame": {"x":0,"y":305,"w":280,"h":306},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":18,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10004":
+{
+	"frame": {"x":285,"y":305,"w":296,"h":303},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":6,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10005":
+{
+	"frame": {"x":586,"y":305,"w":280,"h":291},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":13,"y":14,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10006":
+{
+	"frame": {"x":0,"y":616,"w":260,"h":282},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":39,"y":18,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10007":
+{
+	"frame": {"x":265,"y":616,"w":242,"h":298},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":52,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10008":
+{
+	"frame": {"x":265,"y":616,"w":242,"h":298},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":52,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10009":
+{
+	"frame": {"x":265,"y":616,"w":242,"h":298},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":52,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10010":
+{
+	"frame": {"x":265,"y":616,"w":242,"h":298},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":52,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10011":
+{
+	"frame": {"x":265,"y":616,"w":242,"h":298},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":52,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10012":
+{
+	"frame": {"x":512,"y":616,"w":243,"h":301},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":52,"y":0,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10013":
+{
+	"frame": {"x":760,"y":616,"w":249,"h":296},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":43,"y":3,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10014":
+{
+	"frame": {"x":0,"y":922,"w":251,"h":294},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":38,"y":5,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+},
+"비누방울 부는 프레디 인스턴스 10015":
+{
+	"frame": {"x":0,"y":0,"w":253,"h":296},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":38,"y":1,"w":299,"h":309},
+	"sourceSize": {"w":299,"h":309}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.2.0.405",
+	"image": "charactor_bubble.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":2048},
+	"scale": "1"
+}
+}

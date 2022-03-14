@@ -1,0 +1,160 @@
+{
+   "data": {
+      "fu_id": "U201803221135520456",
+      "langCode": "ko_KR",
+      "stage": "1",
+      "step": "3",
+      "reStudy": 0,
+      "gameTimeout": 150,
+      "quizTimeout": 4,
+      "clearScore": 3000,
+      "lowQuality": 0,
+      "quizList": [
+         {
+            "alphabet": "a",
+            "image1": {
+               "word": "ant",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_ant.png"
+            },
+            "image2": {
+               "word": "apple",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_apple.png" 
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_a.mp3"
+         },
+         {
+            "alphabet": "b",
+            "image1": {
+               "word": "bus",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bus.png"
+            },
+            "image2": {
+               "word": "bed",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bed.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_b.mp3"
+         },
+         {
+            "alphabet": "c",
+            "image1": {
+               "word": "cat",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_cat.png"
+            },
+            "image2": {
+               "word": "cake",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_cake.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_c.mp3"
+         },
+         {
+            "alphabet": "a",
+            "image1": {
+               "word": "alligator",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_alligator.png"
+            },
+            "image2": {
+               "word": "ax",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_ax.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_a.mp3"
+         },
+         {
+            "alphabet": "b",
+            "image1": {
+               "word": "bat",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bat.png"
+            },
+            "image2": {
+               "word": "bear",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bear.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_b.mp3"
+         },
+         {
+            "alphabet": "c",
+            "image1": {
+               "word": "car",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_car.png"
+            },
+            "image2": {
+               "word": "camera",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_camera.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_c.mp3"
+         },
+         {
+            "alphabet": "a",
+            "image1": {
+               "word": "apple",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_apple.png"
+            },
+            "image2": {
+               "word": "alligator",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_alligator.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_a.mp3"
+         },
+         {
+            "alphabet": "b",
+            "image1": {
+               "word": "bed",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bed.png"
+            },
+            "image2": {
+               "word": "bat",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bat.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_b.mp3"
+         },
+         {
+            "alphabet": "c",
+            "image1": {
+               "word": "cake",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_cake.png"
+            },
+            "image2": {
+               "word": "car",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_car.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_c.mp3"
+         },
+         {
+            "alphabet": "a",
+            "image1": {
+               "word": "ant",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_ant.png"
+            },
+            "image2": {
+               "word": "ax",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_ax.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_a.mp3"
+         },
+         {
+            "alphabet": "b",
+            "image1": {
+               "word": "bus",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bus.png"
+            },
+            "image2": {
+               "word": "bear",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_bear.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_b.mp3"
+         },
+         {
+            "alphabet": "c",
+            "image1": {
+               "word": "cat",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_cat.png"
+            },
+            "image2": {
+               "word": "camera",
+               "url": "https://cdn.littlefox.co.kr/game/alphabet/sample/image/play/alphabet_play_camera.png"
+            },
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p2_c.mp3"
+         }
+     ]
+   },
+   "status": 200
+ }

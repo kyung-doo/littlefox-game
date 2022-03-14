@@ -1,0 +1,80 @@
+{
+   "data": {
+      "fu_id": "U201803221135520456",
+      "langCode": "ko_KR",
+      "stage": "1",
+      "reStudy": 0,
+      "gameTimeout": 150,
+      "quizTimeout": 7,
+      "clearScore": 3000,
+      "lowQuality": 0,
+      "quizList": [
+         {
+            "word": "apple",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_apple.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_apple.mp3"
+         },
+         {
+            "word": "banana",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_banana.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_banana.mp3"
+         },
+         {
+            "word": "blueberry",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_blueberry.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_blueberry.mp3"
+         },
+         {
+            "word": "grapes",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_grapes.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_grapes.mp3"
+         },
+         {
+            "word": "lemon",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_lemon.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_lemon.mp3"
+         },
+         {
+            "word": "orange",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_orange.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_orange.mp3"
+         },
+         {
+            "word": "peach",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_peach.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_peach.mp3"
+         },
+         {
+            "word": "pear",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_pear.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_pear.mp3"
+         },
+         {
+            "word": "strawberry",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_strawberry.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_strawberry.mp3"
+         },
+         {
+            "word": "watermelon",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/play/word_s1_play_watermelon.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_watermelon.mp3"
+         }
+      ],
+      
+      "speedInfo": [
+         {
+           "score": 500,
+           "speed": 1.1
+         },
+         {
+           "score": 1000,
+           "speed": 1.3
+         },
+         {
+           "score": 1500,
+           "speed": 1.5
+         }
+      ]
+   },
+   "status": 200
+}

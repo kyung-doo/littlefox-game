@@ -1,0 +1,99 @@
+﻿{"frames": {
+
+"파닉스_프레디2 인스턴스 10000":
+{
+	"frame": {"x":5,"y":5,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10001":
+{
+	"frame": {"x":293,"y":5,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10002":
+{
+	"frame": {"x":581,"y":5,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10003":
+{
+	"frame": {"x":5,"y":431,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10004":
+{
+	"frame": {"x":293,"y":431,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10005":
+{
+	"frame": {"x":581,"y":431,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10006":
+{
+	"frame": {"x":5,"y":857,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10007":
+{
+	"frame": {"x":293,"y":857,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10008":
+{
+	"frame": {"x":581,"y":857,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10009":
+{
+	"frame": {"x":5,"y":1283,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+},
+"파닉스_프레디2 인스턴스 10010":
+{
+	"frame": {"x":293,"y":1283,"w":283,"h":421},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":283,"h":421},
+	"sourceSize": {"w":283,"h":421}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.2.0.405",
+	"image": "charactor_bonus.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":2048},
+	"scale": "1"
+}
+}

@@ -1,0 +1,211 @@
+@charset "utf-8";
+@import './mixin.scss';
+
+#content-wrap {
+   overflow: visible;
+}
+
+#content {
+   overflow: visible;
+   @include fullSize();
+}
+
+#wrap > canvas {
+   position: fixed;
+   left: 0;
+   top: 0;
+   @include fullSize();
+}
+
+#result-popup {
+   @include displayFlex();
+   @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+   .blind{
+      @include absolute($top: 0, $left: -400px, $width: 2847px, $height: 100%);
+      background-color: rgba(0,0,0,0.5);
+   }
+   .popup-wrap {
+      position: relative;
+      max-height: 1027px;
+      min-height: 930px;
+      background-color: #22c689;
+      border-radius: 35px;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+      box-sizing: border-box;
+      padding: 16px;
+   }
+   &.alphabet1 .popup-wrap,
+   &.alphabet2 .popup-wrap {
+      width: 922px;
+   }
+   &.alphabet3 .popup-wrap {
+      width: 1085px;
+   }
+   &[class*=phonics] .popup-wrap {
+      width: 1085px;
+   }
+   &[class*=words] .popup-wrap {
+      width: 1305px;
+   }
+
+   .top-title {
+      text-align: center;
+      padding: 25px 0 15px 0;
+   }
+
+   .close-btn {
+      @include absolute($right: -14px, $top: -14px, $width: 73px, $height: 77px);
+      transform-origin: top right;
+   }
+   &[class*=alphabet] .close-btn,
+   &[class*=phonics] .close-btn {
+      background: url('../images/game/common/exit_btn.png') no-repeat;
+      background-size: 100%;
+   }
+   &[class*=words] .close-btn {
+      background: url('../images/game/common/exit_btn2.png') no-repeat;
+      background-size: 100%;
+   }
+
+   .list-wrap {
+      background-color: #fff;
+      border-radius: 25px;
+      overflow-y: hidden;
+      padding-bottom: 30px;
+   }
+   &.alphabet1 .list-wrap,
+   &.alphabet2 .list-wrap {
+      padding-bottom: 0;
+   }
+
+
+   .list-header {
+      @include displayFlex($justify: flex-start);
+      height: 74px;
+      box-sizing: border-box;
+      padding: 0 23px;
+      background-color: #f0f0f0;
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+   }
+   
+   &.alphabet1 .list-header > div:nth-child(1),
+   &.alphabet2 .list-header > div:nth-child(1) {
+      margin-left: 75px;
+   }
+   &.alphabet3 .list-header > div:nth-child(1) {
+      margin-left: 128px;
+   }
+   &.alphabet1 .list-header > div:nth-child(2),
+   &.alphabet2 .list-header > div:nth-child(2) {
+      margin-left: 290px;
+   }
+   &.alphabet3 .list-header > div:nth-child(2) {
+      margin-left: 406px;
+   }
+   &[class*=phonics] .list-header > div:nth-child(1) {
+      margin-left: 135px;
+   }
+   &[class*=phonics] .list-header > div:nth-child(2) {
+      margin-left: 385px;
+   }
+   &[class*=words] .list-header > div:nth-child(1) {
+      margin-left: 190px;
+   }
+   &[class*=words] .list-header > div:nth-child(2) {
+      margin-left: 515px;
+   }
+
+   .list-body {
+      overflow-y: auto;
+      min-height: 730px;
+      max-height: 794px;
+      .list {
+         @include displayFlex($justify: flex-start);
+         min-height: 120px;
+         border-top: solid 1px #dbdbdb;
+         &:first-child{
+            border-top: none;
+         }
+         .words {
+            @include displayFlex($justify: flex-start);
+         }
+         .speaker-btn {
+            width: 46px;
+            height: 37px;
+            background: url('../images/game/common/speaker_btn.png') no-repeat;
+            background-size: 100%;
+            margin-left: 50px;
+         }
+         .text {
+            font-family: 'LexendDeca';
+            font-weight: 400;
+            color: #373737;
+            margin-left: 35px;
+         }
+         .image {
+            border: solid 1px #dbdbdb;
+            margin-left: 28px;
+            border-radius: 8px;
+            overflow: hidden;
+            width: 82px;
+            height: 82px;
+            > img {
+               width: 100%;
+               height: 100%;
+            }
+         }
+         .hart-group {
+            padding: 5px 0;
+         }
+         .hart {
+            vertical-align: middle;
+            display: inline-block;
+            width: 50px;
+            height: 43px;
+            margin-left: 15px;
+            &:first-child {
+               margin-left: 0;
+            }
+            &.on {
+               background-image: url('../images/game/common/hart_on.png');
+            }
+            &.off {
+               background-image: url('../images/game/common/hart_off.png');
+            }
+            background-repeat: no-repeat;
+            background-size: 100%;
+         }
+      }
+   }
+   &.alphabet1 .list-body .words,
+   &.alphabet2 .list-body .words {
+      width: 218px;
+   }
+    &.alphabet3 .list-body .words {
+      width: 365px;
+   }
+   &.alphabet1 .list-body .result,
+   &.alphabet2 .list-body .result {
+      width: calc(100% - 218px);
+   }
+   &.alphabet3 .list-body .result {
+      width: calc(100% - 365px);
+   }
+   &[class*=phonics] .list-body .words {
+      width: 370px;
+   }
+   &[class*=phonics] .list-body .text {
+      margin-left: 27px;
+   }
+   &[class*=words] .list-body .words {
+      width: 580px;
+   }
+   &[class*=words] .list-body .text {
+      margin-left: 20px;
+   }
+   &[class*=words] .list-body .image {
+      width: 148px;
+      height: 86px;
+   }
+}

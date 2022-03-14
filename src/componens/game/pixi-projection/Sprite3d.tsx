@@ -1,0 +1,54 @@
+import { applyDefaultProps, PixiComponent, _ReactPixi } from "@inlet/react-pixi"
+import { Texture, IPointData } from 'pixi.js'
+import { Sprite3d, IEuler } from "pixi-projection";
+
+
+export interface Sprite3dProps extends _ReactPixi.ISprite {
+   position3d?: { x: number, y: number, z: number} | IPointData;
+   scale3d?: { x: number, y: number, z: number} | IPointData;
+   euler?: { x: number, y: number, z: number} | IEuler;
+}
+
+
+
+export default PixiComponent<Sprite3dProps, Sprite3d>('Container3d', {
+
+   create: props => {
+      let texture = null;
+      if(props.texture){
+         texture = props.texture;
+      } else if(props.image) {
+         texture = Texture.from(props.image);
+      } else {
+         texture = Texture.EMPTY;
+      }
+      return new Sprite3d(texture);
+   },
+
+   applyProps: (instance, oldProps, newProps) => {
+      if(instance && typeof instance.position3d === 'object') {
+         if(newProps.position3d){
+            instance.position3d.x = newProps.position3d.x;
+            instance.position3d.y = newProps.position3d.y;
+            instance.position3d.z = newProps.position3d.z;
+         }
+         if(newProps.scale3d){
+            instance.scale3d.x = newProps.scale3d.x;
+            instance.scale3d.y = newProps.scale3d.y;
+            instance.scale3d.z = newProps.scale3d.z;
+         }
+         if(newProps.euler) {
+            instance.euler.x = newProps.euler.x;
+            instance.euler.y = newProps.euler.y;
+            instance.euler.z = newProps.euler.z;
+         }
+      }
+      applyDefaultProps(instance, oldProps, newProps);
+   },
+
+   config: {
+      destroy: true,
+      destroyChildren: true
+   }
+
+});

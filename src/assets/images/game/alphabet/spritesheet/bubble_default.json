@@ -1,0 +1,83 @@
+﻿{"frames": {
+
+"bubble_default 인스턴스 10000":
+{
+	"frame": {"x":0,"y":0,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10001":
+{
+	"frame": {"x":504,"y":0,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10002":
+{
+	"frame": {"x":1008,"y":0,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10003":
+{
+	"frame": {"x":1512,"y":0,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10004":
+{
+	"frame": {"x":0,"y":490,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10005":
+{
+	"frame": {"x":504,"y":490,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10006":
+{
+	"frame": {"x":1008,"y":490,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10007":
+{
+	"frame": {"x":1512,"y":490,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+},
+"bubble_default 인스턴스 10008":
+{
+	"frame": {"x":0,"y":980,"w":504,"h":490},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":504,"h":490},
+	"sourceSize": {"w":504,"h":490}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.2.0.405",
+	"image": "bubble_default.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
+	"scale": "1"
+}
+}

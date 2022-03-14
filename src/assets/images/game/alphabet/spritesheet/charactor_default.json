@@ -1,0 +1,91 @@
+﻿{"frames": {
+
+"비누방울 프레디 대기 인스턴스 10000":
+{
+	"frame": {"x":5,"y":5,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10001":
+{
+	"frame": {"x":265,"y":5,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10002":
+{
+	"frame": {"x":525,"y":5,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10003":
+{
+	"frame": {"x":5,"y":328,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10004":
+{
+	"frame": {"x":265,"y":328,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10005":
+{
+	"frame": {"x":525,"y":328,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10006":
+{
+	"frame": {"x":5,"y":651,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10007":
+{
+	"frame": {"x":265,"y":651,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10008":
+{
+	"frame": {"x":525,"y":5,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+},
+"비누방울 프레디 대기 인스턴스 10009":
+{
+	"frame": {"x":525,"y":651,"w":255,"h":318},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":255,"h":318},
+	"sourceSize": {"w":255,"h":318}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.2.0.405",
+	"image": "charactor_default.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "1"
+}
+}

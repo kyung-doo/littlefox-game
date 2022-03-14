@@ -1,0 +1,322 @@
+@charset "utf-8";
+@import './mixin.scss';
+
+#content {
+   position: relative;
+   @include fullSize();
+}
+
+
+#exit-button {
+   @include absolute($top: 16px, $left: 900px, $width: 44px, $height: 44px);
+   /* background-color: rgba(9,39,78,.15); */
+   border-radius: 50%;
+   background: url("../images/study/common/close_btn.png") no-repeat;
+   background-size: 44px 44px;
+   z-index: 9999;
+}
+
+#intro {
+   @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+   z-index: 8888;
+   .bg {
+      @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+      background: url("../images/study/common/intro_bg.png") repeat-x;
+   }
+   .top-title {
+      @include absolute($top: 36px, $left: 95px, $height: 69px);
+      @include displayFlex();
+      background-color: #67a7ff;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      padding:0 30px 12px 30px;
+      box-sizing: border-box;
+      color: #fff;
+      font-size: 24px;
+      font-family: 'LexendDeca';
+      font-weight: 300;
+      > span {
+         display: inline-block;
+         width: 101px;
+         height: 34px;
+         margin: 0 0 0 12px;
+         border-radius: 6px;
+         background-color: #4f91ef;
+         font-size: 20px;
+         font-family: 'LexendDeca';
+         font-weight: 300;
+         color: #b7d5fe;
+         text-align: center;
+         line-height: 32px;
+      }
+   }
+
+   .intro-area {
+      @include absolute($top: 90px, $left: 95px, $width: 762px, $height: 377px);
+      @include displayFlex();
+      background-color: #fff;
+      border-radius: 15px;
+      border: solid 6px #67a7ff;
+      text-align: center;
+
+      .intro-title {
+         font-family: 'LexendDeca';
+         font-weight: 500;
+         font-size: 80px;
+      }
+      .react-ripples {
+         margin: 45px 55px 0 54px;
+         border-radius: 33px;
+         box-shadow: 0 5px 0 0 #f58300;
+      }
+      .start-btn {
+         width: 214px;
+         height: 66px;
+         border-radius: 33px;
+         box-shadow: 0 5px 0 0 #f58300;
+         background-color: #ffa200;
+         &:hover {
+            background-color: #ffae21;
+         }
+         > img {
+            height: 48px;
+            width: auto;
+         }
+      }
+   }
+
+   .bottom-guide {
+      @include absolute($top: 510px, $left: 0, $width: 100%, $height: auto);
+      text-align: center;
+      > img {
+         width: auto;
+         height: 54px;
+         will-change: transform;
+      }
+      
+   }
+}
+
+#study {
+   @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+   .bg {
+      @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+      background: url("../images/study/common/study_bg.png") repeat-x;
+   }
+   .title-bar {
+      @include absolute($top: 0, $left: 0, $width: 100%, $height: 0);
+      background: url('../images/study/common/title_bar_bg.png') repeat-x bottom;
+      background-size: auto 88px;
+      overflow: hidden;
+      z-index: 999;
+      .title-wrap {
+         position: relative;
+         padding: 17px 0 0 23px;
+         box-sizing: border-box;
+         width: 100%;
+         height: 100%;
+      }
+      .text-con {
+         font-family: 'LexendDeca';
+         font-weight: 400;
+         font-size: 26px;
+         color: #fff;
+         > span {
+            font-size: 32px;
+            vertical-align: top;
+            position: relative;
+            top:-3px;
+         }
+      }
+      .page-con {
+         @include absolute($top: 16px, $right: 90px, $width: 106px, $height: 45px);
+         @include displayFlex();
+         border-radius: 10px;
+         background-color: #3281ec;
+         color: #fff;
+         font-family: 'LexendDeca';
+         font-weight: 400;
+         font-size: 22px;
+         box-sizing: border-box;
+         padding-bottom: 3px;
+         > span {
+            color: #ff0;
+            font-weight: 500;
+            margin-right: 7px;
+            vertical-align: middel;
+         }
+      }
+   }
+   
+   .audio-button {
+      @keyframes audio-btn-ani {
+         0% {
+            opacity: 0.5;
+         }
+         50% {
+            opacity: 1;
+         }
+         100% {
+            opacity: 0.5;
+         }
+      }
+      @include absolute($width: 50px, $height: 53px);
+      &:before {
+         content: '';
+         -webkit-filter: blur(4px);
+         filter: blur(4px);
+         background-color: #fffb7d;
+         border-radius: 50%;
+         @include absolute($top: -5px, $left: -5px, $width: 60px, $height: 60px);
+         opacity: 0;
+      }
+      &:after {
+         content: '';
+         position: relative;
+         display: block;
+         background-image: url('../images/study/common/audio_default.png');
+         background-size: 100%;
+         background-repeat: no-repeat;
+         @include fullSize();
+      }
+      &.disabled {
+         pointer-events: none;
+      }
+      &.disabled:after {
+         pointer-events: none;
+         background-image: url('../images/study/common/audio_off.png');
+      }
+      &.active:after {
+         background-image: url('../images/study/common/audio_on.png');
+      }
+      &.active:before {
+         animation: audio-btn-ani 1s infinite;
+      }
+   }
+   .page-btns {
+      .prev-page-btn {
+         @include absolute($top: 243px, $left: 20px, $width: 44px, $height: 67px);
+         background: url('../images/study/common/page_prev.png') no-repeat center;
+         background-size: 66px 86px;
+         z-index: 99;
+      }
+      .next-page-btn {
+         @include absolute($top: 243px, $right: 20px, $width: 44px, $height: 67px);
+         background: url('../images/study/common/page_next.png') no-repeat center;
+         background-size: 66px 86px;
+         z-index: 99;
+      }
+   }
+
+   .study-lists {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      .study-list {
+         position: absolute;
+         top: 0;
+         width: 960px;
+         height: 100%;
+      }
+   }
+}
+
+#result {
+   @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+   z-index: 1000;
+   text-align: center;
+   .bg {
+      @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+      background: url("../images/study/common/result_bg.png") no-repeat #deecfd center;
+      background-size: auto 100%;
+      will-change: transform;
+   }
+   .good-job {
+      @include absolute($top: 66px, $left: 288px, $width: 390px, $height: 74px);
+      background: url('../images/study/common/result_title.png') no-repeat;
+      background-size: 100%;
+   }
+   
+   .deco {
+      @include absolute($top: 178px, $left: 89px, $width: 766px, $height: 251px);
+      background: url('../images/study/common/result_deco.png') no-repeat;
+      background-size: 100%;
+      will-change: transform;
+   }
+   .circle {
+      @include absolute($top: 173px, $left: 351px, $width: 262px, $height: 262px);
+      background: url('../images/study/common/result_circle.png') no-repeat;
+      background-size: 100%;
+   }
+
+   .charactor-con {
+      @include absolute($top: 190px, $left: 368px, $width: 227px, $height: 227px);
+      overflow: hidden;
+      border-bottom-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      transform: translate3d(0, 0, 0);
+      .charactor {
+         @include absolute($top: 15px, $left: 18px, $width: 209px, $height: 276px);
+         background: url('../images/study/common/result_charactor.png') no-repeat;
+         background-size: 100%;
+      }
+   }
+
+   .star-con {
+      .star1 {
+         @include absolute($top: 280px, $left: 350px, $width: 35px, $height: 34px);
+         background: url('../images/study/common/star1.png') no-repeat;
+         background-size: 100%;
+         opacity: 0;
+         will-change: transform;
+      }
+      .star2 {
+         @include absolute($top: 212px, $left: 395px, $width: 21px, $height: 20px);
+         background: url('../images/study/common/star2.png') no-repeat;
+         background-size: 100%;
+         opacity: 0;
+         will-change: transform;
+      }
+      .star3 {
+         @include absolute($top: 204px, $left: 335px, $width: 18px, $height: 18px);
+         background: url('../images/study/common/star3.png') no-repeat;
+         background-size: 100%;
+         opacity: 0;
+         will-change: transform;
+      }
+      
+   }
+
+   .bottom-con {
+      position: absolute;
+      left: 0;
+      bottom: 60px;
+      width: 100%;
+   }
+   .react-ripples {
+      border-radius: 33px;
+   }
+   .restudy-btn {
+      width: auto;
+      min-width: 214px;
+      box-sizing: border-box;
+      padding: 0 33px;
+      height: 66px;
+      border-radius: 33px;
+      border: solid 1px #f80;
+      background-color: #fff;
+      color: #ff8800;
+      transition: background-color 0.4s;
+      &:hover {
+         background-color: #fff1e1;
+      }
+      > img {
+         width: auto;
+         height: 36px;
+      }
+   }
+}
+
+
+

@@ -1,0 +1,91 @@
+{
+   "data": {
+    "fu_id": "U201803221135520456",
+     "langCode": "ko_KR",
+     "stageTitle": "_at _am",
+     "reStudy": 0,
+     "list": [
+       {
+         "word": "hat",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_hat.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_h.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_t.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_at.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_hat.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_hat.mp3"
+       },
+       {
+         "word": "cat",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_cat.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_c.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_t.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_at.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_cat.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_cat.mp3"
+       },
+       {
+         "word": "mat",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_mat.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_m.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_t.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_at.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_mat.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_mat.mp3"
+       },
+       {
+         "word": "rat",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_rat.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_r.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_t.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_at.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_rat.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_rat.mp3"
+       },
+       {
+         "word": "jam",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_jam.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_j.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_m.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_am.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_jam.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_jam.mp3"
+       },
+       {
+         "word": "ham",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_ham.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_h.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_m.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_am.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_ham.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_ham.mp3"
+       },
+       {
+         "word": "pam",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_pam.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_p.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_m.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_am.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_pam.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_pam.mp3"
+       },
+       {
+         "word": "sam",
+         "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_sam.png",
+         "audio1": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_s.mp3",
+         "audio2": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_a.mp3",
+         "audio3": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_m.mp3",
+         "audio4": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_am.mp3",
+         "audio5": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/phonics1_learn_sam.mp3",
+         "audio6": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/learn/word_sam.mp3"
+       }
+     ]
+   },
+   "status": 200
+ }

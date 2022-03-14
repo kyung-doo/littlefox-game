@@ -1,0 +1,91 @@
+@charset "utf-8";
+@import './mixin.scss';
+
+#intro .deco {
+   .left {
+      @include absolute($top: 417px, $left: 0, $width: 208px, $height: 183px);
+      background: url('../images/study/alphabet/left_deco.png') no-repeat;
+      background-size: 100%;
+   }
+   .right {
+      @include absolute($top: 321px, $right: -45px, $width: 234px, $height: 279px);
+      background: url('../images/study/alphabet/right_deco.png') no-repeat;
+      background-size: 100%;
+   }
+}
+
+#study {
+   .quiz-view {
+      @include absolute($top: 133px, $width: 318px, $height: 289px);
+      .view-wrap {
+         position: relative;
+         z-index: 1;
+      }
+      &:after {
+         @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+         content:'';
+         display: block;
+         background-image: url('../images/study/alphabet/quiz_view.png');
+         background-repeat: no-repeat;
+         background-size: 100% auto;
+      }
+      &.active:after {
+         background-image: url('../images/study/alphabet/quiz_view_on.png');
+      }
+      &:before {
+         @include absolute($top: -40px, $left: -40px, $width: 396px, $height: 368px);
+         content:'';
+         display: none;
+         background-image: url('../images/study/alphabet/quiz_view_blur.png');
+         background-size: 100%;
+         
+      }
+      &.active:before {
+         display: block;
+      }
+      .image {
+         padding-top: 30px;
+         > img {
+            height: 210px;
+            width: auto;
+         }
+      }
+   }
+   .quiz-view.left {
+      left: 145px;
+      text-align: center;
+   }
+   .quiz-view.right {
+      left: 506px;
+      text-align: center;
+   }
+
+   .alphabet-quiz {
+      @include absolute($bottom: 24px, $left: 27px, $width: 906px, $height: 120px);
+      @include displayFlex();
+      border-radius: 20px;
+      background-color: #b8d9ff;
+      .select-btn {
+         margin: 0 15px;
+         width: 130px;
+         height: 64px;
+         border-radius: 17px;
+         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+         background-color: #fff;
+         font-family: 'LexendDeca';
+         font-weight: 400;
+         font-size: 32px;
+         color: #071f3d;
+         transition: all 0.3s;
+         border: solid 2px #fff;
+         &.correct {
+            border: solid 2px #00a236;
+            background-color: #e9fff2;
+         }
+         &.wrong {
+            border: solid 2px #e6545d;
+            background-color: #ffefef;
+         }
+      }
+   }
+}

@@ -1,0 +1,28 @@
+{
+   "data": {
+      "fu_id": "U201803221135520456",
+      "langCode": "ko_KR",
+      "stage": "1",
+      "step": "1",
+      "reStudy": 0,
+      "gameTimeout": 150,
+      "quizTimeout": 4,
+      "clearScore": 3000,
+      "lowQuality": 0,
+      "quizList": [
+         {
+            "alphabet": "a",
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p1_a.mp3"
+         },
+         {
+            "alphabet": "b",
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p1_b.mp3"
+         },
+         {
+            "alphabet": "c",
+            "audio": "https://cdn.littlefox.co.kr/game/alphabet/sample/mp3/play/alphabet_stage1_p1_c.mp3"
+         }
+      ]
+   },
+   "status": 200
+ }

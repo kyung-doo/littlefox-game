@@ -1,0 +1,91 @@
+﻿{"frames": {
+
+"arrow 인스턴스 10000":
+{
+	"frame": {"x":0,"y":0,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10001":
+{
+	"frame": {"x":0,"y":0,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10002":
+{
+	"frame": {"x":142,"y":0,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10003":
+{
+	"frame": {"x":284,"y":0,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10004":
+{
+	"frame": {"x":0,"y":97,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10005":
+{
+	"frame": {"x":142,"y":97,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10006":
+{
+	"frame": {"x":284,"y":97,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10007":
+{
+	"frame": {"x":0,"y":194,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10008":
+{
+	"frame": {"x":0,"y":0,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+},
+"arrow 인스턴스 10009":
+{
+	"frame": {"x":0,"y":0,"w":142,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":97},
+	"sourceSize": {"w":142,"h":97}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.2.0.405",
+	"image": "arrow_light1.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":512},
+	"scale": "1"
+}
+}

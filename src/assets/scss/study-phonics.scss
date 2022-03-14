@@ -1,0 +1,146 @@
+@charset "utf-8";
+@import './mixin.scss';
+
+#intro .deco {
+   .left {
+      @include absolute($top: 374px, $left: 28px, $width: 185px, $height: 210px);
+      background: url('../images/study/phonics/left_deco.png') no-repeat;
+      background-size: 100%;
+   }
+   .right {
+      @include absolute($top: 355px, $right: 10px, $width: 257px, $height: 225px);
+      background: url('../images/study/phonics/right_deco.png') no-repeat;
+      background-size: 100%;
+   }
+}
+
+#study {
+   @keyframes flash-btn-ani {
+      0% {
+         opacity: 0.5;
+      }
+      50% {
+         opacity: 1;
+      }
+      100% {
+         opacity: 0.5;
+      }
+   }
+   .quiz-view {
+      @include absolute($top: 134px, $left: 87px, $width: 786px, $height: 284px);
+      @include displayFlex();
+      background-color: #fff;
+      border-radius: 21px;
+      box-shadow: 0 3px 0 0 rgba(0, 0, 0, 0.06);
+      box-sizing: border-box;
+      padding: 13px 15px;
+      .image > img {
+         width: 258px;
+         height: auto;
+      }
+      .word-boxs {
+         @include displayFlex();
+      }
+      .word-box {
+         @include displayFlex();
+         
+         position: relative;
+         width: 152px;
+         height: 250px;
+         margin-left: 14px;
+         > span {
+            position: relative;
+            z-index: 1;
+            font-family: 'LexendDeca';
+            font-weight: 500;
+            font-size: 100px;
+            color: #cacaca;
+         }
+         
+         &:before {
+            @include absolute($top: 0, $left: 0, $width: 152px, $height: 250px);
+            content: '';
+            display: none;
+            background-color: #fff946;
+            -webkit-filter: blur(5px);
+            filter: blur(5px);
+         }
+         &:after {
+            @include absolute($top: 0, $left: 0, $width: 100%, $height: 100%);
+            content: '';
+            border-radius: 10px;
+            background-color: #f2f2f2;
+            transition: background-color 0.6s;
+            
+         }
+         &.playing:after,
+         &.active:after {
+            background-color: #fff;
+            border: solid 4px #ffaa00;
+            width: calc(152px - 8px);
+            height: calc(250px - 8px);
+         }
+         &.active:after {
+            animation: flash-btn-ani 0.8s infinite;
+         }
+         &.playing:before {
+            display: block;
+         }
+         &.playing > span,
+         &.clear > span {
+            color: #071f3d;
+         }
+         &.clear:after {
+            background-color: #fffab9;
+         }
+      }
+   }
+
+   .phonics-quiz {
+      .drag-item { 
+         position: absolute;
+         @include displayFlex();
+         top: 465px;
+         width: 91px;
+         height: 91px;
+         background-color: #fff;
+         border-radius: 17px;
+         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+         font-family: 'LexendDeca';
+         font-weight: 300;
+         font-size: 51px;
+         transform: translate3d(0, 150px, 0);
+      }
+      .drag-item:nth-child(1) {
+         left: 304px;
+      }
+      .drag-item:nth-child(2) {
+         left: 435px;
+      }
+      .drag-item:nth-child(3) {
+         left: 566px;
+      }
+      .drag-item.active{
+         cursor: default;
+         pointer-events: none;
+      }
+      .drag-area {
+         @include absolute($top: 152px, $width: 152px, $height: 250px);
+      }
+      .drag-area:nth-child(1) {
+         left: 374px;
+      }
+      .drag-area:nth-child(2) {
+         left: 540px;
+         display: none;
+      }
+      .drag-area:nth-child(3) {
+         left: 706px;
+         display: none;
+      }
+      .drag-area.active,
+      .drag-item.active {
+         display: none !important;
+      }
+   }
+}

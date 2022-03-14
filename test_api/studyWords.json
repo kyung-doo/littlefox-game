@@ -1,0 +1,61 @@
+{
+   "data": {
+      "fu_id": "U201803221135520456",
+     "langCode": "ko_KR",
+     "stageTitle": "Zoo Animal",
+     "reStudy": 0,
+     "list": [
+         {
+            "keyword": "apple",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_apple.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_apple.mp3"
+         },
+         {
+            "keyword": "banana",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_banana.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_banana.mp3"
+         },
+         {
+            "keyword": "pear",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_pear.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_pear.mp3"
+         },
+         {
+            "keyword": "orange",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_orange.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_orange.mp3"
+         },
+         {
+            "keyword": "peach",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_peach.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_peach.mp3"
+         },
+         {
+            "keyword": "strawberry",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_strawberry.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_strawberry.mp3"
+         },
+         {
+            "keyword": "watermelon",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_watermelon.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_watermelon.mp3"
+         },
+         {
+            "keyword": "lemon",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_lemon.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_lemon.mp3"
+         },
+         {
+            "keyword": "grapes",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_grapes.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_grapes.mp3"
+         },
+         {
+            "keyword": "blueberry",
+            "image": "https://cdn.littlefox.co.kr/game/word/sample/image/learn/word_s1_learn_blueberry.jpg",
+            "audio": "https://cdn.littlefox.co.kr/game/word/sample/mp3/word_s1_blueberry.mp3"
+         }
+      ]
+   },
+   "status": 200
+}

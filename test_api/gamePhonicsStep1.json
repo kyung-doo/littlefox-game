@@ -1,0 +1,56 @@
+{
+   "data": {
+      "fu_id": "U201803221135520456",
+      "langCode": "ko_KR",
+      "stage": "1",
+      "step": "3",
+      "reStudy": 0,
+      "gameTimeout": 150,
+      "quizTimeout": 4,
+      "clearScore": 3000,
+      "lowQuality": 0,
+      "quizList": [
+         {
+            "words": "hat",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_hat.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_hat.mp3"
+         },
+         {
+            "words": "cat",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_cat.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_cat.mp3"
+         },
+         {
+            "words": "mat",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_mat.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_mat.mp3"
+         },
+         {
+            "words": "rat",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_rat.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_rat.mp3"
+         },
+         {
+            "words": "jam",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_jam.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_jam.mp3"
+         },
+         {
+            "words": "ham",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_ham.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_ham.mp3"
+         },
+         {
+            "words": "sam",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_sam.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_sam.mp3"
+         },
+         {
+            "words": "pam",
+            "image": "https://cdn.littlefox.co.kr/game/phonics/sample/image/phonics1_learn_pam.png",
+            "audio": "https://cdn.littlefox.co.kr/game/phonics/sample/mp3/play/phonics1_pam.mp3"
+         }
+     ]
+   },
+   "status": 200
+}
