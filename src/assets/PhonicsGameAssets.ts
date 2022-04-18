@@ -34,7 +34,7 @@ export default ( step: number, langCode: string, low: number ) => {
       { name: 'commonBgmOffBtn', url: `${commonImgPath}bgm_btn_off.png` },
       { name: 'commonBackBtn', url: `${commonImgPath}back_btn.png` },
       { name: 'introBg', url: `${introImgPath}bg.png`},
-      { name: 'introGuide', url: `${introImgPath}guide_img.png`},
+      { name: 'introGuide', url: `${introImgPath}guide_img_${langCode}.png`},
       { name: 'introCharactor', url: `${introImgPath}charactor.png`},
       { name: 'introAimTarget', url: `${introImgPath}aim_target.png`},
       { name: 'introStartBtnDefault', url: `${introImgPath}start_btn_default.png`},

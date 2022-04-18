@@ -37,7 +37,7 @@ export default ( step: number, langCode: string, low: number ) => {
       { name: 'commonBgmOffBtn', url: `${commonImgPath}bgm_btn_off.png` },
       { name: 'commonBackBtn', url: `${commonImgPath}back_btn.png` },
       { name: 'introBg', url: `${introImgPath}bg.png`},
-      { name: 'introGuide', url: `${introImgPath}guide_img.png`},
+      { name: 'introGuide', url: `${introImgPath}guide_img_${langCode}.png`},
       { name: 'introStartBtnDefault', url: `${introImgPath}start_btn_default.png`},
       { name: 'introStartBtnHover', url: `${introImgPath}start_btn_hover.png`},
       { name: 'introInfoBtn', url: `${introImgPath}info_btn.png`},
@@ -131,6 +131,6 @@ export default ( step: number, langCode: string, low: number ) => {
       resource.push({ name: 'introBackBubble', url: `${introImgPath}back_bubble.png` });
    }
 
-
+console.log(resource);
    return resource;
 }
