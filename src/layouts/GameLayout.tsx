@@ -97,7 +97,7 @@ const GameLayout: FC<Props> = ({ children, type, title, stage, step, resultPopup
       else {
          let t = type.toLowerCase();
          if(t === 'words') t = 'word';
-         path = `/game/${t}`;
+         path = `/game/${t}/play`;
       }
       window.http
       .get(path, { params: { stage: stage, step: step }})
