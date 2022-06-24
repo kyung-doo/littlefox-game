@@ -8,7 +8,7 @@ import { gsap } from 'gsap';
 import { MotionPathPlugin } from 'gsap/all';
 import { PixiPlugin } from "gsap/all";
 import CommonLayout from './CommonLayout';
-import { isMobile } from '../utils';
+import { getCookie, isMobile } from '../utils';
 import ResultPopup from '../componens/game/ResultPopup';
 import PIXITimeout from '../utils/PIXITimeout';
 
@@ -100,7 +100,7 @@ const GameLayout: FC<Props> = ({ children, type, title, stage, step, resultPopup
          path = `/game/${t}/play`;
       }
       window.http
-      .get(path, { params: { stage: stage, step: step }})
+      .get(path, { params: { stage: stage, step: step, fu_id: getCookie('fx7'), langCode: getCookie('lang_code') }})
       .then(({ data }) => {
          setGameData(data.data);
       });

@@ -7,7 +7,7 @@ import { Transition  } from 'react-transition-group';
 import { gsap, Cubic, Power2, Back, Linear } from 'gsap';
 import { sound } from '@pixi/sound';
 import Ripples from 'react-ripples';
-import { addClass, makeRandom, removeClass } from '../utils';
+import { getCookie, addClass, makeRandom, removeClass } from '../utils';
 
 import Draggable from "gsap/Draggable";
 import { Sound } from '@pixi/sound';
@@ -121,7 +121,7 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
          }
          if(studyData.reStudy === 0) {
             window.http
-            .get(path, { params: {fu_id: studyData.fu_id, play_type: 'S', stage: stage }})
+            .get(path, { params: {fu_id: studyData.fu_id, play_type: 'P', stage: stage }})
             .then((data) => console.log(data));
          }
          dispatch({ type: StudyActions.CHANGE_STATUS, payload: StudyStatus.RESULT });
@@ -341,7 +341,7 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
          path = `/game/${t}/study`;
       }
       window.http
-      .get(path, {params: { stage: stage }})
+      .get(path, {params: { stage: stage, fu_id: getCookie('fx7'), langCode: getCookie('lang_code') }})
       .then(({ data }) => {
          let payload: any = { stage: stage, studyData: data.data, totalPage: data.data.list.length };
          if(data.data.reStudy !== 0) {

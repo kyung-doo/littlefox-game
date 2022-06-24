@@ -235,3 +235,23 @@ const getTangent = (k:number, factor: number, array: number[]): number => {
 export const numberWithCommas = (x: number): string => {
    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+
+/*
+ * Cookie 값 가져오기
+ *   @ params
+ *       d: Cookie 값
+ */
+export const getCookie = ( n: string) => {
+   let x, y;
+   let val = document.cookie.split(';');
+   for (let i = 0; i < val.length; i++) {
+      x = val[i].substr(0, val[i].indexOf('='));
+      y = val[i].substr(val[i].indexOf('=') + 1);
+      x = x.replace(/^\s+|\s+$/g, '');
+      // 앞과 뒤의 공백 제거하기
+      if (x === n) {
+         return unescape(y);
+      }
+   }
+}
