@@ -1,0 +1,59 @@
+{
+   "data": {
+     "fu_id": "U201803221135520456",
+     "langCode": "ko_KR",
+     "stageTitle": "Sight Words ①",
+     "reStudy": 0,
+     "list": [
+         {
+            "correct": "what",
+            "worng1": "whet",
+            "worng2": "where",
+            "audio": "/@dummy/what.mp3"
+         },
+         {
+            "correct": "is",
+            "worng1": "us",
+            "worng2": "es",
+            "audio": "/@dummy/is.mp3"
+         },
+         {
+            "correct": "this",
+            "worng1": "that",
+            "worng2": "thot",
+            "audio": "/@dummy/this.mp3"
+         },
+         {
+            "correct": "that",
+            "worng1": "these",
+            "worng2": "twat",
+            "audio": "/@dummy/that.mp3"
+         },
+         {
+            "correct": "jump",
+            "worng1": "yump",
+            "worng2": "jumm",
+            "audio": "/@dummy/jump.mp3"
+         },
+         {
+            "correct": "in",
+            "worng1": "on",
+            "worng2": "un",
+            "audio": "/@dummy/in.mp3"
+         },
+         {
+            "correct": "out",
+            "worng1": "ont",
+            "worng2": "eut",
+            "audio": "/@dummy/out.mp3"
+         },
+         {
+            "correct": "the",
+            "worng1": "eth",
+            "worng2": "tho",
+            "audio": "/@dummy/the.mp3"
+         }
+      ]
+   },
+   "status": 200
+}
