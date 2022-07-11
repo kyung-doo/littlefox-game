@@ -89,7 +89,6 @@ const Draggable: FC<Props> = ({
                const dragItem = dragItems.current[idx];
                this.disable();
                const hitArea = checkHitArea(this, dragItem);
-               
                if(hitArea) {
                   if(hitArea[0]) {
                      addClass(dragItem, 'active');

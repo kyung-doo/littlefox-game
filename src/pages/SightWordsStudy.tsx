@@ -5,7 +5,7 @@ import { StudyActions, StudyStatus } from '../stores/study/reducer';
 import StudyLayout from '../layouts/StudyLayout';
 import AudioButton, { Refs as AudioButtonRefs } from '../componens/study/AudioButton';
 import { Sound } from '@pixi/sound';
-import WordQuiz from '../componens/study/WordQuiz';
+import SightWordsQuiz from '../componens/study/SightWordsQuiz';
 
 import '../assets/scss/study-common.scss';
 import '../assets/scss/study-sight-words.scss';
@@ -47,8 +47,6 @@ const Study: FC<{idx: number}> = ({ idx }) => {
          type: StudyActions.CHANGE_STATUS, 
          payload: StudyStatus.STUDY_END
       });
-      audio.current?.stop();
-      audio.current?.play();
    }, []);
 
    useEffect(() => {
@@ -78,7 +76,6 @@ const Study: FC<{idx: number}> = ({ idx }) => {
    }, [quizStatus]);
 
    useEffect(() => {
-      console.log(data.audio)
       audio.current = Sound.from({url: data.audio, preload: true});
    }, []);
 
@@ -86,6 +83,29 @@ const Study: FC<{idx: number}> = ({ idx }) => {
    return (
       <>
          <div className={`quiz-view ${viewActive ? 'active': ''}`}>
+            <AudioButton
+               ref={audioBtn}
+               src={data.audio} 
+               left={'185px'}
+               top={'4px'}
+               disabled={
+                  quizStatus === QuizStatus.INIT || 
+                  quizStatus === QuizStatus.INTRO
+               } />
+            <div className="puzzle-con">
+               <span className="glow"></span>
+               <div className='text-con'>{data.correct}</div>
+            </div>
+
+            {quizStatus === QuizStatus.START &&
+               <SightWordsQuiz
+                  correct={data.correct}
+                  wrong1={data.wrong1}
+                  wrong2={data.wrong2}
+                  onStudyClear={onStudyClear}
+                  audioStop={() => audioBtn.current?.stop()} />
+            }
+
             {/* <div className="img-con">
                <img src={data.image} />
             </div>
@@ -111,7 +131,7 @@ const Study: FC<{idx: number}> = ({ idx }) => {
 }
 
 
-const WordsStudy: FC<{stage: string | null}> = ({stage}) => {
+const SightWordsStudy: FC<{stage: string | null}> = ({stage}) => {
    return (
       <div id="wrap">
          <Provider store={Store}>
@@ -125,4 +145,4 @@ const WordsStudy: FC<{stage: string | null}> = ({stage}) => {
    )
 }
 
-export default WordsStudy;
+export default SightWordsStudy;
