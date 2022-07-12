@@ -1,5 +1,5 @@
 import { FC, ReactElement, useEffect, useRef, useCallback } from "react";
-import { addClass, distance, elementIndex } from "../../utils";
+import { addClass, removeClass, distance, elementIndex } from "../../utils";
 import { gsap, Cubic } from "gsap";
 import { Draggable as GSAPDraggable } from "gsap/Draggable";
 import { Sound } from "@pixi/sound";
@@ -84,11 +84,23 @@ const Draggable: FC<Props> = ({
                   onDragStart(dragItems.current[idx]);
                }
             },
+            onDrag: function ( e ) {
+               const idx = elementIndex(this.target);
+               const dragItem = dragItems.current[idx];
+               const hitArea = checkHitArea(this, dragItem);
+               dragAreas.current.forEach(area => removeClass(area, 'hit'));
+               if(hitArea) {
+                  if(hitArea[1]) {
+                     addClass(hitArea[1], 'hit');
+                  }
+               }
+            },
             onDragEnd: function ( e ){
                const idx = elementIndex(this.target);
                const dragItem = dragItems.current[idx];
                this.disable();
                const hitArea = checkHitArea(this, dragItem);
+               dragAreas.current.forEach(area => removeClass(area, 'hit'));
                if(hitArea) {
                   if(hitArea[0]) {
                      addClass(dragItem, 'active');

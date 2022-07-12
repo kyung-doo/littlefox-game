@@ -6,6 +6,7 @@ import StudyLayout from '../layouts/StudyLayout';
 import AudioButton, { Refs as AudioButtonRefs } from '../componens/study/AudioButton';
 import { Sound } from '@pixi/sound';
 import SightWordsQuiz from '../componens/study/SightWordsQuiz';
+import SightWordsEffect from '../componens/study/SightWordsEffect';
 
 import '../assets/scss/study-common.scss';
 import '../assets/scss/study-sight-words.scss';
@@ -30,6 +31,7 @@ const Study: FC<{idx: number}> = ({ idx }) => {
    const audio = useRef<Sound|null>(null);
    const audioBtn = useRef<AudioButtonRefs>(null);
    const [viewActive, setViewActive] = useState<boolean>(false);
+   const [isClear, setIsClear] = useState<boolean>(false);
    const timer = useRef<any>();
 
    const audioFinish = () => {
@@ -47,6 +49,7 @@ const Study: FC<{idx: number}> = ({ idx }) => {
          type: StudyActions.CHANGE_STATUS, 
          payload: StudyStatus.STUDY_END
       });
+      setIsClear(true);
    }, []);
 
    useEffect(() => {
@@ -57,6 +60,7 @@ const Study: FC<{idx: number}> = ({ idx }) => {
                setQuizStatus(QuizStatus.INTRO);
             }, 500);
          } else {
+            setIsClear(false);
             setQuizStatus(QuizStatus.INIT);
             stopAudio();
          }
@@ -82,7 +86,7 @@ const Study: FC<{idx: number}> = ({ idx }) => {
    
    return (
       <>
-         <div className={`quiz-view ${viewActive ? 'active': ''}`}>
+         <div className={`quiz-view ${viewActive ? 'active': ''} ${isClear ? 'clear' : ''}`}>
             <AudioButton
                ref={audioBtn}
                src={data.audio} 
@@ -105,26 +109,9 @@ const Study: FC<{idx: number}> = ({ idx }) => {
                   onStudyClear={onStudyClear}
                   audioStop={() => audioBtn.current?.stop()} />
             }
-
-            {/* <div className="img-con">
-               <img src={data.image} />
-            </div>
-            <div className="text-con">
-               <AudioButton
-                  ref={audioBtn}
-                  src={data.audio} 
-                  disabled={
-                     quizStatus === QuizStatus.INIT || 
-                     quizStatus === QuizStatus.INTRO
-                  } />
-               <span>{data.keyword}</span>
-            </div>
-            {quizStatus === QuizStatus.START &&
-               <WordQuiz
-                  image={data.image}
-                  onStudyClear={onStudyClear}
-                  audioStop={() => audioBtn.current?.stop()} />
-            } */}
+            {isClear && 
+               <SightWordsEffect />
+            }
          </div>
       </>
    );

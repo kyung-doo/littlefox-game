@@ -10,8 +10,11 @@ import Ripples from 'react-ripples';
 import { getCookie, addClass, makeRandom, removeClass } from '../utils';
 
 import Draggable from "gsap/Draggable";
+import { MotionPathPlugin } from 'gsap/all';
 import { Sound } from '@pixi/sound';
+
 gsap.registerPlugin(Draggable);
+gsap.registerPlugin(MotionPathPlugin);
 
 
 const CONTENT_WIDTH = 960;

@@ -20,8 +20,8 @@
       @include absolute($top: 139px, $width: 100%);
       .puzzle-con {
          position: relative;
-         width: 439px;
-         height: 259px;
+         width: 438px;
+         height: 260px;
          margin: 0 auto;
          border: solid 4px #91bcff;
          border-radius: 34px;
@@ -47,6 +47,7 @@
             font-size: 85px;
             overflow: hidden;
          }
+         
       }
       
       &.active{
@@ -54,6 +55,11 @@
             border-color: #ffaa00;
          }
          .glow{display: block;}
+      }
+
+      &.clear .puzzle-con {
+         background: url('../images/study/sightwords/block_back_on.png') no-repeat;
+         background-size: 100%;
       }
 
       .sightwords-quiz {
@@ -167,19 +173,149 @@
             cursor: default;
             pointer-events: none;
          }
+
+
          .drag-area {
-            @include absolute($top: 152px, $width: 218px, $height: 113px);
+            @include absolute($top: 151px, $width: 218px, $height: 113px);
          }
+         
          .drag-area:nth-child(1) {
             left: 260px;
          }
          .drag-area:nth-child(2) {
             left: 480px;
          }
+
+         .drag-area > span {
+            display: block;
+            pointer-events: none;
+            width: 246px;
+            height: 139px;
+            position: absolute;
+            top: -24px;
+            opacity: 0;
+         }
+
+         .drag-area:nth-child(1) > span {
+            background: url('../images/study/sightwords/block_left_on.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-area:nth-child(2) > span {
+            background: url('../images/study/sightwords/block_right_on.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-area.hit > span {
+            opacity: 1;
+         }
          .drag-area.active,
          .drag-item.active {
             display: none !important;
          }
+
+         .correct-block {
+            @include absolute($top: 128px, $width: 246px, $height: 137px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0;
+            > span {
+               position: relative;
+               top: 10px;
+               left: -10px;
+               font-family: 'LexendDeca';
+               font-size: 45px;
+               font-weight: 300;
+            }
+            &.active {
+               opacity: 1;
+            }
+            &.block1 {
+               left: 260px;
+            }
+            &.block2 {
+               left: 480px;
+            }
+            &.block1[data-color="0"] {
+               background: url('../images/study/sightwords/block_large_1_green.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block1[data-color="1"] {
+               background: url('../images/study/sightwords/block_large_1_yellow.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block1[data-color="2"] {
+               background: url('../images/study/sightwords/block_large_1_blue.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block1[data-color="3"] {
+               background: url('../images/study/sightwords/block_large_1_red.png') no-repeat;
+               background-size: 100%;
+            }
+            
+            &.block2[data-color="0"] {
+               background: url('../images/study/sightwords/block_large_2_green.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block2[data-color="1"] {
+               background: url('../images/study/sightwords/block_large_2_yellow.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block2[data-color="2"] {
+               background: url('../images/study/sightwords/block_large_2_blue.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block2[data-color="3"] {
+               background: url('../images/study/sightwords/block_large_2_red.png') no-repeat;
+               background-size: 100%;
+            }
+         }
+
+         &.clear .correct-block {
+            background: transparent !important;
+         }
       }
+
+      .effect-con {
+         position: absolute;
+         left: 50%;
+         top: -140px;
+
+         .star {
+            position: absolute;
+            left: 0;
+            top: 0;
+            &:before {
+               content: '';
+               position: absolute;
+               left: -40px;
+               top: -44px;
+               width: 80px;
+               height: 77px;
+            }
+            &.star1:before{
+               background: url('../images/study/sightwords/star1.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star2:before{
+               background: url('../images/study/sightwords/star2.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star3:before{
+               background: url('../images/study/sightwords/star3.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star4:before{
+               background: url('../images/study/sightwords/star4.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star5:before{
+               background: url('../images/study/sightwords/star5.png') no-repeat;
+               background-size: 100%;
+            }
+         }
+      }
+
+
    }
 }
