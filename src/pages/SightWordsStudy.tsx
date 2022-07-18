@@ -126,6 +126,7 @@ const SightWordsStudy: FC<{stage: string | null}> = ({stage}) => {
                title="Sight Words"
                type="SightWords"
                stage={stage ? parseInt(stage) : 1}
+               showGameBtn={true}
                studyElem={idx => <Study idx={idx} />} />
          </Provider>
       </div>

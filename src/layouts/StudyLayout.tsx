@@ -33,9 +33,10 @@ export interface Prors {
    stage: number;
    type: string;
    studyElem: (idx: number) => ReactElement;
+   showGameBtn?: boolean;
 }
 
-const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
+const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem, showGameBtn }) => {
 
    const dispatch = useDispatch();
    const studyData: any = useSelector<any>(state => state.studyData);
@@ -141,7 +142,7 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
       const star2 = resultRef.current?.querySelector('.star2') as HTMLDivElement;
       const star3 = resultRef.current?.querySelector('.star3') as HTMLDivElement;
 
-      const btn = resultRef.current?.querySelector('.restudy-btn') as HTMLButtonElement;
+      
       removeClass(title, 'hidden');
       removeClass(deco, 'hidden');
       removeClass(circle, 'hidden');
@@ -152,7 +153,13 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
       gsap.set(deco!, {force3D:true, scaleX: 0.5, scaleY: 0.5, opacity: 0});
       gsap.set(circle!, {opacity: 0, force3D:true, scaleX:0.2, scaleY: 0.2});
       gsap.set(charactor!, {force3D:true, y:300, rotation: -50});
+      const btn = resultRef.current?.querySelector('.restudy-btn') as HTMLButtonElement;
       gsap.set(btn!, {opacity: 0});
+      let btn2: HTMLButtonElement;
+      if(showGameBtn){
+         btn2 = resultRef.current?.querySelector('.game-btn') as HTMLButtonElement;
+         gsap.set(btn2, {opacity: 0});
+      }
       gsap.set(resultRef.current, {opacity: 0});
 
       gsap.to(resultRef.current, 0.6, {opacity: 1});
@@ -166,8 +173,12 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
       gsap.to(circle!, 0.6, {delay: 0.8, force3D:true, scaleX: 1, scaleY:1, opacity: 1, ease: Back.easeOut.config(2)});
       gsap.to(charactor!, 0.5, {delay: 1.2, force3D:true, y: 0, rotation:0, ease: Back.easeOut.config(1.2), onComplete: ()=>{
          removeClass(btn, 'disable');
-         gsap.to(charactor!, 0.5, {delay: 0.1, scale: 1.03, repeat: -1, yoyo: true, ease: Linear.easeNone});
          gsap.to(btn!, 0.6, {opacity: 1});
+         if(showGameBtn){
+            removeClass(btn2, 'disable');
+            gsap.to(btn2, 0.6, {opacity: 1});
+         }
+         gsap.to(charactor!, 0.5, {delay: 0.1, scale: 1.03, repeat: -1, yoyo: true, ease: Linear.easeNone});
       }});
       gsap.set(star1!, {x: 106, y: 7});
       gsap.set(star2!, {x: 67, y: 80});
@@ -190,12 +201,23 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
    const onClickRestudy = useCallback(( e ) => {
       clickAudio.current!.play();
       addClass(resultRef.current?.querySelector('.restudy-btn')?.parentElement, 'disable');
+      if(showGameBtn){
+         addClass(resultRef.current?.querySelector('.game-btn')?.parentElement, 'disable');
+      }
       setTimeout(() => {
          gsap.killTweensOf('*');
          dispatch({ type: StudyActions.RESTART});
       }, 600);
-      
    },[]);
+
+   const onClickGame = useCallback((e) => {
+      clickAudio.current!.play();
+      // addClass(resultRef.current?.querySelector('.restudy-btn')?.parentElement, 'disable');
+      // addClass(resultRef.current?.querySelector('.game-btn')?.parentElement, 'disable');
+      // setTimeout(() => {
+         
+      // }, 600);
+   }, []);
 
 
    const getContentX = useCallback((idx: number) => {
@@ -473,6 +495,16 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
                               <img src={require(`../assets/images/study/common/restart_${studyData.langCode}.png`).default} />
                            </button>
                         </Ripples>
+                        {showGameBtn &&
+                           <Ripples color="rgba(62,159,221,0.3)" during={1500}>
+                              <button 
+                                 className="game-btn disable"
+                                 onClick={onClickGame}>
+                                 <img src={require(`../assets/images/study/common/game_${studyData.langCode}.png`).default} />
+                              </button>
+                           </Ripples>
+                        }
+                        
                      </div>
                   </div>
                </Transition>

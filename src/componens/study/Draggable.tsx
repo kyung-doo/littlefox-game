@@ -44,7 +44,8 @@ const Draggable: FC<Props> = ({
 
    const checkHitArea = useCallback(( draggable: any, dragItem: HTMLDivElement): [boolean, HTMLDivElement] | null => {
       for(let i=0; i<dragAreas.current.length; i++) {
-         var areaItem = dragAreas.current[i]
+         var areaItem = dragAreas.current[i];
+         if(getComputedStyle(areaItem)['visibility'] === 'hidden' || getComputedStyle(areaItem)['display'] === 'none') continue;
          if(draggable.hitTest(areaItem)){
             if(areaItem.dataset.correct === dragItem.dataset.correct) {
                return [true, areaItem];

@@ -1,0 +1,153 @@
+{
+   "data": {
+     "fu_id": "U201803221135520456",
+     "langCode": "ko_KR",
+     "stageTitle": "a_e, i_e",
+     "reStudy": 1,
+     "list": [
+         {
+            "words": {
+               "text": "what",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "c", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": true},
+               {"text": "p", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "maze",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "m", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": true},
+               {"text": "z", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "lake",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "l", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": true},
+               {"text": "k", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "race",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "r", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": true},
+               {"text": "c", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "face",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "f", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": true},
+               {"text": "c", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "lace",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "l", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": true},
+               {"text": "c", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "clip",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "cl", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "i", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": false},
+               {"text": "p", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "clap",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "cl", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": false},
+               {"text": "p", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "plate",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "pl", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": true},
+               {"text": "t", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "plane",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "pl", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": true},
+               {"text": "n", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "glasss",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "gl", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": false},
+               {"text": "s", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false},
+               {"text": "s", "audio": "/@dummy/that.mp3", "isSilent": false, "withSilient": false},
+               {"text": "s", "audio": "/@dummy/this.mp3", "isSilent": false, "withSilient": false}
+            ]
+         },
+         {
+            "words": {
+               "text": "glad",
+               "audio": "/@dummy/jump.mp3"
+            },
+            "syllables": [
+               {"text": "gl", "audio": "/@dummy/in.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "/@dummy/is.mp3", "isSilent": false, "withSilient": false},
+               {"text": "d", "audio": "/@dummy/out.mp3", "isSilent": false, "withSilient": false}               
+            ]
+         }
+      ]
+   },
+   "status": 200
+}

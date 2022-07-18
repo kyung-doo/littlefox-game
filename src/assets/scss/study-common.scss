@@ -297,6 +297,9 @@
    .react-ripples {
       border-radius: 33px;
    }
+   .react-ripples:nth-child(2) {
+      margin-left: 20px;
+   }
    .restudy-btn {
       width: auto;
       min-width: 214px;
@@ -310,6 +313,25 @@
       transition: background-color 0.4s;
       &:hover {
          background-color: #fff1e1;
+      }
+      > img {
+         width: auto;
+         height: 36px;
+      }
+   }
+   .game-btn {
+      width: auto;
+      min-width: 214px;
+      box-sizing: border-box;
+      padding: 0 33px;
+      height: 66px;
+      border-radius: 33px;
+      border: solid 1px #3ea3e8;
+      background-color: #fff;
+      color: #3ea3e8;
+      transition: background-color 0.4s;
+      &:hover {
+         background-color: #e5fcff;
       }
       > img {
          width: auto;
