@@ -42,7 +42,6 @@ export default ( step: number, langCode: string, low: number ) => {
       { name: 'introInfoBtn', url: `${introImgPath}info_btn.png`},
       { name: 'introMainTitle', url: `${introImgPath}main_title.png`},
       { name: 'introSubTitle1', url: `${introImgPath}sub_title1.png`},
-      { name: 'introSubTitle2', url: `${introImgPath}sub_title2.png`},
       { name: 'introLine', url: `${introImgPath}line.png`},
       { name: 'introTextLight', url: `${introImgPath}text_light.png`},
       { name: 'introLeftFocus', url: `${introImgPath}focus_left.png`},

@@ -87,17 +87,15 @@ const GameIntro: FC = () => {
          gsap.to(subTitle1, 1, { delay: 1, pixi: {rotation: 0, alpha: 1}, ease: Back.easeOut.config(3) });
          gsap.from(subTitle1, 1, { delay: 1, pixi: {x: `-=100`}, ease: Power4.easeOut });
 
-         gsap.to(subTitle2, 1, { delay: 1.2, pixi: {rotation: 0, alpha: 1}, ease: Back.easeOut.config(3)});
-         gsap.from(subTitle2, 1, { delay: 1.2,  pixi: {x: `-=100`}, ease: Power4.easeOut });
 
-         gsap.to(line, 1, { delay: 1.4, pixi: {rotation: 0, alpha: 1}, ease: Back.easeOut.config(3) });
-         gsap.from(line, 1, { delay: 1.4,  pixi: {x: `-=100`}, ease: Power4.easeOut });
+         gsap.to(line, 1, { delay: 1.2, pixi: {rotation: 0, alpha: 1}, ease: Back.easeOut.config(3) });
+         gsap.from(line, 1, { delay: 1.2,  pixi: {x: `-=100`}, ease: Power4.easeOut });
 
          
-         gsap.from(infoTxt, 0.6, {delay: 1.5, pixi: {y: '+=100'}, ease: Power2.easeOut});
-         gsap.to(infoTxt, 0.6, {delay: 1.5, pixi: {alpha: 1}});
+         gsap.from(infoTxt, 0.6, {delay: 1.3, pixi: {y: '+=100'}, ease: Power2.easeOut});
+         gsap.to(infoTxt, 0.6, {delay: 1.3, pixi: {alpha: 1}});
          
-         gsap.to(startBtn, 0.6, {delay: 1.7, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
+         gsap.to(startBtn, 0.6, {delay: 1.5, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
 
          
          
@@ -108,15 +106,14 @@ const GameIntro: FC = () => {
          
          gsap.to(textLight1, 0.5, {delay: 1, pixi: {alpha: 1}});
          gsap.to(textLight2, 0.5, {delay: 2, pixi: {alpha: 1}});
-         gsap.to(textLight3, 0.5, {delay: 2.2, pixi: {alpha: 1}});
 
          gsap.to(textLight1, 0.6, {delay: 1.5, pixi: {alpha: 0.5, scale:0.3}, yoyo: true, repeat: -1, ease: Linear.easeNone});
          gsap.to(textLight2, 0.6, {delay: 2.5, pixi: {alpha: 0.5, scale:0.3}, yoyo: true, repeat: -1, ease: Linear.easeNone});
-         gsap.to(textLight3, 0.6, {delay: 2.8, pixi: {alpha: 0.5, scale:0.3}, yoyo: true, repeat: -1, ease: Linear.easeNone});
+         
 
          gsap.to(textLight1, 5, {pixi: {rotation: 360}, repeat: -1, ease: Linear.easeNone});
          gsap.to(textLight2, 5, {pixi: {rotation: -360}, repeat: -1, ease: Linear.easeNone});
-         gsap.to(textLight3, 5, {pixi: {rotation: 360}, repeat: -1, ease: Linear.easeNone});
+         
 
       } else {
          bg.scale.set(1);
@@ -164,25 +161,19 @@ const GameIntro: FC = () => {
          
          <Sprite 
             name="mainTitle" 
-            position={[1024, 352]}
+            position={[1024, 515]}
             alpha={0}
             anchor={[0.5, 1]}
             texture={resources.introMainTitle.texture} />
          
          <Sprite 
             name="subTitle1" 
-            position={[1024, 1320]}
+            position={[1024, 1470]}
             rotation={-Math.PI/8}
             alpha={0}
             anchor={[0.5, 5]}
             texture={resources.introSubTitle1.texture} />
-         <Sprite 
-            name="subTitle2" 
-            position={[1024, 1665]}
-            rotation={-Math.PI/8}
-            alpha={0}
-            anchor={[0.5, 5]}
-            texture={resources.introSubTitle2.texture} />
+         
          <Sprite 
             name="line" 
             position={[1024, 1783]}
@@ -193,24 +184,18 @@ const GameIntro: FC = () => {
 
          <Sprite 
             name="textLight1" 
-            position={[1295, 240]}
+            position={[1235, 337]}
             scale={0.7}
             anchor={0.5}
             alpha={0}
             texture={resources.introTextLight.texture} />
          <Sprite 
             name="textLight2" 
-            position={[1080, 345]}
+            position={[750, 518]}
             anchor={0.5}
             alpha={0}
             texture={resources.introTextLight.texture} />
-         <Sprite 
-            name="textLight3" 
-            position={[890, 540]}
-            scale={0.8}
-            anchor={0.5}
-            alpha={0}
-            texture={resources.introTextLight.texture} />
+         
 
          <Sprite 
             name="charactor" 
