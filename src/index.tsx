@@ -20,7 +20,7 @@ declare global {
 }
 
 
-window.isTestAPI = false;
+window.isTestAPI = true;
 
 if (window.isTestAPI) {
   window.http = axios.create({ baseURL: `${process.env.PUBLIC_URL}/api` });

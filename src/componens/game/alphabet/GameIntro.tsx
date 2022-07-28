@@ -133,27 +133,26 @@ const GameIntro: FC = () => {
       const infoTxt = container.current!.getChildByName('infoTitle', true);
       const startBtn = container.current!.getChildByName('startBtnCon', true);
       if(gameData.lowQuality === 0){
-         Array.from(Array(3), (k, i) => {
+         Array.from(Array(6), (k, i) => {
             const title = container.current!.getChildByName(`title1_${i+1}`, true);
-            const delay = 0.2+i*0.2;
+            const delay = 0.2 + i * 0.1;
             let x: any = '+=0';
-            if(i == 0)  x='+=50';
-            if(i == 2)  x='-=50';
-            gsap.from(title, 0.5, { delay: delay, pixi: { x: x, y: '+=200', scale: 0 }, ease: Back.easeOut.config(3) });
+            if(i <= 1) x='+=80';
+            if(i > 2)  x='-=80';
+            gsap.from(title, 0.5, { delay: delay, pixi: { x: x, y: '+=200', scale: 0 }, ease: Back.easeOut.config(2) });
             gsap.to(title, 0.5, { delay: delay, alpha:1 });
          });
 
-         Array.from(Array(10), (k, i) => {
+         Array.from(Array(3), (k, i) => {
             const title = container.current!.getChildByName(`title2_${i+1}`, true);
-            let delay = 1.1 + i * 0.1;
-            if(i > 5) delay = 1.2 + i * 0.1;
-            gsap.from(title, 0.5, { delay: delay, pixi: { scale: 0}, ease: Back.easeOut.config(3) });
+            let delay = 1.2 + i * 0.1;
+            gsap.from(title, 0.5, { delay: delay, pixi: { scale: 0}, ease: Back.easeOut.config(2) });
             gsap.to(title, 0.5, { delay: delay, alpha:1 });
          });
 
-         gsap.from(infoTxt, 0.6, {delay: 2, pixi: {y: '+=100'}, ease: Power2.easeOut});
-         gsap.to(infoTxt, 0.6, {delay: 2, pixi: {alpha: 1}});
-         gsap.to(startBtn, 0.6, {delay: 2.2, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
+         gsap.from(infoTxt, 0.6, {delay: 1.8, pixi: {y: '+=100'}, ease: Power2.easeOut});
+         gsap.to(infoTxt, 0.6, {delay: 1.8, pixi: {alpha: 1}});
+         gsap.to(startBtn, 0.6, {delay: 2, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
       } else {
          Array.from(Array(3), (k, i) => {
             const title = container.current!.getChildByName(`title1_${i+1}`, true);
@@ -202,7 +201,7 @@ const GameIntro: FC = () => {
          <Container 
             name="bigBubbleCon" 
             anchor={0.5}
-            position={[567, 33]}>
+            position={[585, 33]}>
             <Sprite 
                name="bigBubble" 
                position={[853/2, 853/2]}
@@ -222,19 +221,38 @@ const GameIntro: FC = () => {
                texture={resources.introTitle1_1.texture}
                anchor={0.5}
                alpha={0}
-               position={[885, 293]} />
+               position={[731, 409]} />
             <Sprite 
                name="title1_2"
                texture={resources.introTitle1_2.texture}
                anchor={0.5}
                alpha={0}
-               position={[1014, 282]} />
+               position={[862, 410]} />
             <Sprite 
                name="title1_3"
                texture={resources.introTitle1_3.texture}
                anchor={0.5}
                alpha={0}
-               position={[1157, 289]} />
+               position={[992, 384]} />
+            <Sprite 
+               name="title1_4"
+               texture={resources.introTitle1_4.texture}
+               anchor={0.5}
+               alpha={0}
+               position={[1129, 384]} />
+            <Sprite 
+               name="title1_5"
+               texture={resources.introTitle1_5.texture}
+               anchor={0.5}
+               alpha={0}
+               position={[1225, 389]} />
+            <Sprite 
+               name="title1_6"
+               texture={resources.introTitle1_6.texture}
+               anchor={0.5}
+               alpha={0}
+               position={[1313, 418]} />
+
          </Container>
 
          <Container name="title2">
@@ -243,62 +261,19 @@ const GameIntro: FC = () => {
                texture={resources.introTitle2_1.texture}
                anchor={0.5}
                alpha={0}
-               position={[749, 500]} />
+               position={[899, 590]} />
             <Sprite 
                name="title2_2"
                texture={resources.introTitle2_2.texture}
                anchor={0.5}
                alpha={0}
-               position={[868, 501]} />
+               position={[1034, 588]} />
             <Sprite 
                name="title2_3"
                texture={resources.introTitle2_3.texture}
                anchor={0.5}
                alpha={0}
-               position={[986, 478]} />
-            <Sprite 
-               name="title2_4"
-               texture={resources.introTitle2_4.texture}
-               anchor={0.5}
-               alpha={0}
-               position={[1110, 478]} />
-            <Sprite 
-               name="title2_5"
-               texture={resources.introTitle2_5.texture}
-               anchor={0.5}
-               alpha={0}
-               position={[1197, 482]} />
-            <Sprite 
-               name="title2_6"
-               texture={resources.introTitle2_6.texture}
-               anchor={0.5}
-               alpha={0}
-               position={[1277, 509]} />
-            
-            <Sprite 
-               name="title2_7"
-               texture={resources.introTitle2_7.texture}
-               anchor={0.5}
-               alpha={0}
-               position={[844, 663]} />
-            <Sprite 
-               name="title2_8"
-               texture={resources.introTitle2_8.texture}
-               anchor={0.5}
-               alpha={0}
-               position={[966, 663]} />
-            <Sprite 
-               name="title2_9"
-               texture={resources.introTitle2_9.texture}
-               anchor={0.5}
-               alpha={0}
-               position={[1084, 658]} />
-            <Sprite 
-               name="title2_10"
-               texture={resources.introTitle2_10.texture}
-               anchor={0.5}
-               alpha={0}
-               position={[1201, 676]} />
+               position={[1168, 597]} />
          </Container>
 
          <Sprite name="infoTitle"
