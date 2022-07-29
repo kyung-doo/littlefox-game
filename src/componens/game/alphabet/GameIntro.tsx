@@ -154,11 +154,11 @@ const GameIntro: FC = () => {
          gsap.to(infoTxt, 0.6, {delay: 1.8, pixi: {alpha: 1}});
          gsap.to(startBtn, 0.6, {delay: 2, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
       } else {
-         Array.from(Array(3), (k, i) => {
+         Array.from(Array(6), (k, i) => {
             const title = container.current!.getChildByName(`title1_${i+1}`, true);
             title.alpha = 1;
          });
-         Array.from(Array(10), (k, i) => {
+         Array.from(Array(3), (k, i) => {
             const title = container.current!.getChildByName(`title2_${i+1}`, true);
             title.alpha = 1;
          });

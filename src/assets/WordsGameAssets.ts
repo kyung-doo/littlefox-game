@@ -39,7 +39,6 @@ export default ( langCode: string, low: number ) => {
       { name: 'introStartBtnHover', url: `${introImgPath}start_btn_hover.png`},
       { name: 'introInfoBtn', url: `${introImgPath}info_btn.png`},
       { name: 'introMainTitle1', url: `${introImgPath}main_title1.png`},
-      { name: 'introMainTitle2', url: `${introImgPath}main_title2.png`},
       { name: 'introSubTitleBg', url: `${introImgPath}sub_title_bg.png`},
       { name: 'introSubTitle1', url: `${introImgPath}sub_title_1.png`},
       { name: 'introSubTitle2', url: `${introImgPath}sub_title_2.png`},

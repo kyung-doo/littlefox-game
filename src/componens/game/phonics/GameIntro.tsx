@@ -59,7 +59,6 @@ const GameIntro: FC = () => {
       const aimTarget = container.current?.getChildByName('aimTarget') as PIXISprite;
       const mainTitle = container.current?.getChildByName('mainTitle') as PIXISprite;
       const subTitle1 = container.current?.getChildByName('subTitle1') as PIXISprite;
-      const subTitle2 = container.current?.getChildByName('subTitle2') as PIXISprite;
       const line = container.current?.getChildByName('line') as PIXISprite;
       const infoTxt = container.current!.getChildByName('infoTitle', true);
       const startBtn = container.current!.getChildByName('startBtnCon', true);
@@ -68,7 +67,6 @@ const GameIntro: FC = () => {
       const topFocus = container.current?.getChildByName('topFocus') as PIXISprite;
       const textLight1 = container.current!.getChildByName('textLight1', true);
       const textLight2 = container.current!.getChildByName('textLight2', true);
-      const textLight3 = container.current!.getChildByName('textLight3', true);
 
       leftFocus.pivot.x = 1024;
       rightFocus.pivot.x = -1024;
@@ -122,8 +120,6 @@ const GameIntro: FC = () => {
          mainTitle.alpha = 1;
          subTitle1.alpha = 1;
          subTitle1.rotation = 0;
-         subTitle2.alpha = 1;
-         subTitle2.rotation = 0;
          line.alpha = 1;
          line.rotation = 0;
          infoTxt.alpha = 1;
@@ -134,7 +130,6 @@ const GameIntro: FC = () => {
          rightFocus.scale.set(1);
          textLight1.alpha = 1;
          textLight2.alpha = 1;
-         textLight3.alpha = 1;
       }
       
 

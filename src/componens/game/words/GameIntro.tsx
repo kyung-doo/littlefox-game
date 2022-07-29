@@ -41,7 +41,7 @@ const GameIntro: FC = () => {
       bgmAudio.current = resources.audioBgm.sound;
 
       const mainTitle1 = container.current!.getChildByName('mainTitle1', true) as PIXISprite;
-      const mainTitle2 = container.current!.getChildByName('mainTitle2', true) as PIXISprite;
+      // const mainTitle2 = container.current!.getChildByName('mainTitle2', true) as PIXISprite;
       const subTitleCon = container.current!.getChildByName('subTitles', true) as PIXIContainer;
       const subTitleBg = container.current!.getChildByName('subTitleBg', true) as PIXISprite;
       const charactor = container.current!.getChildByName('charactor', true) as PIXISprite;
@@ -58,22 +58,22 @@ const GameIntro: FC = () => {
          
          gsap.to(mainTitle1, 0.3, {delay: 0.5, pixi: { alpha: 1}});
          gsap.from(mainTitle1, 0.7, {delay: 0.5, pixi: { scale: 0, y: '+=200'}, ease: Back.easeOut});
-         gsap.to(mainTitle2, 0.3, {delay: 0.8, pixi: { alpha: 1}});
-         gsap.from(mainTitle2, 0.7, {delay: 0.8, pixi: { scale: 0, y: '+=200'}, ease: Back.easeOut});
+         // gsap.to(mainTitle2, 0.3, {delay: 0.8, pixi: { alpha: 1}});
+         // gsap.from(mainTitle2, 0.7, {delay: 0.8, pixi: { scale: 0, y: '+=200'}, ease: Back.easeOut});
 
-         gsap.from(subTitleCon, 0.8, {delay: 1.4, pixi: { scale: 0.7, y: '+=100' }, ease: Back.easeOut});
-         gsap.to(subTitleBg, 1, {delay: 1.4, pixi: { alpha: 1 }});
+         gsap.from(subTitleCon, 0.8, {delay: 1, pixi: { scale: 0.7, y: '+=100' }, ease: Back.easeOut});
+         gsap.to(subTitleBg, 1, {delay: 1, pixi: { alpha: 1 }});
          const nums1 = [0, 2, 1];
          const nums2 = [1, 0, 2];
          Array.from(Array(6), (k,i) => {
             const subTitle = container.current!.getChildByName(`subTitle${i+1}`, true) as PIXISprite;
             let num1 = nums1[i%3]+0.1*i;
             let num2 = nums2[i%3]+0.1*i;
-            gsap.to(subTitle, 0.6, {delay: 1.4, pixi: { alpha: 1, brightness: 1 }, ease: Linear.easeNone});
-            gsap.to(subTitle, 0.3, {delay: 0.2 * num1 + 1.8, pixi: { alpha: 0.2, brightness: 2 }, ease: Linear.easeNone});
-            gsap.to(subTitle, 0.3, {delay: 0.2 * num1 + 2, pixi: { alpha: 1, brightness: 1 }, ease: Linear.easeNone});
-            gsap.to(subTitle, 0.3, {delay: 0.2 * num2 + 2.2, pixi: { alpha: 0.5, brightness: 1.5 }, ease: Linear.easeNone});
-            gsap.to(subTitle, 0.3, {delay: 0.2 * num2 + 2.4, pixi: { alpha: 1, brightness: 1 }, ease: Linear.easeNone});
+            gsap.to(subTitle, 0.6, {delay: 1, pixi: { alpha: 1, brightness: 1 }, ease: Linear.easeNone});
+            gsap.to(subTitle, 0.3, {delay: 0.2 * num1 + 1.4, pixi: { alpha: 0.2, brightness: 2 }, ease: Linear.easeNone});
+            gsap.to(subTitle, 0.3, {delay: 0.2 * num1 + 1.6, pixi: { alpha: 1, brightness: 1 }, ease: Linear.easeNone});
+            gsap.to(subTitle, 0.3, {delay: 0.2 * num2 + 1.8, pixi: { alpha: 0.5, brightness: 1.5 }, ease: Linear.easeNone});
+            gsap.to(subTitle, 0.3, {delay: 0.2 * num2 + 2, pixi: { alpha: 1, brightness: 1 }, ease: Linear.easeNone});
          });
 
          gsap.to(charactor, 0.3, {delay: 0.1, pixi: { alpha: 1}});
@@ -96,7 +96,7 @@ const GameIntro: FC = () => {
          gsap.to([leftHighLigt1, rightHighLigt1, leftHighLigt2, rightHighLigt2], 0.2, {pixi: {brightness: 1.5}, yoyo: true, repeat: -1, ease: Linear.easeNone});
       } else {
          mainTitle1.alpha = 1;
-         mainTitle2.alpha = 1;
+         // mainTitle2.alpha = 1;
          subTitleBg.alpha = 1;
          Array.from(Array(6), (k,i) => {
             const subTitle = container.current!.getChildByName(`subTitle${i+1}`, true) as PIXISprite;
@@ -150,52 +150,52 @@ const GameIntro: FC = () => {
             <Sprite 
                name="mainTitle1" 
                texture={resources.introMainTitle1.texture}
-               anchor={[1, 0.5]}
-               position={[967, 373]}
+               anchor={0.5}
+               position={[1025, 343]}
                alpha={0} />
-            <Sprite 
+            {/* <Sprite 
                name="mainTitle2" 
                texture={resources.introMainTitle2.texture}
                anchor={[0, 0.5]}
                position={[977, 375]}
-               alpha={0} />
+               alpha={0} /> */}
          </Container>
 
          <Container name="subTitles" position={[1024, 540]}>
             <Sprite 
                name="subTitleBg" 
                texture={resources.introSubTitleBg.texture}
-               position={[-312, -114]}
+               position={[-370, -130]}
                alpha={0} />
             <Sprite 
                name="subTitle1" 
                texture={resources.introSubTitle1.texture}
-               position={[-274, -63]}
+               position={[-332, -77]}
                alpha={0} />
             <Sprite 
                name="subTitle2" 
                texture={resources.introSubTitle2.texture}
-               position={[-134, -37]}
+               position={[-165, -46]}
                alpha={0} />
             <Sprite 
                name="subTitle3" 
                texture={resources.introSubTitle3.texture}
-               position={[-44, -75]}
+               position={[-57, -93]}
                alpha={0} />
             <Sprite 
                name="subTitle4" 
                texture={resources.introSubTitle4.texture}
-               position={[6, -38]}
+               position={[2, -47]}
                alpha={0} />
             <Sprite 
                name="subTitle5" 
                texture={resources.introSubTitle5.texture}
-               position={[96, -75]}
+               position={[110, -87]}
                alpha={0} />
             <Sprite 
                name="subTitle6" 
                texture={resources.introSubTitle6.texture}
-               position={[180, -30]}
+               position={[208, -37]}
                alpha={0} />
          </Container>
 
