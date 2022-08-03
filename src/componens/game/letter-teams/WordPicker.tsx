@@ -1,27 +1,239 @@
-import { useEffect, useRef, FC, memo } from 'react';
-import { _ReactPixi, Container, PixiRef, Sprite } from '@inlet/react-pixi';
-import { Container as PIXIContainer, Sprite as PIXISprite } from 'pixi.js';
-import { gsap } from 'gsap';
+import { useEffect, useRef, useImperativeHandle, memo, useCallback, useState, forwardRef } from 'react';
+import { _ReactPixi, Container, PixiRef, Sprite, Text } from '@inlet/react-pixi';
+import { Container as PIXIContainer, Graphics as PIXIGraphics, Text as PIXIText, Sprite as PIXISprite, Texture } from 'pixi.js';
+import { gsap, Cubic } from 'gsap';
 import useAssets from '../../../hooks/useAssets';
+import { makeRandom } from '../../../utils';
+
+
+export interface Props extends _ReactPixi.IContainer {
+   words: string | string[];
+}
+
+export interface Refs {
+   isCorrect: () => boolean;
+}
+
+const PICKER_HEIGHT: number = 209;
+const TEXT_STYLE = {
+   fontSize: 115,
+   fontFamily: 'LexendDeca-Bold',
+   fill: '#000'
+}
 
 
 
-const WordPicker: FC<_ReactPixi.IContainer> = ( props ) => {
+
+const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
 
    const { resources } = useAssets();
-   const container = useRef<PixiRef<typeof Container>>(null);   
+   const container = useRef<PixiRef<typeof Container>>(null);
+   const pickerCon = useRef<PixiRef<typeof Container>>(null);
+   const [isSilient, setIsSilient] = useState<boolean>(false);
+   const startPointerY = useRef<number>(0);
+   const startPosY = useRef<number>(0);
+   const isDrag = useRef<boolean>(false);
+   const pickNum = useRef<number>(0);
+   const [isTransition, setIsTransition] = useState<boolean>(false);
+   const pickData = useRef<{word: string, correct: boolean}[]>([]);
+  
 
-   useEffect(() => {
+   const makePicker = useCallback(() => {
+      if(typeof words === 'object'){
+         const g = new PIXIGraphics();
+         g.beginFill(0xFF0000);
+         g.drawRect(0, 0, 259, PICKER_HEIGHT * (words.length+2));
+         g.endFill();
+         g.position.y = -PICKER_HEIGHT;
+         g.alpha = 0;
+         pickerCon.current?.addChild(g);
+
+         // makeRandom(words.length, words.length).forEach((num, i) => {
+         //    if(i === 0)    pickData.current[num] = { word: words[i], correct: true }
+         //    else           pickData.current[num] = { word: words[i], correct: false }
+         // });
+
+         Array.from(Array(words.length), (k, i) => i).forEach((num, i) => {
+            if(i === 0)    pickData.current[num] = { word: words[i], correct: true }
+            else           pickData.current[num] = { word: words[i], correct: false }
+         });
+         
+         words.forEach((word: any, i) => {
+            const picker: PIXIContainer = new PIXIContainer();
+            picker.position.y = PICKER_HEIGHT * i;
+            const text: PIXIText = new PIXIText(pickData.current[i].word, TEXT_STYLE);
+            text.position.set(130, 105);
+            text.anchor.set(0.5);
+            picker.addChild(text);
+            pickerCon.current?.addChild(picker);
+         });
+         maekUpDownPicker();
+      } else {
+         setIsSilient(true);
+         const picker: PIXIContainer = new PIXIContainer();
+         const text: PIXIText = new PIXIText(words, TEXT_STYLE);
+         text.position.set(130, 105);
+         text.anchor.set(0.5);
+         picker.addChild(text);
+         pickerCon.current?.addChild(picker);
+      }
+   }, []);
+
+   const maekUpDownPicker = useCallback(() => {
+      const upPicker: PIXIContainer = new PIXIContainer();
+      upPicker.position.y = -PICKER_HEIGHT;
+      const upText: PIXIText = new PIXIText(pickData.current[words.length-1].word, TEXT_STYLE);
+      upText.position.set(130, 105);
+      upText.anchor.set(0.5);
+      upPicker.addChild(upText);
+      pickerCon.current?.addChild(upPicker);
+
+      const downPicker: PIXIContainer = new PIXIContainer();
+      downPicker.position.y = PICKER_HEIGHT * words.length;
+      const downText: PIXIText = new PIXIText(pickData.current[0].word, TEXT_STYLE);
+      downText.position.set(130, 105);
+      downText.anchor.set(0.5);
+      downPicker.addChild(downText);
+      pickerCon.current?.addChild(downPicker);
+      makeDragging();
+   }, []);
+
+   const makeDragging = useCallback(() => {
+      pickerCon.current!.on('pointerdown', onDragStart);
+      pickerCon.current!.on('pointerup', onDragEnd);
+      pickerCon.current!.on('pointerupoutside', onDragEnd);
+      pickerCon.current!.on('pointermove', onDragMove);
       
    }, []);
 
+
+   const onDragStart = useCallback(( e: any ) => {
+      startPointerY.current = e.data.global.y;
+      startPosY.current = pickerCon.current!.position.y;
+      isDrag.current = true;
+   }, []);
+
+   const onDragMove = useCallback(( e: any ) => {
+      if(isDrag.current) {
+         const targetY: number = e.data.global.y - startPointerY.current;
+         let scale = 1 - window.scale;
+         if(scale < 0.3) scale = 0.3;
+         pickerCon.current!.position.y = startPosY.current + (targetY *  (5 * scale));
+         const y = pickerCon.current!.position.y;
+         pickNum.current = Math.round(-pickerCon.current!.position.y / PICKER_HEIGHT);
+         if(pickerCon.current!.position.y > 0) {
+            pickerCon.current!.position.y = -PICKER_HEIGHT * words.length + y;
+         } else if(pickerCon.current!.position.y < -PICKER_HEIGHT * (words.length-1)) {
+            pickerCon.current!.position.y = PICKER_HEIGHT * (words.length) + y;
+         }
+         if(pickNum.current < 0) {
+            pickNum.current = words.length + pickNum.current;
+         }
+         if(pickNum.current > words.length-1) {
+            pickNum.current = pickNum.current - words.length;
+         }
+         
+      }
+   }, []);
+
+
+   const onDragEnd = useCallback(( e: any ) => {
+      setTimeout(() => isDrag.current = false, 100);
+      const targetY = -PICKER_HEIGHT * pickNum.current;
+      if(pickNum.current === 0 && pickerCon.current!.position.y < -(PICKER_HEIGHT/2)) {
+         pickerCon.current!.position.y += PICKER_HEIGHT * words.length;
+      }
+      else if(pickNum.current === words.length-1 && pickerCon.current!.position.y > 0) {
+         pickerCon.current!.position.y -= PICKER_HEIGHT * words.length;
+      }
+      setIsTransition(true);
+      gsap.to(pickerCon.current, 0.4, { pixi: {y: targetY}, ease: Cubic.easeOut, onComplete: () => setIsTransition(false)});
+   }, []);
+
+
+   const onBtnUp = useCallback(() => {
+      if(isDrag.current) return;
+      setIsTransition(true);
+      if(pickNum.current < words.length-1) {
+         pickNum.current++;
+         const targetY = -PICKER_HEIGHT * pickNum.current;
+         gsap.to(pickerCon.current, 0.4, { pixi: {y: targetY}, ease: Cubic.easeOut, onComplete: () => setIsTransition(false)});
+      } else {
+         pickNum.current = 0;
+         pickerCon.current!.position.y = PICKER_HEIGHT;
+         const targetY = -PICKER_HEIGHT * pickNum.current;
+         gsap.to(pickerCon.current, 0.4, { pixi: {y: targetY}, ease: Cubic.easeOut, onComplete: () => setIsTransition(false)});
+      }
+   }, []);
+
+   const onBtnDown = useCallback(() => {
+      if(isDrag.current) return;
+      setIsTransition(true);
+      if(pickNum.current > 0) {
+         pickNum.current--;
+         const targetY = -PICKER_HEIGHT * pickNum.current;
+         gsap.to(pickerCon.current, 0.4, { pixi: {y: targetY}, ease: Cubic.easeOut, onComplete: () => setIsTransition(false)});
+      } else {
+         pickNum.current = words.length-1;
+         pickerCon.current!.position.y = -PICKER_HEIGHT * words.length;
+         const targetY = -PICKER_HEIGHT * pickNum.current;
+         gsap.to(pickerCon.current, 0.4, { pixi: {y: targetY}, ease: Cubic.easeOut, onComplete: () => setIsTransition(false)});
+      }
+   }, []);
+
+   useImperativeHandle(ref, () => ({
+      isCorrect: () => {
+         return typeof words === 'object' ? pickData.current[pickNum.current].correct : true;
+      }
+   }));
+
+   useEffect(() => {
+      const mask = new PIXISprite(Texture.WHITE);
+      mask.width = 259;
+      mask.height = 209;
+      mask.position.y = 80;
+      container.current!.addChild(mask);
+      pickerCon.current!.mask = mask;
+      makePicker();
+   }, []);
+
    return (
-      <Container ref={container} {...props}>
-         {/* <Sprite 
+      <Container ref={container} {...props} interactiveChildren={!isTransition}>
+         <Sprite 
             name="pickerBg" 
-            texture={resources.mainPickerBg} /> */}
+            texture={resources.mainPickerBg.texture} />
+
+         <Container
+            name="pickerWrap"
+            position={[0, 80]}>
+             <Container ref={pickerCon}
+               name="pickerCon"
+               interactive={true}
+               buttonMode={true} />
+         </Container>
+         
+         {!isSilient &&
+            <>
+               <Sprite 
+                  name="btnUp"
+                  texture={resources.mainPickerUp.texture}
+                  position={[56, 0]}   
+                  interactive={true}
+                  pointerup={onBtnUp}
+                  buttonMode={true} />
+
+               <Sprite 
+                  name="btnDown"
+                  texture={resources.mainPickerDown.texture}
+                  position={[56, 288]}   
+                  interactive={true}
+                  pointerup={onBtnDown}
+                  buttonMode={true} />
+            </>
+         }
+
       </Container>
    );
-}
+});
 
 export default memo(WordPicker, () => true);

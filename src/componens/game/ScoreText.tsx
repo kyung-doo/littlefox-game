@@ -14,12 +14,14 @@ import { Texture } from 'pixi.js';
 export interface Props extends _ReactPixi.IContainer {
    id: string;
    texture: Texture;
-   posY: number;
+   posY?: number;
+   scale?: number;
+   delay?: number;
    onAnimationEnd?: (id: string) => void;
 }
 
 
-const ScoreText: VFC<Props> = ({id, texture, onAnimationEnd, posY, ...props}) => {
+const ScoreText: VFC<Props> = ({ id, texture, onAnimationEnd, posY=0, scale=1, delay=0.3, ...props }) => {
 
    const container = useRef<PixiRef<typeof Container>>(null);
 
@@ -27,9 +29,9 @@ const ScoreText: VFC<Props> = ({id, texture, onAnimationEnd, posY, ...props}) =>
    useEffect(() => {
       const y = container.current!.position.y - posY;
       gsap.to(container.current, 0.3, { alpha:1 });
-      gsap.to(container.current, 0.5, {delay: 0.3, alpha:0});
-      gsap.to(container.current!.position, 1.5, {
-         y: y, 
+      gsap.to(container.current, 0.5, {delay: delay, alpha:0});
+      gsap.to(container.current, 1.5, {
+         pixi: {y: y, scale: scale},
          ease: Power2.easeOut, 
          onComplete:() => {
             if(onAnimationEnd) onAnimationEnd(id);

@@ -5,14 +5,14 @@
       "stage": "1",
       "reStudy": 0,
       "gameTimeout": 150,
-      "quizTimeout": 7,
+      "quizTimeout": 15,
       "clearScore": 3000,
       "lowQuality": 0,
       "quizList": [
          {
             "words": {
                "text": "cape",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_1_cape.wav"
             },
             "syllables": [
                {"correct": "c", "wrong1": "r", "wrong2": "o", "isSilent": false},
@@ -24,7 +24,7 @@
          {
             "words": {
                "text": "maze",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_2_maze.wav"
             },
             "syllables": [
                {"correct": "m", "wrong1": "n", "wrong2": "d", "isSilent": false},
@@ -36,7 +36,7 @@
          {
             "words": {
                "text": "lake",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_3_lake.wav"
             },
             "syllables": [
                {"correct": "l", "wrong1": "i", "wrong2": "h", "isSilent": false},
@@ -48,7 +48,7 @@
          {
             "words": {
                "text": "race",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_4_race.wav"
             },
             "syllables": [
                {"correct": "r", "wrong1": "l", "wrong2": "s", "isSilent": false},
@@ -60,7 +60,7 @@
          {
             "words": {
                "text": "face",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_5_face.wav"
             },
             "syllables": [
                {"correct": "f", "wrong1": "g", "wrong2": "h", "isSilent": false},
@@ -72,7 +72,7 @@
          {
             "words": {
                "text": "lace",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_6_lace.wav"
             },
             "syllables": [
                {"correct": "l", "wrong1": "r", "wrong2": "w", "isSilent": false},
@@ -84,7 +84,7 @@
          {
             "words": {
                "text": "clip",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_7_clip.wav"
             },
             "syllables": [
                {"correct": "cl", "wrong1": "kl", "wrong2": "ql", "isSilent": false},
@@ -95,7 +95,7 @@
          {
             "words": {
                "text": "clap",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_8_clap.wav"
             },
             "syllables": [
                {"correct": "cl", "wrong1": "kl", "wrong2": "ql", "isSilent": false},
@@ -106,7 +106,7 @@
          {
             "words": {
                "text": "plate",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_9_plate.wav"
             },
             "syllables": [
                {"correct": "pl", "wrong1": "ql", "wrong2": "gl", "isSilent": false},
@@ -118,7 +118,7 @@
          {
             "words": {
                "text": "plane",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_10_plane.wav"
             },
             "syllables": [
                {"correct": "pl", "wrong1": "ql", "wrong2": "gl", "isSilent": false},
@@ -130,7 +130,7 @@
          {
             "words": {
                "text": "glasss",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_11_glass.wav"
             },
             "syllables": [
                {"correct": "gl", "wrong1": "ql", "wrong2": "bl", "isSilent": false},
@@ -143,7 +143,7 @@
          {
             "words": {
                "text": "glad",
-               "audio": "/@dummy/jump.mp3"
+               "audio": "/@dummy/learn_12_glad.wav"
             },
             "syllables": [
                {"correct": "gl", "wrong1": "ql", "wrong2": "bl", "isSilent": false},
