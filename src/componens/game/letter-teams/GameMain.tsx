@@ -92,6 +92,7 @@ const GameMain: FC = () => {
       quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
    },[]);
 
+
    const onQuizSuccess = useCallback((score: number) => {
       console.log('quizSuccess');
 
@@ -103,17 +104,24 @@ const GameMain: FC = () => {
       quizCounter.pause();
       quizStatusRef.current = QuizStatus.END;
       setQuizStatus(QuizStatus.END);
+      setIsTransition(true);
       successTransition();
-
-      // setTimeout(() => quizNext(), 1000);
    }, []);
+
 
    const onQuizWrong = useCallback(() => {
       console.log('quizWrong');
+      
+      dispatch({type: GameActions.INCORRECT_SCORE, payload: 10});
       resources.audioWrong.sound.stop();
       resources.audioWrong.sound.play();
-      dispatch({type: GameActions.INCORRECT_SCORE, payload: 10});
+      
+      setIsTransition(true);
+      timer.current = PIXITimeout.start(() => {
+         setIsTransition(false);
+      }, 300);
    }, []);
+
 
    const onQuizEnter = useCallback(() => {
       enterBtn.current!.alpha = 0;
@@ -122,11 +130,11 @@ const GameMain: FC = () => {
 
 
    const successTransition = useCallback(() => {
-      setIsTransition(true);
       gsap.to(ground.current, 0.6, {pixi: {y: 1060}, ease: Cubic.easeInOut});
       gsap.to(sky.current, 1, {pixi: {y: 520}, ease: Linear.easeNone});
       timer.current = PIXITimeout.start(endTransition, 1500);
    }, []);
+
 
    const endTransition = useCallback(() => {
       gsap.to(ground.current, 1, {delay: 0.5, pixi: {y: 520}, ease: Cubic.easeInOut});
