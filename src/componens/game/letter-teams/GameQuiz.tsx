@@ -6,9 +6,10 @@ import WordPicker, {Refs as WordPickerRefs} from './WordPicker';
 import PIXITimeout from "../../../utils/PIXITimeout";
 import { Elastic, Cubic, gsap, Linear } from 'gsap';
 import ScoreText, { Props as ScoreTextProps} from "../ScoreText";
+import BonusEffect1 from "./BonusEffect1";
 
 export interface Props {
-   onSuccess: (score: number) => void;
+   onSuccess: (score: number, isBonus: boolean) => void;
    onWrong: () => void;
 }
 
@@ -32,11 +33,16 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
    const [bonusIdx, setBonusIdx] = useState<number | null>(null);
    const [wordLists, setWordLists] = useState<any>(null);
 
+   const [showBonusEffect1, setShowBonusEffect1] = useState<boolean>(false);
+   const [showBonusEffect2, setShowBonusEffect2] = useState<boolean>(false);
+   const [showBonusEffect3, setShowBonusEffect3] = useState<boolean>(false);
+
    const [scoreTexts, setScoreTexts] = useState<ScoreTextProps[]>([]);
+
    const scoreCount = useRef<number>(0);
    const timelines = useRef<gsap.core.Timeline[]>([]);
-
    const wordPickers = useRef<WordPickerRefs[]>([]);
+   
    const timer = useRef<any>();
 
 
@@ -99,9 +105,28 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
          scale: 2,
          delay: 0.5,
       }]);
+
       scoreCount.current++;
-      onSuccess(score);
-   }, [wordLists]);
+      onSuccess(score, bonusIdx ? true : false);
+
+      if(bonusIdx && bonusIdx > 0) {
+         timer.current = PIXITimeout.start(() => {
+            if(bonusIdx === 1) {
+               setShowBonusEffect1(true);
+            } else if(bonusIdx === 2) {
+               setShowBonusEffect2(true);
+            } else {
+               setShowBonusEffect3(true);
+            }
+            timer.current = PIXITimeout.start(() => {
+               setShowBonusEffect1(false);
+               setShowBonusEffect2(false);
+               setShowBonusEffect3(false);
+            }, 3000);
+         }, 1500);
+      }
+
+   }, [wordLists, bonusIdx]);
 
    const onQuizWrong = useCallback(() => {
       setScoreTexts(prev => [ ...prev, { 
@@ -109,7 +134,8 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
          texture: resources.mainScoreMinus10.texture, 
          x: 0, 
          y: -160, 
-         posY: 150
+         scale: 2,
+         delay: 0.5,
       }]);
       scoreCount.current++;
 
@@ -169,7 +195,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
       transition: () => {
          gsap.to(container.current, 0.4, {pixi:{y: -1000}, onComplete: () => {
             gsap.set(container.current, {pixi: {y: 1000}});
-            gsap.to(container.current, 0.4, {delay: 0.5, pixi: { y: 0}});
+            gsap.to(container.current, 0.4, {delay: 0.2, pixi: { y: 0}});
          }});
       },
       timeout:() => setTimeout(quizTimeout, 1)
@@ -189,7 +215,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
 
    useEffect(() => {
       if( wordLists ) {
-         pickerCon.current!.position.x = -1430/2 + ((1430 - (255 * wordLists.length))/2);
+         pickerCon.current!.position.x = -1430 / 2 + ((1430 - (255 * wordLists.length))/2) - 15;
          container.current!.interactiveChildren = true;
       }
    }, [wordLists]);
@@ -256,6 +282,11 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
                onAnimationEnd={onScoreTextAniEnd}
                {...st} />
          ))}
+
+         {showBonusEffect1 && 
+            <BonusEffect1 />
+         }
+         
       </>
    );
 });

@@ -9,49 +9,49 @@
             "correct": "what",
             "wrong1": "whet",
             "wrong2": "where",
-            "audio": "/@dummy/word_what.mp3"
+            "audio": "./@dummy/word_what.mp3"
          },
          {
             "correct": "is",
             "wrong1": "us",
             "wrong2": "es",
-            "audio": "/@dummy/word_is.mp3"
+            "audio": "./@dummy/word_is.mp3"
          },
          {
             "correct": "this",
             "wrong1": "that",
             "wrong2": "thot",
-            "audio": "/@dummy/word_this.mp3"
+            "audio": "./@dummy/word_this.mp3"
          },
          {
             "correct": "that",
             "wrong1": "these",
             "wrong2": "twat",
-            "audio": "/@dummy/word_that.mp3"
+            "audio": "./@dummy/word_that.mp3"
          },
          {
             "correct": "jump",
             "wrong1": "yump",
             "wrong2": "jumm",
-            "audio": "/@dummy/word_jump.mp3"
+            "audio": "./@dummy/word_jump.mp3"
          },
          {
             "correct": "in",
             "wrong1": "on",
             "wrong2": "un",
-            "audio": "/@dummy/word_in.mp3"
+            "audio": "./@dummy/word_in.mp3"
          },
          {
             "correct": "out",
             "wrong1": "ont",
             "wrong2": "eut",
-            "audio": "/@dummy/word_out.mp3"
+            "audio": "./@dummy/word_out.mp3"
          },
          {
             "correct": "the",
             "wrong1": "eth",
             "wrong2": "tho",
-            "audio": "/@dummy/word_the.mp3"
+            "audio": "./@dummy/word_the.mp3"
          }
       ]
    },

@@ -14,6 +14,8 @@ import TimeContainer, { Refs as TimeContainerRefs } from "../TimeContainer";
 import useCounter from "../../../hooks/useCounter";
 import BonusContainer from "./BonusContainer";
 import GameQuiz, {Refs as GameQuizRefs} from "./GameQuiz";
+import BonusText from "../BonusText";
+import GameoverText from "../GameoverText";
 
 
 
@@ -40,6 +42,7 @@ const GameMain: FC = () => {
    const container = useRef<PixiRef<typeof Container>>(null);
    const ground = useRef<PixiRef<typeof Sprite>>(null);
    const sky = useRef<PixiRef<typeof Sprite>>(null);
+   const cloudCon = useRef<PixiRef<typeof Sprite>>(null);
    const enterBtn = useRef<PixiRef<typeof Sprite>>(null);
    const timeContainer = useRef<TimeContainerRefs>(null);
 
@@ -59,10 +62,13 @@ const GameMain: FC = () => {
    const [quizAudioPlaying, setQuizAudioPlaying] = useState<boolean>(false);
 
 
+   const [showBonusText, setShowBonusText] = useState<boolean>(false);
    const [showGameoverText, setShowGameoverText] = useState<boolean>(false);
 
    const isTimeout = useRef<boolean>(false);
    const timer = useRef<any>(null);
+
+   
    
 
 
@@ -83,6 +89,7 @@ const GameMain: FC = () => {
       }, 300);
 
       quizTargets.current?.start(random.current![quizNo.current], bonusCount === 2 ? (bonusLength % 3) + 1 : 0);
+      // quizTargets.current?.start(random.current![quizNo.current], 1);
 
    }, [quizCount, bonusCount, bonusLength]);
 
@@ -93,10 +100,12 @@ const GameMain: FC = () => {
    },[]);
 
 
-   const onQuizSuccess = useCallback((score: number) => {
-      console.log('quizSuccess');
+   const onQuizSuccess = useCallback((score: number, isBonus: boolean) => {
+      console.log('quizSuccess', isBonus);
 
       dispatch({type: GameActions.CORRECT_SCORE, payload: score});
+      dispatch({type: GameActions.ADD_BONUS_COUNT});
+
       resources.audioCorrect.sound.stop();
       resources.audioCorrect.sound.play();
 
@@ -105,13 +114,13 @@ const GameMain: FC = () => {
       quizStatusRef.current = QuizStatus.END;
       setQuizStatus(QuizStatus.END);
       setIsTransition(true);
-      successTransition();
+      successTransition(isBonus);
    }, []);
 
 
    const onQuizWrong = useCallback(() => {
       console.log('quizWrong');
-      
+
       dispatch({type: GameActions.INCORRECT_SCORE, payload: 10});
       resources.audioWrong.sound.stop();
       resources.audioWrong.sound.play();
@@ -129,23 +138,36 @@ const GameMain: FC = () => {
    }, []);
 
 
-   const successTransition = useCallback(() => {
+   const successTransition = useCallback((isBonus: boolean) => {
       gsap.to(ground.current, 0.6, {pixi: {y: 1060}, ease: Cubic.easeInOut});
       gsap.to(sky.current, 1, {pixi: {y: 520}, ease: Linear.easeNone});
-      timer.current = PIXITimeout.start(endTransition, 1500);
+      gsap.to(cloudCon.current, 1.3, {pixi: {y: 1750}, ease: Linear.easeNone});
+      if(isBonus) {
+         timer.current = PIXITimeout.start(() => {
+            setShowBonusText(true);
+            resources.audioBonus.sound.play();
+            timer.current = PIXITimeout.start(() => endTransition(isBonus), 3000);
+         }, 1500);
+      } else {
+         timer.current = PIXITimeout.start(() => endTransition(isBonus), 1200);
+      }
    }, []);
 
 
-   const endTransition = useCallback(() => {
-      gsap.to(ground.current, 1, {delay: 0.5, pixi: {y: 520}, ease: Cubic.easeInOut});
-      gsap.to(sky.current, 0.8, {delay: 0.5, pixi: {y: 0}, ease: Linear.easeNone});
+   const endTransition = useCallback((isBonus: boolean) => {
+      gsap.to(ground.current, 0.7, {delay: 0.3, pixi: {y: 520}, ease: Cubic.easeInOut});
+      gsap.to(sky.current, 0.5, {delay: 0.3, pixi: {y: 0}, ease: Linear.easeNone});
+      gsap.to(cloudCon.current, 0.5, {delay: 0.3, pixi: {y: 1280}, ease: Linear.easeNone});
       quizTargets.current!.transition();
+      if(isBonus) {
+         dispatch({type: GameActions.ADD_BONUS_LENGTH});
+      }
       timer.current = PIXITimeout.start(()=>{
          timer.current = PIXITimeout.start(()=>{
             setIsTransition(false);
          }, 500);
          quizNext();
-      }, 1000);
+      }, 500);
    }, []);
 
 
@@ -168,6 +190,22 @@ const GameMain: FC = () => {
             resources.audioGameover.sound.play();
          }
       }
+   }, []);
+
+   const goResult = useCallback(() => {
+      // gsap.globalTimeline.clear();
+      // let path = '';
+      // if (window.isTestAPI) path = `/studyAlphabet/history`;
+      // else                  path = `/game/alphabet/history`;
+      // window.http
+      // .get(path, { params: {fu_id: gameData.fu_id, play_type: 'G', stage: stage, round: step, score: score.total }})
+      // .then(({ data }) => {
+      //    dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
+      //       score: data.data.bestScore, 
+      //       date: data.data.bestScoreDate}
+      //    });
+      //    dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+      // });
    }, []);
 
 
@@ -265,6 +303,29 @@ const GameMain: FC = () => {
             y={sky.current ? sky.current.position.y : 0}
             texture={resources.mainSky.texture} />
 
+         <Container
+            ref={cloudCon}
+            name="cloudCon"
+            x={0}
+            y={cloudCon.current ? cloudCon.current.position.y : 1280}>
+            <Sprite
+               name="cloud1"
+               position={[-254, -957]}
+               texture={resources.mainCloud1.texture} />
+            <Sprite
+               name="cloud2"
+               position={[1620, -884]}
+               texture={resources.mainCloud2.texture} />
+            {/* <Sprite
+               name="cloud3"
+               position={[-254, -2825]}
+               texture={resources.mainCloud1.texture} />
+            <Sprite
+               name="cloud2"
+               position={[1620, -2752]}
+               texture={resources.mainCloud2.texture} /> */}
+         </Container>
+
          <Sprite 
             ref={ground}
             name="ground"
@@ -312,6 +373,13 @@ const GameMain: FC = () => {
             position={[1826, 740]}
             texture={resources.mainEnterOnBtn.texture} />
 
+         {showBonusText && 
+            <BonusText 
+               position={[1024, 500]}
+               bonusLength={bonusLength+1}
+               onAnimationEnd={() => setShowBonusText(false)} />
+         }
+
          <Container name="bottomUI" position={[0, 1047]}>
             <Sprite
                texture={resources.mainBottomUiBg.texture}
@@ -327,6 +395,10 @@ const GameMain: FC = () => {
                timeLength={gameData.gameTimeout * 1000}
                onTimeout={onGameTimeout} />
          </Container>
+
+         {showGameoverText && 
+            <GameoverText onAnimationEnd={goResult} />
+         }
 
          <PixiButton 
             name="resetBtn"

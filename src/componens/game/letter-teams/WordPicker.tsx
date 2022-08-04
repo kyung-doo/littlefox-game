@@ -48,15 +48,15 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
          g.alpha = 0;
          pickerCon.current?.addChild(g);
 
-         // makeRandom(words.length, words.length).forEach((num, i) => {
-         //    if(i === 0)    pickData.current[num] = { word: words[i], correct: true }
-         //    else           pickData.current[num] = { word: words[i], correct: false }
-         // });
-
-         Array.from(Array(words.length), (k, i) => i).forEach((num, i) => {
+         makeRandom(words.length, words.length).forEach((num, i) => {
             if(i === 0)    pickData.current[num] = { word: words[i], correct: true }
             else           pickData.current[num] = { word: words[i], correct: false }
          });
+
+         // Array.from(Array(words.length), (k, i) => i).forEach((num, i) => {
+         //    if(i === 0)    pickData.current[num] = { word: words[i], correct: true }
+         //    else           pickData.current[num] = { word: words[i], correct: false }
+         // });
          
          words.forEach((word: any, i) => {
             const picker: PIXIContainer = new PIXIContainer();
