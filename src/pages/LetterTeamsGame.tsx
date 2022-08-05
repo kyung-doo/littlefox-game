@@ -12,6 +12,7 @@ import { isMobile } from "../utils";
 
 
 
+
 /*
 * @ PROPS
 *     stage: 게임 스테이지

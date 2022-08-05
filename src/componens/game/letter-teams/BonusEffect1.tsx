@@ -1,6 +1,5 @@
 import { useEffect, useRef, FC, memo } from 'react';
 import { _ReactPixi, Container, PixiRef, Sprite } from '@inlet/react-pixi';
-import { Container as PIXIContainer, Sprite as PIXISprite } from 'pixi.js';
 import { randomRange, toDegree, toRadian } from '../../../utils';
 import { gsap, Linear, Power3 } from 'gsap';
 import useAssets from '../../../hooks/useAssets';
@@ -16,17 +15,22 @@ const WHITE_ROTATIONS = [10, 55, 100, 145, -10, -55, -100, -145];
 const WhiteStar: FC<_ReactPixi.IContainer> = (props) => {
    const { resources } = useAssets();
    const container = useRef<PixiRef<typeof Container>>(null);
+   const timer = useRef<any>();
    
 
    useEffect(() => {
       const line = container.current!.getChildByName('line', true);
-      PIXITimeout.start(() => {
+      timer.current = PIXITimeout.start(() => {
          gsap.to(container.current, 0.2, {pixi: {alpha: 1}});
          gsap.to(container.current, 1.5, {pixi: {y: -1000}, ease: Power3.easeOut});
          gsap.to(line, 0.5, {pixi: {scaleY: 1}, ease: Power3.easeOut});
          gsap.to(line, 0.5, {delay: 0.5, pixi: {scaleY: 0}, ease: Power3.easeIn});
          gsap.to(container.current, 0.2, {delay: 0.8, pixi: {alpha: 0}});
       }, randomRange(100, 0) + 300);
+
+      return () => {
+         PIXITimeout.clear(timer.current);
+      }
    },[]);
 
    return(
@@ -91,7 +95,10 @@ const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
    }, []);
 
    return (
-      <Container ref={container} {...props}>
+      <Container 
+         name="bonusEffect1"
+         ref={container} 
+         {...props}>
          <Sprite 
             name="bg"
             anchor={0.5}
@@ -107,6 +114,7 @@ const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
             
          {Array.from(WHITE_ROTATIONS, (r, i) => (
             <WhiteStar
+               key={`white-star-${i}`}
                rotation={toRadian(r)}
                scale={randomRange(30, 50) * 0.01}
                position={[0, 170]} />
@@ -115,6 +123,7 @@ const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
          {Array.from(STAR_ROTATIONS, (r, i) => (
             <Container
                ref={ref => ref && (smallStars.current[i] = ref)}
+               key={`small-star-${i}`}
                rotation={toRadian(r)}
                position={[0, 117]}>
                <Sprite 

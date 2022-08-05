@@ -1,6 +1,6 @@
-import { FC, useEffect, useRef, useState, useCallback, memo } from "react";
-import { Container, PixiRef, Sprite, useTick, useApp, Graphics } from "@inlet/react-pixi";
-import { Container as PIXIContainer, Texture } from 'pixi.js';
+import { FC, useEffect, useRef, useState, useCallback, memo, useLayoutEffect } from "react";
+import { Container, PixiRef, Sprite, useTick, useApp } from "@inlet/react-pixi";
+import {  AnimatedSprite as PIXIAnimatedSprite , Texture } from 'pixi.js';
 import { gsap, Cubic, Linear } from 'gsap';
 import { Sound } from "@pixi/sound";
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,10 @@ import BonusContainer from "./BonusContainer";
 import GameQuiz, {Refs as GameQuizRefs} from "./GameQuiz";
 import BonusText from "../BonusText";
 import GameoverText from "../GameoverText";
+import BonusEffect1 from "./BonusEffect1";
+import BonusEffect2 from "./BonusEffect2";
+import BonusEffect3 from "./BonusEffect3";
+
 
 
 
@@ -65,6 +69,11 @@ const GameMain: FC = () => {
    const [showBonusText, setShowBonusText] = useState<boolean>(false);
    const [showGameoverText, setShowGameoverText] = useState<boolean>(false);
 
+   const [showBonusEffect1, setShowBonusEffect1] = useState<boolean>(false);
+   const [showBonusEffect2, setShowBonusEffect2] = useState<boolean>(false);
+   const [showBonusEffect3, setShowBonusEffect3] = useState<boolean>(false);
+   const bonusIdx = useRef<number>(0);
+
    const isTimeout = useRef<boolean>(false);
    const timer = useRef<any>(null);
 
@@ -87,9 +96,10 @@ const GameMain: FC = () => {
          setQuizAudioPlaying(true);
          quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
       }, 300);
-
+      bonusIdx.current = bonusCount === 2 ? (bonusLength % 3) + 1 : 0;
       quizTargets.current?.start(random.current![quizNo.current], bonusCount === 2 ? (bonusLength % 3) + 1 : 0);
-      // quizTargets.current?.start(random.current![quizNo.current], 1);
+      // bonusIdx.current = 3;
+      // quizTargets.current?.start(random.current![quizNo.current], 3);
 
    }, [quizCount, bonusCount, bonusLength]);
 
@@ -115,6 +125,7 @@ const GameMain: FC = () => {
       setQuizStatus(QuizStatus.END);
       setIsTransition(true);
       successTransition(isBonus);
+      
    }, []);
 
 
@@ -147,11 +158,23 @@ const GameMain: FC = () => {
             setShowBonusText(true);
             resources.audioBonus.sound.play();
             timer.current = PIXITimeout.start(() => endTransition(isBonus), 3000);
+            if(bonusIdx.current === 1) {
+               setShowBonusEffect1(true);
+            } else if(bonusIdx.current === 2) {
+               setShowBonusEffect2(true);
+            } else {
+               setShowBonusEffect3(true);
+            }
+            timer.current = PIXITimeout.start(() => {
+               setShowBonusEffect1(false);
+               setShowBonusEffect2(false);
+               setShowBonusEffect3(false);
+            }, 4000);
          }, 1500);
       } else {
          timer.current = PIXITimeout.start(() => endTransition(isBonus), 1200);
       }
-   }, []);
+   }, [bonusLength]);
 
 
    const endTransition = useCallback((isBonus: boolean) => {
@@ -277,12 +300,24 @@ const GameMain: FC = () => {
          timeContainer.current?.start();
       }, 600);
 
+      
+
       return () => {
          PIXITimeout.clear(timer.current);
          bgmAudio.stop();
       }
 
    },[]);
+
+   useLayoutEffect(()=>{
+      Array.from(Array(4), (k, i) => {
+         const texture = Object.keys(resources[`spritesheetFireWork${i+1}`].textures).map( name => resources[`spritesheetFireWork${i+1}`].textures[name]);
+         const sprite = new PIXIAnimatedSprite(texture);
+         sprite.position.y = -2000;
+         container.current?.addChild(sprite);
+      })
+   },[]);
+   
 
 
 
@@ -373,6 +408,20 @@ const GameMain: FC = () => {
             position={[1826, 740]}
             texture={resources.mainEnterOnBtn.texture} />
 
+         <Container 
+            name="bonusEffects"
+            position={[1025, 650]}>
+            {showBonusEffect1 && 
+               <BonusEffect1 />
+            }
+            {showBonusEffect2 && 
+               <BonusEffect2 />
+            }
+            {showBonusEffect3 && 
+               <BonusEffect3 />
+            }
+         </Container>
+
          {showBonusText && 
             <BonusText 
                position={[1024, 500]}
@@ -380,6 +429,7 @@ const GameMain: FC = () => {
                onAnimationEnd={() => setShowBonusText(false)} />
          }
 
+         
          <Container name="bottomUI" position={[0, 1047]}>
             <Sprite
                texture={resources.mainBottomUiBg.texture}

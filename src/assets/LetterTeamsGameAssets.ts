@@ -92,9 +92,19 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainStarLight', url: `${mainImgPath}star_light.png`},
       { name: 'mainWhiteStar', url: `${mainImgPath}white_star.png`},
       { name: 'mainWhiteLine', url: `${mainImgPath}white_line.png`},
+      { name: 'mainPartyBg', url: `${mainImgPath}party_bg.png`},
+      { name: 'mainRibon1', url: `${mainImgPath}ribon1.png`},
+      { name: 'mainRibon2', url: `${mainImgPath}ribon2.png`},
+      { name: 'mainRibon3', url: `${mainImgPath}ribon3.png`},
+      { name: 'mainRibon4', url: `${mainImgPath}ribon4.png`},
+      { name: 'mainRibon5', url: `${mainImgPath}ribon5.png`},
 
       { name: 'spritesheetBalloonLight1', url: `${spritesheetPath}balloon_light1.json` },
       { name: 'spritesheetBalloonLight2', url: `${spritesheetPath}balloon_light2.json` },
+      { name: 'spritesheetFireWork1', url: `${spritesheetPath}firework1.json` },
+      { name: 'spritesheetFireWork2', url: `${spritesheetPath}firework2.json` },
+      { name: 'spritesheetFireWork3', url: `${spritesheetPath}firework3.json` },
+      { name: 'spritesheetFireWork4', url: `${spritesheetPath}firework4.json` },
 
 
 

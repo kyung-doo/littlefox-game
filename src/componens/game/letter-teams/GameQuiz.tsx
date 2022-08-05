@@ -1,4 +1,4 @@
-import { forwardRef, memo, useCallback, useContext, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
+import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Container, PixiRef, Sprite } from "@inlet/react-pixi";
 import { useSelector } from "react-redux";
 import useAssets from "../../../hooks/useAssets";
@@ -6,7 +6,7 @@ import WordPicker, {Refs as WordPickerRefs} from './WordPicker';
 import PIXITimeout from "../../../utils/PIXITimeout";
 import { Elastic, Cubic, gsap, Linear } from 'gsap';
 import ScoreText, { Props as ScoreTextProps} from "../ScoreText";
-import BonusEffect1 from "./BonusEffect1";
+
 
 export interface Props {
    onSuccess: (score: number, isBonus: boolean) => void;
@@ -33,9 +33,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
    const [bonusIdx, setBonusIdx] = useState<number | null>(null);
    const [wordLists, setWordLists] = useState<any>(null);
 
-   const [showBonusEffect1, setShowBonusEffect1] = useState<boolean>(false);
-   const [showBonusEffect2, setShowBonusEffect2] = useState<boolean>(false);
-   const [showBonusEffect3, setShowBonusEffect3] = useState<boolean>(false);
+   
 
    const [scoreTexts, setScoreTexts] = useState<ScoreTextProps[]>([]);
 
@@ -109,24 +107,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
       scoreCount.current++;
       onSuccess(score, bonusIdx ? true : false);
 
-      if(bonusIdx && bonusIdx > 0) {
-         timer.current = PIXITimeout.start(() => {
-            if(bonusIdx === 1) {
-               setShowBonusEffect1(true);
-            } else if(bonusIdx === 2) {
-               setShowBonusEffect2(true);
-            } else {
-               setShowBonusEffect3(true);
-            }
-            timer.current = PIXITimeout.start(() => {
-               setShowBonusEffect1(false);
-               setShowBonusEffect2(false);
-               setShowBonusEffect3(false);
-            }, 3000);
-         }, 1500);
-      }
-
-   }, [wordLists, bonusIdx]);
+   }, [wordLists, bonusIdx, onSuccess]);
 
    const onQuizWrong = useCallback(() => {
       setScoreTexts(prev => [ ...prev, { 
@@ -206,9 +187,13 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
       if(quizNo !== null) {
          setWordLists(null);
          wordPickers.current = [];
+         timer.current = PIXITimeout.start(() => makeQuiz());
          timer.current = PIXITimeout.start(() => {
-            makeQuiz();
-         });
+            pickerCon.current!.visible = true;
+         }, 100);
+      }
+      return ()=> {
+         PIXITimeout.clear(timer.current);
       }
    }, [quizNo]);
 
@@ -263,6 +248,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
             <Container
                ref={pickerCon}
                name="pickerCon"
+               visible={false}
                y={-172}>
                {wordLists && wordLists.map((words: string[] | string, i: number) => (
                   <WordPicker 
@@ -282,10 +268,6 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
                onAnimationEnd={onScoreTextAniEnd}
                {...st} />
          ))}
-
-         {showBonusEffect1 && 
-            <BonusEffect1 />
-         }
          
       </>
    );

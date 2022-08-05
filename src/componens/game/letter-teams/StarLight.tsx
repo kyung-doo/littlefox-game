@@ -1,7 +1,5 @@
 import { useEffect, useRef, FC, memo } from 'react';
 import { _ReactPixi, Container, PixiRef, Sprite } from '@inlet/react-pixi';
-import { Sprite as PIXISprite } from 'pixi.js';
-import { randomRange, toRadian } from '../../../utils';
 import { gsap, Linear } from 'gsap';
 import useAssets from '../../../hooks/useAssets';
 import PIXITimeout from '../../../utils/PIXITimeout';
