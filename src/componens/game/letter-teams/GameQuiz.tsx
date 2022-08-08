@@ -6,11 +6,13 @@ import WordPicker, {Refs as WordPickerRefs} from './WordPicker';
 import PIXITimeout from "../../../utils/PIXITimeout";
 import { Elastic, Cubic, gsap, Linear } from 'gsap';
 import ScoreText, { Props as ScoreTextProps} from "../ScoreText";
+import Charactor, { Refs as CharactorRefs} from "./Charactor";
 
 
 export interface Props {
    onSuccess: (score: number, isBonus: boolean) => void;
    onWrong: () => void;
+   onTimeoutComp: () => void;
 }
 
 export interface Refs {
@@ -21,19 +23,20 @@ export interface Refs {
 }
 
 
-const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
+const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp }, ref) => {
 
    const { resources } = useAssets();
 
    const container = useRef<PixiRef<typeof Container>>(null);
    const pickerCon = useRef<PixiRef<typeof Container>>(null);
+   const charactor = useRef<CharactorRefs>(null);
+
    const gameData: any = useSelector<any>(state => state.root.gameData);
 
    const [quizNo, setQuizNo] = useState<number | null>(null);
    const [bonusIdx, setBonusIdx] = useState<number | null>(null);
    const [wordLists, setWordLists] = useState<any>(null);
 
-   
 
    const [scoreTexts, setScoreTexts] = useState<ScoreTextProps[]>([]);
 
@@ -47,7 +50,6 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
 
    const makeQuiz = useCallback(() => {
       const quizList = gameData.quizList[quizNo ? quizNo : 0];
-      console.log(quizList.words)
       const lists: any = [];
       quizList.syllables.forEach((list: any) => {
          if(!list.isSilent) {
@@ -58,11 +60,13 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
       })
       setWordLists(lists);
       startBalloonAni();
+      
    }, [quizNo]);
 
 
 
    const startBalloonAni = useCallback(() => {
+      
       const leftBalloon1 = container.current!.getChildByName('balloonLeft1');
       const leftBalloon2 = container.current!.getChildByName('balloonLeft2');
       const rightBalloon1 = container.current!.getChildByName('balloonRight1');
@@ -72,6 +76,8 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
       gsap.to(leftBalloon2, 0.8, {pixi: {rotation: 3, y: -320}, delay: 0.3, yoyo: true, repeat: -1, ease: Linear.easeNone});
       gsap.to(rightBalloon1, 0.8, {pixi: {rotation: 5, y: -200}, yoyo: true, repeat: -1, ease: Linear.easeNone});
       gsap.to(rightBalloon2, 0.8, {pixi: {rotation: -3, y: -320}, delay: 0.3, yoyo: true, repeat: -1, ease: Linear.easeNone});
+
+      charactor.current?.default();
    }, []);
 
 
@@ -104,8 +110,15 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
          delay: 0.5,
       }]);
 
+      charactor.current?.correct();
       scoreCount.current++;
       onSuccess(score, bonusIdx ? true : false);
+
+      if(bonusIdx) {
+         timer.current = PIXITimeout.start(() => {
+            charactor.current?.bonus();
+         }, 1520);
+      }
 
    }, [wordLists, bonusIdx, onSuccess]);
 
@@ -118,14 +131,15 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
          scale: 2,
          delay: 0.5,
       }]);
-      scoreCount.current++;
 
+      charactor.current?.wrong();
+      scoreCount.current++;
       stopBalloonAni();
 
       timelines.current[0] = gsap.timeline({onComplete: startBalloonAni})
       .to(container.current, 0.25, {pixi: {rotation: 3, x: 50}, ease: Cubic.easeOut})
       .to(container.current, 1, {pixi: {rotation: 0, x: 0}, ease: Elastic.easeOut.config(0.9, 0.3)});
-
+      
       const leftBalloon1 = container.current!.getChildByName('balloonLeft1');
       const leftBalloon2 = container.current!.getChildByName('balloonLeft2');
       const rightBalloon1 = container.current!.getChildByName('balloonRight1');
@@ -152,8 +166,36 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
 
 
    const quizTimeout = useCallback(() => {
+      const leftBalloon1 = container.current!.getChildByName('balloonLeft1');
+      const leftBalloon2 = container.current!.getChildByName('balloonLeft2');
+      const rightBalloon1 = container.current!.getChildByName('balloonRight1');
+      const rightBalloon2 = container.current!.getChildByName('balloonRight2');
+
       PIXITimeout.clear(timer.current);
       container.current!.interactiveChildren = false;
+      charactor.current?.wrong();
+
+      stopBalloonAni();
+
+      gsap.killTweensOf(container.current);
+      container.current!.rotation = 0;
+      container.current!.position.x = 0;
+
+      gsap.to(container.current, 0.4, {pixi:{y: 52}, ease: Cubic.easeIn, onComplete: () => {
+         charactor.current?.default();
+         gsap.to(pickerCon.current, 0.3, {alpha: 0});
+         gsap.to(pickerCon.current, 0.3, {delay:0.3, alpha: 1});
+         gsap.to(container.current, 0.5, {delay:0.2, pixi:{y: 0}, ease: Cubic.easeOut, onStart: () => onTimeoutComp()});
+         gsap.to(leftBalloon1, 0.3, {delay: 0.1, pixi: {scale: 1}, ease: Cubic.easeOut});
+         gsap.to(leftBalloon2, 0.3, {delay: 0.1, pixi: {scale: 1, x: -554, y: -325}, ease: Cubic.easeOut});
+         gsap.to(rightBalloon1, 0.3, {delay: 0.1, pixi: {scale: 1}, ease: Cubic.easeOut});
+         gsap.to(rightBalloon2, 0.3, {delay: 0.1, pixi: {scale: 1, x: 575, y: -325}, ease: Cubic.easeOut});
+      }});
+      
+      gsap.to(leftBalloon1, 0.3, {pixi: {scale: 0.6}, ease: Cubic.easeIn});
+      gsap.to(leftBalloon2, 0.3, {pixi: {scale: 0.6, x: -585, y: -265}, ease: Cubic.easeIn});
+      gsap.to(rightBalloon1, 0.3, {pixi: {scale: 0.6}, ease: Cubic.easeIn});
+      gsap.to(rightBalloon2, 0.3, {pixi: {scale: 0.6, x: 605, y: -265}, ease: Cubic.easeIn});
    }, []);
 
 
@@ -213,10 +255,8 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong }, ref) => {
             ref={container} 
             interactive={container.current ? container.current.interactiveChildren : false}
             name="quizCon">
-            <Sprite 
-               name="charactor"
-               position={[-125, -546]}
-               texture={resources.mainCharactor.texture} />
+
+            <Charactor ref={charactor} />
 
             <Sprite
                name="balloonLeft2"

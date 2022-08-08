@@ -56,7 +56,6 @@ export default ( langCode: string, low: number ) => {
 
       // main
       { name: 'commonResetBtn', url: `${commonImgPath}reset_btn.png` },
-      { name: 'mainBg', url: `${mainImgPath}bg.png` },
       { name: 'mainPickerBg', url: `${mainImgPath}picker_bg.png` },
       { name: 'mainPickerUp', url: `${mainImgPath}picker_up.png` },
       { name: 'mainPickerDown', url: `${mainImgPath}picker_down.png` },
@@ -76,7 +75,6 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainSoundBtn', url: `${mainImgPath}sound_btn.png`},
       { name: 'mainEnterOffBtn', url: `${mainImgPath}enter_btn_off.png`},
       { name: 'mainEnterOnBtn', url: `${mainImgPath}enter_btn_on.png`},
-      { name: 'mainCharactor', url: `${mainImgPath}charactor.png`},
       { name: 'mainBalloonLeft1', url: `${mainImgPath}balloon_left_1.png`},
       { name: 'mainBalloonLeft2', url: `${mainImgPath}balloon_left_2.png`},
       { name: 'mainBalloonRight1', url: `${mainImgPath}balloon_right_1.png`},
@@ -105,6 +103,10 @@ export default ( langCode: string, low: number ) => {
       { name: 'spritesheetFireWork2', url: `${spritesheetPath}firework2.json` },
       { name: 'spritesheetFireWork3', url: `${spritesheetPath}firework3.json` },
       { name: 'spritesheetFireWork4', url: `${spritesheetPath}firework4.json` },
+      { name: 'spritesheetCharactorDefault', url: `${spritesheetPath}charactor_default.json` },
+      { name: 'spritesheetCharactorCorrect', url: `${spritesheetPath}charactor_correct.json` },
+      { name: 'spritesheetCharactorWrong', url: `${spritesheetPath}charactor_wrong.json` },
+      { name: 'spritesheetCharactorBonus', url: `${spritesheetPath}charactor_bonus.json` },
 
 
 

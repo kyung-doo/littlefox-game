@@ -214,7 +214,7 @@ const GameMain: FC = () => {
    const goResult = useCallback(() => {
       gsap.globalTimeline.clear();
       let path = '';
-      if (window.isTestAPI) path = `/studyWords/history`;
+      if (window.isTestAPI) path = `/gameWords/history`;
       else                  path = `/game/word/history`;
       window.http
       .get(path, { params: {fu_id: gameData.fu_id, play_type: 'G', stage: stage, score: score.total }})

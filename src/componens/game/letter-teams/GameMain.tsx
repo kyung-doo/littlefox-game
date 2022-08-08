@@ -75,7 +75,7 @@ const GameMain: FC = () => {
    const bonusIdx = useRef<number>(0);
 
    const isTimeout = useRef<boolean>(false);
-   const timer = useRef<any>(null);
+   const timer = useRef<any[]>([]);
 
    
    
@@ -92,13 +92,13 @@ const GameMain: FC = () => {
       }
 
       setQuizAudioPlaying(false);
-      timer.current = PIXITimeout.start(() => {
+      timer.current[0] = PIXITimeout.start(() => {
          setQuizAudioPlaying(true);
          quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
       }, 300);
       bonusIdx.current = bonusCount === 2 ? (bonusLength % 3) + 1 : 0;
       quizTargets.current?.start(random.current![quizNo.current], bonusCount === 2 ? (bonusLength % 3) + 1 : 0);
-      // bonusIdx.current = 3;
+      // bonusIdx.current = 2;
       // quizTargets.current?.start(random.current![quizNo.current], 3);
 
    }, [quizCount, bonusCount, bonusLength]);
@@ -123,6 +123,7 @@ const GameMain: FC = () => {
       quizCounter.pause();
       quizStatusRef.current = QuizStatus.END;
       setQuizStatus(QuizStatus.END);
+      timer.current.forEach(t => PIXITimeout.clear(t));
       setIsTransition(true);
       successTransition(isBonus);
       
@@ -135,11 +136,11 @@ const GameMain: FC = () => {
       dispatch({type: GameActions.INCORRECT_SCORE, payload: 10});
       resources.audioWrong.sound.stop();
       resources.audioWrong.sound.play();
-      
+      timer.current.forEach(t => PIXITimeout.clear(t));
       setIsTransition(true);
-      timer.current = PIXITimeout.start(() => {
+      timer.current[1] = PIXITimeout.start(() => {
          setIsTransition(false);
-      }, 300);
+      }, 600);
    }, []);
 
 
@@ -154,10 +155,10 @@ const GameMain: FC = () => {
       gsap.to(sky.current, 1, {pixi: {y: 520}, ease: Linear.easeNone});
       gsap.to(cloudCon.current, 1.3, {pixi: {y: 1750}, ease: Linear.easeNone});
       if(isBonus) {
-         timer.current = PIXITimeout.start(() => {
+         timer.current[2] = PIXITimeout.start(() => {
             setShowBonusText(true);
             resources.audioBonus.sound.play();
-            timer.current = PIXITimeout.start(() => endTransition(isBonus), 3000);
+            timer.current[3] = PIXITimeout.start(() => endTransition(isBonus), 3000);
             if(bonusIdx.current === 1) {
                setShowBonusEffect1(true);
             } else if(bonusIdx.current === 2) {
@@ -165,42 +166,69 @@ const GameMain: FC = () => {
             } else {
                setShowBonusEffect3(true);
             }
-            timer.current = PIXITimeout.start(() => {
+            timer.current[4] = PIXITimeout.start(() => {
                setShowBonusEffect1(false);
                setShowBonusEffect2(false);
                setShowBonusEffect3(false);
             }, 4000);
-         }, 1500);
+         }, 1520);
       } else {
-         timer.current = PIXITimeout.start(() => endTransition(isBonus), 1200);
+         timer.current[5] = PIXITimeout.start(() => endTransition(isBonus), 1200);
       }
    }, [bonusLength]);
 
 
    const endTransition = useCallback((isBonus: boolean) => {
-      gsap.to(ground.current, 0.7, {delay: 0.3, pixi: {y: 520}, ease: Cubic.easeInOut});
-      gsap.to(sky.current, 0.5, {delay: 0.3, pixi: {y: 0}, ease: Linear.easeNone});
-      gsap.to(cloudCon.current, 0.5, {delay: 0.3, pixi: {y: 1280}, ease: Linear.easeNone});
-      quizTargets.current!.transition();
-      if(isBonus) {
-         dispatch({type: GameActions.ADD_BONUS_LENGTH});
-      }
-      timer.current = PIXITimeout.start(()=>{
-         timer.current = PIXITimeout.start(()=>{
-            setIsTransition(false);
+      if(!isTimeout.current) {
+         timer.current.forEach(t => PIXITimeout.clear(t));
+         gsap.to(ground.current, 0.7, {delay: 0.3, pixi: {y: 520}, ease: Cubic.easeInOut});
+         gsap.to(sky.current, 0.5, {delay: 0.3, pixi: {y: 0}, ease: Linear.easeNone});
+         gsap.to(cloudCon.current, 0.5, {delay: 0.3, pixi: {y: 1280}, ease: Linear.easeNone});
+         quizTargets.current!.transition();
+         if(isBonus) {
+            dispatch({type: GameActions.ADD_BONUS_LENGTH});
+         }
+         timer.current[6] = PIXITimeout.start(()=>{
+            timer.current[7] = PIXITimeout.start(()=>{
+               setIsTransition(false);
+            }, 600);
+            quizNext();
          }, 500);
+      } else {
+         setShowGameoverText(true);
+         if(!resources.audioGameover.sound.isPlaying ){
+            resources.audioGameover.sound.play();
+         }
+      }
+   }, []);
+
+   const onQuizTimeoutComp = useCallback(() => {
+      if(!isTimeout.current) {
          quizNext();
-      }, 500);
+         timer.current[8] = PIXITimeout.start(() => setIsTransition(false), 600);
+      } else {
+         setShowGameoverText(true);
+         if(!resources.audioGameover.sound.isPlaying ){
+            resources.audioGameover.sound.play();
+         }
+      }
    }, []);
 
 
    const quizNext = useCallback(() => {
-      dispatch({ 
-         type: GameActions.NEXT_QUIZ, 
-         payload: { listNo: random.current![quizNo.current], correct: isCorrect.current }
-      });
-      quizStatusRef.current = QuizStatus.START;
-      setQuizStatus(QuizStatus.START);
+      if(!isTimeout.current) {
+         dispatch({ 
+            type: GameActions.NEXT_QUIZ, 
+            payload: { listNo: random.current![quizNo.current], correct: isCorrect.current }
+         });
+         quizStatusRef.current = QuizStatus.START;
+         setQuizStatus(QuizStatus.START);
+      } else {
+         setShowGameoverText(true);
+         if(!resources.audioGameover.sound.isPlaying ){
+            resources.audioGameover.sound.play();
+         }
+      }
    }, []);
 
 
@@ -216,19 +244,20 @@ const GameMain: FC = () => {
    }, []);
 
    const goResult = useCallback(() => {
-      // gsap.globalTimeline.clear();
-      // let path = '';
-      // if (window.isTestAPI) path = `/studyAlphabet/history`;
-      // else                  path = `/game/alphabet/history`;
-      // window.http
-      // .get(path, { params: {fu_id: gameData.fu_id, play_type: 'G', stage: stage, round: step, score: score.total }})
-      // .then(({ data }) => {
-      //    dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
-      //       score: data.data.bestScore, 
-      //       date: data.data.bestScoreDate}
-      //    });
-      //    dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
-      // });
+      gsap.globalTimeline.clear();
+      timer.current.forEach(t => PIXITimeout.clear(t));
+      let path = '';
+      if (window.isTestAPI) path = `/gameLetterTeams/history`;
+      else                  path = `/game/letterteams/history`;
+      window.http
+      .get(path, { params: {fu_id: gameData.fu_id, play_type: 'G', stage: stage, score: score.total }})
+      .then(({ data }) => {
+         dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
+            score: data.data.bestScore, 
+            date: data.data.bestScoreDate}
+         });
+         dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+      });
    }, []);
 
 
@@ -237,7 +266,7 @@ const GameMain: FC = () => {
       gsap.globalTimeline.eventCallback('onStart', null);
       gsap.globalTimeline.eventCallback('onUpdate', null);
       gsap.globalTimeline.eventCallback('onComplete', null);
-      PIXITimeout.clear(timer.current);
+      timer.current.forEach(t => PIXITimeout.clear(t));
       resources.audioCorrect.sound.stop();
       resources.audioWrong.sound.stop();
       quizAudios.current.forEach(audio => audio.stop());
@@ -257,9 +286,8 @@ const GameMain: FC = () => {
       if(!isTimeout.current){
          if(quizStatusRef.current === QuizStatus.START) {
             if(quizCounter.getTime() >= quizTimeLength) {
-               // quizStatusRef.current = QuizStatus.END;
-               // setQuizStatus(QuizStatus.END);
-               // quizNext();
+               quizStatusRef.current = QuizStatus.END;
+               setQuizStatus(QuizStatus.END);
             }
          }
       }
@@ -275,7 +303,9 @@ const GameMain: FC = () => {
          break;
          case QuizStatus.END : 
             if(!isCorrect.current){
+               timer.current.forEach(t => PIXITimeout.clear(t));
                quizTargets.current!.timeout();
+               setIsTransition(true);
             }
             quizCounter.reset();
          break;
@@ -296,14 +326,12 @@ const GameMain: FC = () => {
          return QuizStatus.START;
       });
 
-      timer.current = PIXITimeout.start(()=>{
+      timer.current[0] = PIXITimeout.start(()=>{
          timeContainer.current?.start();
       }, 600);
 
-      
-
       return () => {
-         PIXITimeout.clear(timer.current);
+         timer.current.forEach(t => PIXITimeout.clear(t));
          bgmAudio.stop();
       }
 
@@ -351,14 +379,6 @@ const GameMain: FC = () => {
                name="cloud2"
                position={[1620, -884]}
                texture={resources.mainCloud2.texture} />
-            {/* <Sprite
-               name="cloud3"
-               position={[-254, -2825]}
-               texture={resources.mainCloud1.texture} />
-            <Sprite
-               name="cloud2"
-               position={[1620, -2752]}
-               texture={resources.mainCloud2.texture} /> */}
          </Container>
 
          <Sprite 
@@ -374,7 +394,8 @@ const GameMain: FC = () => {
             <GameQuiz
                ref={quizTargets}
                onSuccess={onQuizSuccess}
-               onWrong={onQuizWrong} />
+               onWrong={onQuizWrong}
+               onTimeoutComp={onQuizTimeoutComp} />
          </Container>
 
          <Sprite 
