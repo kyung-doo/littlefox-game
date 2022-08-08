@@ -9,6 +9,7 @@ import Loading from "../componens/game/Loading";
 import GameMain from "../componens/game/letter-teams/GameMain";
 import PixiButton from "../componens/game/PixiButton";
 import { isMobile } from "../utils";
+import GameResult from "../componens/game/letter-teams/GameResult";
 
 
 
@@ -64,6 +65,25 @@ const LetterTeamsGame: FC<Props> = ({ stage }) => {
       console.log('ExitApp');
    }, []);
 
+   useEffect(() => {
+      if(showResultPopup){
+         const data: any = [];
+         gameData.quizList.forEach((list: any, i: number) => {
+            const result = resultData.filter((x: any) => x.listNo === i);
+            data.push({
+               no: i,
+               text: list.words.text,
+               sound: resources![`quizAudio${i}`].sound,
+               corrects: result.map((x: any) => x.correct).sort().reverse()
+            })
+         });
+         setResultPopupData(data);
+      } else {
+         if(resources) resources.audioClick.sound.play();
+         setResultPopupData(null);
+      }
+   },[showResultPopup]);
+
    
    useEffect(() => {
       if( resources ) {
@@ -110,6 +130,10 @@ const LetterTeamsGame: FC<Props> = ({ stage }) => {
 
                      {status === GameStatus.GAME_START && 
                         <GameMain />
+                     }
+
+                     {status === GameStatus.RESULT && 
+                        <GameResult />
                      }
 
                      <PixiButton 

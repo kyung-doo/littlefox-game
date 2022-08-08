@@ -111,7 +111,6 @@ const GameMain: FC = () => {
 
 
    const onQuizSuccess = useCallback((score: number, isBonus: boolean) => {
-      console.log('quizSuccess', isBonus);
 
       dispatch({type: GameActions.CORRECT_SCORE, payload: score});
       dispatch({type: GameActions.ADD_BONUS_COUNT});
@@ -131,8 +130,6 @@ const GameMain: FC = () => {
 
 
    const onQuizWrong = useCallback(() => {
-      console.log('quizWrong');
-
       dispatch({type: GameActions.INCORRECT_SCORE, payload: 10});
       resources.audioWrong.sound.stop();
       resources.audioWrong.sound.play();
@@ -159,6 +156,7 @@ const GameMain: FC = () => {
             setShowBonusText(true);
             resources.audioBonus.sound.play();
             timer.current[3] = PIXITimeout.start(() => endTransition(isBonus), 3000);
+            
             if(bonusIdx.current === 1) {
                setShowBonusEffect1(true);
             } else if(bonusIdx.current === 2) {
@@ -166,14 +164,10 @@ const GameMain: FC = () => {
             } else {
                setShowBonusEffect3(true);
             }
-            timer.current[4] = PIXITimeout.start(() => {
-               setShowBonusEffect1(false);
-               setShowBonusEffect2(false);
-               setShowBonusEffect3(false);
-            }, 4000);
+            
          }, 1520);
       } else {
-         timer.current[5] = PIXITimeout.start(() => endTransition(isBonus), 1200);
+         timer.current[4] = PIXITimeout.start(() => endTransition(isBonus), 1200);
       }
    }, [bonusLength]);
 
@@ -190,6 +184,11 @@ const GameMain: FC = () => {
          }
          timer.current[6] = PIXITimeout.start(()=>{
             timer.current[7] = PIXITimeout.start(()=>{
+               if(isBonus) {
+                  setShowBonusEffect1(false);
+                  setShowBonusEffect2(false);
+                  setShowBonusEffect3(false);
+               }
                setIsTransition(false);
             }, 600);
             quizNext();
@@ -203,15 +202,8 @@ const GameMain: FC = () => {
    }, []);
 
    const onQuizTimeoutComp = useCallback(() => {
-      if(!isTimeout.current) {
-         quizNext();
-         timer.current[8] = PIXITimeout.start(() => setIsTransition(false), 600);
-      } else {
-         setShowGameoverText(true);
-         if(!resources.audioGameover.sound.isPlaying ){
-            resources.audioGameover.sound.play();
-         }
-      }
+      quizNext();
+      timer.current[8] = PIXITimeout.start(() => setIsTransition(false), 600);
    }, []);
 
 
@@ -228,6 +220,10 @@ const GameMain: FC = () => {
          if(!resources.audioGameover.sound.isPlaying ){
             resources.audioGameover.sound.play();
          }
+         dispatch({ 
+            type: GameActions.ADD_RESULT, 
+            payload: { listNo: random.current![quizNo.current], correct: isCorrect.current }
+         });
       }
    }, []);
 
@@ -240,6 +236,10 @@ const GameMain: FC = () => {
          if(!resources.audioGameover.sound.isPlaying ){
             resources.audioGameover.sound.play();
          }
+         dispatch({ 
+            type: GameActions.ADD_RESULT, 
+            payload: { listNo: random.current![quizNo.current], correct: isCorrect.current }
+         });
       }
    }, []);
 
@@ -254,9 +254,18 @@ const GameMain: FC = () => {
       .then(({ data }) => {
          dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
             score: data.data.bestScore, 
-            date: data.data.bestScoreDate}
-         });
+            date: data.data.bestScoreDate
+         }});
          dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+      })
+      .catch( e => {
+         if(window.isTestAPI) {
+            dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
+               score: 5000, 
+               date: "2022.3.7"
+            }});
+            dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+         }
       });
    }, []);
 

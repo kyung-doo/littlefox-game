@@ -1,4 +1,4 @@
-import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { Container, PixiRef, Sprite } from "@inlet/react-pixi";
 import { useSelector } from "react-redux";
 import useAssets from "../../../hooks/useAssets";

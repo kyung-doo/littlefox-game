@@ -195,6 +195,15 @@ const GameMain: FC = () => {
             date: data.data.bestScoreDate}
          });
          dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+      })
+      .catch( e => {
+         if(window.isTestAPI) {
+            dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
+               score: 5000, 
+               date: "2022.3.7"
+            }});
+            dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+         }
       });
    }, [score]);
 

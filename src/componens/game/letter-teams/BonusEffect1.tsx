@@ -1,6 +1,6 @@
 import { useEffect, useRef, FC, memo } from 'react';
 import { _ReactPixi, Container, PixiRef, Sprite } from '@inlet/react-pixi';
-import { randomRange, toDegree, toRadian } from '../../../utils';
+import { randomRange, toRadian } from '../../../utils';
 import { gsap, Linear, Power3 } from 'gsap';
 import useAssets from '../../../hooks/useAssets';
 import StarLight from './StarLight';
@@ -86,7 +86,6 @@ const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
 
       smallStars.current.forEach((star, i) => {
          const delay = 0.1 * i + 0.2;
-         console.log(toDegree(star.rotation))
          gsap.to(star.children, 0.2, {delay: delay, pixi: {alpha: 1}});
          gsap.to(star.children, 1, {delay: delay, pixi: {y: -randomRange(300, 400)}, ease: Linear.easeOut});
          gsap.to(star.children, 0.2, {delay: delay+1, pixi: {alpha: 0, scale: 0.2}});
