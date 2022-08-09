@@ -32,7 +32,6 @@ export default ( langCode: string, low: number ) => {
       
       
       // intro
-      { name: 'guide', url: `${introImgPath}@guide.png`},
       { name: 'commonBgmOnBtn', url: `${commonImgPath}bgm_btn_on.png` },
       { name: 'commonBgmOffBtn', url: `${commonImgPath}bgm_btn_off.png` },
       { name: 'commonBackBtn', url: `${commonImgPath}back_btn.png` },

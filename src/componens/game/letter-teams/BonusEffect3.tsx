@@ -22,13 +22,13 @@ const PartyEffect: FC<_ReactPixi.IContainer> = (props) => {
       const bg = container.current!.getChildByName('bg', true);
       gsap.to(bg, 0.2, {pixi: {alpha: 1}});
       gsap.to(bg, 0.2, {delay: 2, pixi: {alpha: 0}});
-      const delay = [0.3, 0.2, 0.1, 0.2, 0.1];
+      const delay = [0.3, 0.2, 0.1, 0.1, 0.1];
       Array.from(Array(5), (k, i) => {
          const ribon = container.current!.getChildByName(`ribon${i+1}`, true);
          gsap.to(ribon, 0.2, {delay: delay[i] * i, pixi: { alpha: 1 }});
          gsap.from(ribon, 1.5, {delay: delay[i] * i, pixi: {x: `-=${randomRange(400, 600)}`, y: `+=${randomRange(400, 700)}`}, ease: Expo.easeOut});
          if(i == 3) {
-            gsap.from(ribon, 1.5, {delay: delay[i] * i, pixi: {rotation: `-=${randomRange(180, 360)}`}});
+            gsap.from(ribon, 1.5, {delay: delay[i] * i, pixi: {rotation: `+=${randomRange(-180, 180)}`}});
          }
          gsap.to(ribon, 0.5, {delay: delay[i] * i +1.2, pixi: { alpha: 0, y: `+=${randomRange(100, 300)}`}});
       });
@@ -135,13 +135,13 @@ const BonusEffect3: FC<_ReactPixi.IContainer> = ( props ) => {
          <StarLight
             delay={300}
             timeout={1500}
-            scale={-0.9}
+            scale={[-0.9, 0.9]}
             position={[-700, -10]} />
 
          <StarLight
             delay={100}
             timeout={1500}
-            scale={-1}
+            scale={[-1, 1]}
             position={[-920, 40]} />
 
          <StarLight
@@ -158,19 +158,19 @@ const BonusEffect3: FC<_ReactPixi.IContainer> = ( props ) => {
          <StarLight
             delay={300}
             timeout={1500}
-            scale={-0.9}
+            scale={[-0.9, 0.9]}
             position={[670, -40]} />
 
          <StarLight
             delay={100}
             timeout={1500}
-            scale={-1}
+            scale={[-1, 1]}
             position={[870, -90]} />
 
          <StarLight
             delay={300}
             timeout={1500}
-            scale={-0.8}
+            scale={[-0.8, 0.8]}
             position={[870, 0]} />
 
          <PartyEffect

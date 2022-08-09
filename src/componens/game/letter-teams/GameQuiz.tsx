@@ -173,7 +173,6 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
 
       PIXITimeout.clear(timer.current);
       container.current!.interactiveChildren = false;
-      charactor.current?.wrong();
 
       stopBalloonAni();
 
@@ -182,7 +181,6 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
       container.current!.position.x = 0;
 
       gsap.to(container.current, 0.4, {pixi:{y: 52}, ease: Cubic.easeIn, onComplete: () => {
-         charactor.current?.default();
          gsap.to(pickerCon.current, 0.3, {alpha: 0});
          gsap.to(pickerCon.current, 0.3, {delay:0.3, alpha: 1});
          gsap.to(container.current, 0.5, {delay:0.2, pixi:{y: 0}, ease: Cubic.easeOut, onStart: () => onTimeoutComp()});

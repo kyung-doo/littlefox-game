@@ -5,7 +5,7 @@
       "stage": "1",
       "reStudy": 0,
       "gameTimeout": 150,
-      "quizTimeout": 10,
+      "quizTimeout": 15,
       "clearScore": 3000,
       "lowQuality": 0,
       "quizList": [

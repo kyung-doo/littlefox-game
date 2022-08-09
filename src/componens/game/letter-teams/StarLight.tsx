@@ -18,16 +18,19 @@ const StarLight: FC<Props> = ({ delay = 0, timeout = 1000, ...props}) => {
 
    useEffect(() => {
       const d = delay * 0.001;
-      gsap.to(star.current, 0.3, {delay: d, pixi: {scale: 1, rotation: '+=120'}});
+      gsap.to(star.current, 0.3, {delay: d, pixi: {scale: 1}});
       const tl = gsap.timeline({repeat: -1, delay: d + 0.3})
-      .to(star.current, 0.5, {pixi: {rotation: '+=120', scale: 0.5, alpha: 0.5}, ease: Linear.easeNone})
-      .to(star.current, 0.5, {pixi: {rotation: '+=120', scale: 1, alpha: 1}, ease: Linear.easeNone})
-      .to(star.current, 0.5, {pixi: {rotation: '+=120', scale: 0.5, alpha: 0.5}, ease: Linear.easeNone})
+      .to(star.current, 0.5, {pixi: {rotation: 90, scale: 0.5, alpha: 0.5}, ease: Linear.easeNone})
+      .to(star.current, 0.5, {pixi: {rotation: 180, scale: 1, alpha: 1}, ease: Linear.easeNone})
+      .to(star.current, 0.5, {pixi: {rotation: 270, scale: 0.5, alpha: 0.5}, ease: Linear.easeNone})
+      .to(star.current, 0.5, {pixi: {rotation: 359, scale: 1, alpha: 1}, ease: Linear.easeNone})
 
-      timer.current = PIXITimeout.start(() => {
-         tl.clear();
-         gsap.to(star.current, 0.3, {pixi: {scale: 0}});
-      }, delay + timeout);
+      if(timeout > 0){
+         timer.current = PIXITimeout.start(() => {
+            tl.clear();
+            gsap.to(star.current, 0.3, {pixi: {scale: 0}});
+         }, delay + timeout);
+      }
 
    }, []);
 

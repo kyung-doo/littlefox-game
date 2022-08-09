@@ -5,9 +5,10 @@ import { Sprite as PIXISprite } from 'pixi.js';
 import useAssets from '../../../hooks/useAssets';
 import PixiButton from '../PixiButton';
 import { Sound } from '@pixi/sound';
-import { isMobile } from '../../../utils';
-import { gsap, Linear, Cubic, Elastic, Power2 } from 'gsap';
+import { isMobile, randomRange} from '../../../utils';
+import { gsap, Linear, Cubic, Elastic, Power2, Back } from 'gsap';
 import { GameActions, GameStatus } from '../../../stores/game/reducer';
+import StarLight from './StarLight';
 
 
 
@@ -33,9 +34,22 @@ const GameIntro: FC = () => {
       }
    }, []);
 
+   const balloonAni = useCallback(( balloon, targetY ) => {
+      gsap.to(balloon, randomRange(800, 1500) * 0.001, {pixi: {y: `+=${targetY}`}, yoyo: true, repeat: -1, ease: Linear.easeNone});
+   },[]);
+
+
    useEffect(() => {
       bgmAudio.current = resources.audioBgm.sound;
       const bgEffect = container.current?.getChildByName('bgEffect') as PIXISprite;
+      const charactor = container.current?.getChildByName('charactor') as PIXISprite;
+      const balloon1 = container.current?.getChildByName('balloon1') as PIXISprite;
+      const balloon2 = container.current?.getChildByName('balloon2') as PIXISprite;
+      const balloon3 = container.current?.getChildByName('balloon3') as PIXISprite;
+      const balloon4 = container.current?.getChildByName('balloon4') as PIXISprite;
+      const balloon5 = container.current?.getChildByName('balloon5') as PIXISprite;
+      const balloon6 = container.current?.getChildByName('balloon6') as PIXISprite;
+      const balloon7 = container.current?.getChildByName('balloon7') as PIXISprite;
       const title1 = container.current?.getChildByName('title1') as PIXISprite;
       const title2 = container.current?.getChildByName('title2') as PIXISprite;
       const infoTxt = container.current!.getChildByName('infoTitle', true);
@@ -43,26 +57,59 @@ const GameIntro: FC = () => {
 
       if(gameData.lowQuality === 0) {
          gsap.to(bgEffect, 10, {pixi: {rotation: 360}, ease: Linear.easeNone, repeat: -1});
+         gsap.to(bgEffect, 0.6, {pixi: {alpha: 0.75}});
 
-         gsap.set(title1, {pixi: {alpha: 0, scaleX: 0.3, scaleY: 0.3}});
-         gsap.from(title1, 1.2, {pixi: {y: '+=200'}, ease: Cubic.easeOut});
-         gsap.to(title1, 1, {pixi: {scaleX: 1}, ease: Elastic.easeOut});
-         gsap.to(title1, 1.3, {pixi: {scaleY: 1}, ease: Elastic.easeOut});
-         gsap.to(title1, 0.3, {alpha: 1});
+         gsap.from(charactor, 0.6, {delay: 0.3, pixi: {y: '+=500'}, ease :Back.easeOut});
+         gsap.to(charactor, 0.3, {delay: 0.3, pixi: {alpha: 1}});
 
-         gsap.set(title2, {pixi: {alpha: 0, scaleX: 0.5, scaleY: 0.5}});
-         gsap.from(title2, 1.2, {delay: 0.4, pixi: {y: '+=200'}, ease: Cubic.easeOut});
-         gsap.to(title2, 1, {delay: 0.4, pixi: {scaleX: 1}, ease: Elastic.easeOut});
-         gsap.to(title2, 1.3, {delay: 0.4, pixi: {scaleY: 1}, ease: Elastic.easeOut});
-         gsap.to(title2, 0.3, {delay: 0.4,alpha: 1});
+         gsap.from(balloon6, 1.5, {pixi: {scale: 0.2, rotation: 30, x: 795, y: 1300}, onComplete: () => balloonAni(balloon6, 25)});
+         gsap.to(balloon6, 0.3, {pixi: {alpha:1}});
 
-         gsap.to(bgEffect, 1, {delay: 0.5, pixi: {alpha: 0.75}});
+         gsap.from(balloon4, 1.5, {pixi: {scale: 0.2, rotation: -30, x: 1166, y: 1200}, onComplete: () => balloonAni(balloon4, 20)});
+         gsap.to(balloon4, 0.3, {pixi: {alpha:1}});
 
-         gsap.from(infoTxt, 0.6, {delay: 1.2, pixi: {y: '+=100'}, ease: Power2.easeOut});
-         gsap.to(infoTxt, 0.6, {delay: 1.2, pixi: {alpha: 1}});
+         gsap.from(balloon5, 1.5, {delay: 0.3, pixi: {scale: 0.2, rotation: -20, x: 1060, y: 844}, onComplete: () => balloonAni(balloon5, 15)});
+         gsap.to(balloon5, 0.3, {delay: 0.3, pixi: {alpha:1}});
+
+         gsap.from(balloon2, 1.5, {delay: 0.2, pixi: {scale: 0.2, rotation: 25, x: 345, y: 950}, onComplete: () => balloonAni(balloon2, 10)});
+         gsap.to(balloon2, 0.3, {delay: 0.2, pixi: {alpha:1}});
+
+         gsap.from(balloon3, 1.5, {delay: 0.4, pixi: {scale: 0.2, rotation: 25, x: 565, y: 860}, onComplete: () => balloonAni(balloon3, 10)});
+         gsap.to(balloon3, 0.3, {delay: 0.4, pixi: {alpha:1}});
+
+         gsap.from(balloon1, 1.5, {delay: 0.3, pixi: {scale: 0.2, y: 570}, onComplete: () => balloonAni(balloon1, 8)});
+         gsap.to(balloon1, 0.3, {delay: 0.3, pixi: {alpha:1}});
+
+         gsap.from(balloon7, 1.5, {delay: 0.4, pixi: {scale: 0.2, rotation: -25, x: 1450, y: 630}, onComplete: () => balloonAni(balloon7, 8)});
+         gsap.to(balloon7, 0.3, {delay: 0.4, pixi: {alpha:1}});
+
+         gsap.set(title1, {delay: 0.8, pixi: {alpha: 0, scaleX: 0.3, scaleY: 0.3}});
+         gsap.from(title1, 1.2, {delay: 0.8, pixi: {y: '+=300'}, ease: Cubic.easeOut});
+         gsap.to(title1, 1, {delay: 0.8, pixi: {scaleX: 1}, ease: Elastic.easeOut});
+         gsap.to(title1, 1.3, {delay: 0.8, pixi: {scaleY: 1}, ease: Elastic.easeOut});
+         gsap.to(title1, 0.3, {delay: 0.8, pixi: {alpha: 1}});
+
+         gsap.set(title2, {delay: 0.8, pixi: {alpha: 0, scaleX: 0.3, scaleY: 0.3}});
+         gsap.from(title2, 1.2, {delay: 1.2, pixi: {y: '+=300'}, ease: Cubic.easeOut});
+         gsap.to(title2, 1, {delay: 1.2, pixi: {scaleX: 1}, ease: Elastic.easeOut});
+         gsap.to(title2, 1.3, {delay: 1.2, pixi: {scaleY: 1}, ease: Elastic.easeOut});
+         gsap.to(title2, 0.3, {delay: 1.2,alpha: 1});
+
          
-         gsap.to(startBtn, 0.6, {delay: 1.4, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
+
+         gsap.from(infoTxt, 0.6, {delay: 1.8, pixi: {y: '+=100'}, ease: Power2.easeOut});
+         gsap.to(infoTxt, 0.6, {delay: 1.8, pixi: {alpha: 1}});
+         gsap.to(startBtn, 0.6, {delay: 2, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
+
       } else {
+         charactor.alpha = 1;
+         balloon1.alpha = 1;
+         balloon2.alpha = 1;
+         balloon3.alpha = 1;
+         balloon4.alpha = 1;
+         balloon5.alpha = 1;
+         balloon6.alpha = 1;
+         balloon7.alpha = 1;
          title1.alpha = 1;
          title2.alpha = 1;
          infoTxt.alpha = 1;
@@ -85,9 +132,6 @@ const GameIntro: FC = () => {
             anchor={0.5}
             position={[1024, 640]}
             texture={resources.introBg.texture} />
-         {/* <Sprite 
-            texture={resources.guide.texture}
-            alpha={0.5} /> */}
 
          <Sprite 
             name="bgEffect" 
@@ -99,36 +143,43 @@ const GameIntro: FC = () => {
          <Sprite 
             name="balloon1" 
             anchor={0.5}
+            alpha={0}
             position={[834, 250]}
             texture={resources.introBalloon1.texture} />
          <Sprite 
             name="balloon2" 
             anchor={0.5}
+            alpha={0}
             position={[236, 698]}
             texture={resources.introBalloon2.texture} />
          <Sprite 
             name="balloon3" 
             anchor={0.5}
+            alpha={0}
             position={[444, 767]}
             texture={resources.introBalloon3.texture} />
          <Sprite 
             name="balloon5" 
             anchor={0.5}
+            alpha={0}
             position={[1220, 504]}
             texture={resources.introBalloon5.texture} />
          <Sprite 
             name="balloon6" 
             anchor={0.5}
+            alpha={0}
             position={[544, 492]}
             texture={resources.introBalloon6.texture} />
          <Sprite 
             name="balloon7" 
             anchor={0.5}
+            alpha={0}
             position={[1738, 392]}
             texture={resources.introBalloon7.texture} />
          <Sprite 
             name="balloon4" 
             anchor={0.5}
+            alpha={0}
             position={[1436, 574]}
             texture={resources.introBalloon4.texture} />
 
@@ -137,6 +188,7 @@ const GameIntro: FC = () => {
          <Sprite
             name="charactor"
             position={[1493, 554]}
+            alpha={0}
             texture={resources.introCharactor.texture} />
 
          
@@ -154,7 +206,29 @@ const GameIntro: FC = () => {
             alpha={0}
             texture={resources.introTitle1.texture} />
 
+         <StarLight 
+            position={[780, 290]}
+            scale={0.7}
+            delay={1800}
+            timeout={-1} />
 
+         <StarLight 
+            position={[1050, 260]}
+            scale={[-1, 1]}
+            delay={1500}
+            timeout={-1} />
+
+         <StarLight 
+            position={[730, 530]}
+            scale={[-0.5, 0.5]}
+            delay={1500}
+            timeout={-1} />
+
+         <StarLight 
+            position={[1290, 300]}
+            scale={0.6}
+            delay={1800}
+            timeout={-1} />
 
          <Sprite name="infoTitle"
             position={[1024, 886]}
