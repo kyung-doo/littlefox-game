@@ -121,7 +121,7 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
          }
          if(studyData.reStudy === 0) {
             window.http
-            .get(path, { params: {fu_id: studyData.fu_id, play_type: 'P', stage: stage }})
+            .get(path, { params: {fu_id: studyData.fu_id, play_type: 'L', stage: stage }})
             .then((data) => console.log(data));
          }
          dispatch({ type: StudyActions.CHANGE_STATUS, payload: StudyStatus.RESULT });
