@@ -154,7 +154,7 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
 
 
    const onBtnUp = useCallback(() => {
-      if(isDrag.current) return;
+      if(isDrag.current > 0) return;
       setIsTransition(true);
       if(pickNum.current < words.length-1) {
          pickNum.current++;
@@ -169,7 +169,7 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
    }, []);
 
    const onBtnDown = useCallback(() => {
-      if(isDrag.current) return;
+      if(isDrag.current > 0) return;
       setIsTransition(true);
       if(pickNum.current > 0) {
          pickNum.current--;
