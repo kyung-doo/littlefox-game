@@ -8,7 +8,7 @@
          {
             "words": {
                "text": "cape",
-               "audio": "/@dummy/learn_1_cape.wav"
+               "audio": "./@dummy/learn_1_cape.wav"
             },
             "syllables": [
                {"text": "c", "audio": "./@dummy/learn_1_cape_c.wav", "isSilent": false, "withSilient": false},
@@ -20,7 +20,7 @@
          {
             "words": {
                "text": "maze",
-               "audio": "/@dummy/learn_2_maze.wav"
+               "audio": "./@dummy/learn_2_maze.wav"
             },
             "syllables": [
                {"text": "m", "audio": "./@dummy/learn_2_maze_m.wav", "isSilent": false, "withSilient": false},
@@ -32,7 +32,7 @@
          {
             "words": {
                "text": "lake",
-               "audio": "/@dummy/learn_3_lake.wav"
+               "audio": "./@dummy/learn_3_lake.wav"
             },
             "syllables": [
                {"text": "l", "audio": "./@dummy/learn_3_lake_l.wav", "isSilent": false, "withSilient": false},
@@ -44,7 +44,7 @@
          {
             "words": {
                "text": "race",
-               "audio": "/@dummy/learn_4_race.wav"
+               "audio": "./@dummy/learn_4_race.wav"
             },
             "syllables": [
                {"text": "r", "audio": "./@dummy/learn_4_race_r.wav", "isSilent": false, "withSilient": false},
@@ -56,7 +56,7 @@
          {
             "words": {
                "text": "face",
-               "audio": "/@dummy/learn_5_face.wav"
+               "audio": "./@dummy/learn_5_face.wav"
             },
             "syllables": [
                {"text": "f", "audio": "./@dummy/learn_5_face_f.wav", "isSilent": false, "withSilient": false},
@@ -68,7 +68,7 @@
          {
             "words": {
                "text": "lace",
-               "audio": "/@dummy/learn_6_lace.wav"
+               "audio": "./@dummy/learn_6_lace.wav"
             },
             "syllables": [
                {"text": "l", "audio": "./@dummy/learn_6_lace_l.wav", "isSilent": false, "withSilient": false},
@@ -80,7 +80,7 @@
          {
             "words": {
                "text": "clip",
-               "audio": "/@dummy/learn_7_clip.wav"
+               "audio": "./@dummy/learn_7_clip.wav"
             },
             "syllables": [
                {"text": "cl", "audio": "./@dummy/learn_7_clip_cl.wav", "isSilent": false, "withSilient": false},
@@ -91,7 +91,7 @@
          {
             "words": {
                "text": "clap",
-               "audio": "/@dummy/learn_8_clap.wav"
+               "audio": "./@dummy/learn_8_clap.wav"
             },
             "syllables": [
                {"text": "cl", "audio": "./@dummy/learn_8_clap_cl.wav", "isSilent": false, "withSilient": false},
@@ -102,7 +102,7 @@
          {
             "words": {
                "text": "plate",
-               "audio": "/@dummy/learn_9_plate.wav"
+               "audio": "./@dummy/learn_9_plate.wav"
             },
             "syllables": [
                {"text": "pl", "audio": "./@dummy/learn_9_plate_pl.wav", "isSilent": false, "withSilient": false},
@@ -114,7 +114,7 @@
          {
             "words": {
                "text": "plane",
-               "audio": "/@dummy/learn_10_plane.wav"
+               "audio": "./@dummy/learn_10_plane.wav"
             },
             "syllables": [
                {"text": "pl", "audio": "./@dummy/learn_10_plane_pl.wav", "isSilent": false, "withSilient": false},
@@ -126,7 +126,7 @@
          {
             "words": {
                "text": "glasss",
-               "audio": "/@dummy/learn_11_glass.wav"
+               "audio": "./@dummy/learn_11_glass.wav"
             },
             "syllables": [
                {"text": "gl", "audio": "./@dummy/learn_11_glass_gl.wav", "isSilent": false, "withSilient": false},
@@ -139,7 +139,7 @@
          {
             "words": {
                "text": "glad",
-               "audio": "/@dummy/learn_12_glad.wav"
+               "audio": "./@dummy/learn_12_glad.wav"
             },
             "syllables": [
                {"text": "gl", "audio": "./@dummy/learn_12_glad_gl.wav", "isSilent": false, "withSilient": false},

@@ -4,6 +4,7 @@ import { Container as PIXIContainer, Graphics as PIXIGraphics, Text as PIXIText,
 import { gsap, Cubic } from 'gsap';
 import useAssets from '../../../hooks/useAssets';
 import { makeRandom } from '../../../utils';
+import PIXITimeout from '../../../utils/PIXITimeout';
 
 
 export interface Props extends _ReactPixi.IContainer {
@@ -32,10 +33,11 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
    const [isSilient, setIsSilient] = useState<boolean>(false);
    const startPointerY = useRef<number>(0);
    const startPosY = useRef<number>(0);
-   const isDrag = useRef<boolean>(false);
+   const isDrag = useRef<number>(-1);
    const pickNum = useRef<number>(0);
    const [isTransition, setIsTransition] = useState<boolean>(false);
    const pickData = useRef<{word: string, correct: boolean}[]>([]);
+   const timer = useRef<any>();
   
 
    const makePicker = useCallback(() => {
@@ -110,11 +112,11 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
    const onDragStart = useCallback(( e: any ) => {
       startPointerY.current = e.data.global.y;
       startPosY.current = pickerCon.current!.position.y;
-      isDrag.current = true;
+      isDrag.current = e.data.pointerId;
    }, []);
 
    const onDragMove = useCallback(( e: any ) => {
-      if(isDrag.current) {
+      if(isDrag.current === e.data.pointerId) {
          const targetY: number = e.data.global.y - startPointerY.current;
          let scale = 1 - window.scale;
          if(scale < 0.3) scale = 0.3;
@@ -138,7 +140,7 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
 
 
    const onDragEnd = useCallback(( e: any ) => {
-      setTimeout(() => isDrag.current = false, 100);
+      timer.current = PIXITimeout.start(() => isDrag.current = -1, 100);
       const targetY = -PICKER_HEIGHT * pickNum.current;
       if(pickNum.current === 0 && pickerCon.current!.position.y < -(PICKER_HEIGHT/2)) {
          pickerCon.current!.position.y += PICKER_HEIGHT * words.length;
@@ -195,6 +197,9 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
       container.current!.addChild(mask);
       pickerCon.current!.mask = mask;
       makePicker();
+      return () => {
+         PIXITimeout.clear(timer.current);
+      }
    }, []);
 
    return (

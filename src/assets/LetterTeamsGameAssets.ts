@@ -67,6 +67,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainBonusBg', url: `${mainImgPath}bonus_bg.png`},
       { name: 'mainBonusOn', url: `${mainImgPath}bonus_on.png`},
       { name: 'mainGround', url: `${mainImgPath}ground.png`},
+      { name: 'mainShadow', url: `${mainImgPath}shadow.png`},
       { name: 'mainSky', url: `${mainImgPath}sky.png`},
       { name: 'mainCloud1', url: `${mainImgPath}cloud1.png`},
       { name: 'mainCloud2', url: `${mainImgPath}cloud2.png`},
@@ -95,7 +96,6 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainRibon3', url: `${mainImgPath}ribon3.png`},
       { name: 'mainRibon4', url: `${mainImgPath}ribon4.png`},
       { name: 'mainRibon5', url: `${mainImgPath}ribon5.png`},
-
       { name: 'spritesheetBalloonLight1', url: `${spritesheetPath}balloon_light1.json` },
       { name: 'spritesheetBalloonLight2', url: `${spritesheetPath}balloon_light2.json` },
       { name: 'spritesheetFireWork1', url: `${spritesheetPath}firework1.json` },

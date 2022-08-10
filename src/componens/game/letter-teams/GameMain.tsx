@@ -45,6 +45,7 @@ const GameMain: FC = () => {
    const app = useApp();
    const container = useRef<PixiRef<typeof Container>>(null);
    const ground = useRef<PixiRef<typeof Sprite>>(null);
+   const shadow = useRef<PixiRef<typeof Sprite>>(null);
    const sky = useRef<PixiRef<typeof Sprite>>(null);
    const cloudCon = useRef<PixiRef<typeof Sprite>>(null);
    const enterBtn = useRef<PixiRef<typeof Sprite>>(null);
@@ -151,6 +152,7 @@ const GameMain: FC = () => {
       gsap.to(ground.current, 0.6, {pixi: {y: 1060}, ease: Cubic.easeInOut});
       gsap.to(sky.current, 1, {pixi: {y: 520}, ease: Linear.easeNone});
       gsap.to(cloudCon.current, 1.3, {pixi: {y: 1750}, ease: Linear.easeNone});
+      gsap.to(shadow.current, 0.5, {pixi: {scale: 0.2, alpha: 0}, ease: Cubic.easeInOut});
       if(isBonus) {
          timer.current[2] = PIXITimeout.start(() => {
             setShowBonusText(true);
@@ -178,6 +180,7 @@ const GameMain: FC = () => {
          gsap.to(ground.current, 0.7, {delay: 0.3, pixi: {y: 520}, ease: Cubic.easeInOut});
          gsap.to(sky.current, 0.5, {delay: 0.3, pixi: {y: 0}, ease: Linear.easeNone});
          gsap.to(cloudCon.current, 0.5, {delay: 0.3, pixi: {y: 1280}, ease: Linear.easeNone});
+         gsap.set(shadow.current, {pixi: {scale: 1, alpha: 1}});
          quizTargets.current!.transition();
          if(isBonus) {
             dispatch({type: GameActions.ADD_BONUS_LENGTH});
@@ -390,12 +393,18 @@ const GameMain: FC = () => {
                texture={resources.mainCloud2.texture} />
          </Container>
 
-         <Sprite 
+         <Container
             ref={ground}
             name="ground"
             x={-400}
-            y={ground.current ? ground.current.position.y : 520}
-            texture={resources.mainGround.texture} />
+            y={ground.current ? ground.current.position.y : 520}>
+            <Sprite texture={resources.mainGround.texture} />
+            <Sprite 
+               ref={shadow}
+               anchor={0.5}
+               position={[1427, 387]}
+               texture={resources.mainShadow.texture} />
+         </Container>
 
          <Container 
             name="quizContainer"
