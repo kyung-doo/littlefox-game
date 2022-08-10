@@ -50,6 +50,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'introBalloon5', url: `${introImgPath}balloon5.png`},
       { name: 'introBalloon6', url: `${introImgPath}balloon6.png`},
       { name: 'introBalloon7', url: `${introImgPath}balloon7.png`},
+      { name: 'introInfoText', url: `${introImgPath}info_text_${langCode}.png`},
 
 
 
@@ -125,12 +126,8 @@ export default ( langCode: string, low: number ) => {
       { name: 'resultFailedMsg1', url: `${resultImgPath}failed_message1.png`},
       { name: 'resultFailedMsg2', url: `${resultImgPath}failed_message2.png`},
       { name: 'resultFailedMsg3', url: `${resultImgPath}failed_message3.png`},
-
-      
       
    ];
-
-   resource.push({ name: 'introInfoText', url: `${introImgPath}info_text_${langCode}.png`});
 
    if(low === 0) {
       resource.push({ name: 'commonWatchBody', url: `${commonImgPath}watch_body.png` });
