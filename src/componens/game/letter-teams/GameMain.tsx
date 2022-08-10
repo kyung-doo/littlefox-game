@@ -480,7 +480,7 @@ const GameMain: FC = () => {
             <TimeContainer 
                ref={timeContainer}
                position={[520, 56]}
-               textColor="#0c5338"
+               textColor="#354587"
                timeLength={gameData.gameTimeout * 1000}
                onTimeout={onGameTimeout} />
          </Container>
