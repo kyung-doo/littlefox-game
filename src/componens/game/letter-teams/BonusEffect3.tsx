@@ -1,19 +1,20 @@
-import { useEffect, useRef, FC, memo } from 'react';
+import { useEffect, useRef, FC, memo, useLayoutEffect } from 'react';
 import { _ReactPixi, Container, PixiRef, Sprite } from '@inlet/react-pixi';
 import { Texture } from 'pixi.js';
 import useAssets from '../../../hooks/useAssets';
 import { randomRange, toRadian } from '../../../utils';
 import { gsap, Linear, Expo } from 'gsap';
 import StarLight from './StarLight';
+import { useSelector } from 'react-redux';
 
 
 
 
-const PARTICLE_LEGNTH = 150;
 const RNAD_COLOR = [0xffc568, 0x6fff36, 0xb81dcc, 0xfe2882, 0xff7e22, 0x268241, 0x2c5ec8];
 
 const PartyEffect: FC<_ReactPixi.IContainer> = (props) => {
    const { resources } = useAssets();
+   const gameData: any = useSelector<any>(state => state.root.gameData);
    const container = useRef<PixiRef<typeof Container>>(null); 
    const particles = useRef<PixiRef<typeof Sprite>[]>([]); 
 
@@ -68,7 +69,7 @@ const PartyEffect: FC<_ReactPixi.IContainer> = (props) => {
          
          <Container 
             name="particleCon">
-            {Array.from(Array(PARTICLE_LEGNTH), (k, i) => (
+            {Array.from(Array(gameData.lowQuality ? 80 : 150), (k, i) => (
                <Sprite 
                   key={`particle-${i}`}
                   ref={ref => ref && (particles.current[i] = ref)}
@@ -119,6 +120,7 @@ const PartyEffect: FC<_ReactPixi.IContainer> = (props) => {
 
 const BonusEffect3: FC<_ReactPixi.IContainer> = ( props ) => {
 
+   const gameData: any = useSelector<any>(state => state.root.gameData);
    const container = useRef<PixiRef<typeof Container>>(null); 
 
    return (
@@ -126,53 +128,56 @@ const BonusEffect3: FC<_ReactPixi.IContainer> = ( props ) => {
          name="bonusEffect3"
          ref={container}
          {...props}>
+         {!gameData.lowQuality &&
+            <>
+               <StarLight
+                  delay={100}
+                  timeout={1500}
+                  position={[-830, -100]} />
 
-         <StarLight
-            delay={100}
-            timeout={1500}
-            position={[-830, -100]} />
+               <StarLight
+                  delay={300}
+                  timeout={1500}
+                  scale={[-0.9, 0.9]}
+                  position={[-700, -10]} />
 
-         <StarLight
-            delay={300}
-            timeout={1500}
-            scale={[-0.9, 0.9]}
-            position={[-700, -10]} />
+               <StarLight
+                  delay={100}
+                  timeout={1500}
+                  scale={[-1, 1]}
+                  position={[-920, 40]} />
 
-         <StarLight
-            delay={100}
-            timeout={1500}
-            scale={[-1, 1]}
-            position={[-920, 40]} />
+               <StarLight
+                  delay={300}
+                  timeout={1500}
+                  scale={0.8}
+                  position={[-900, -270]} />
 
-         <StarLight
-            delay={300}
-            timeout={1500}
-            scale={0.8}
-            position={[-900, -270]} />
+               <StarLight
+                  delay={100}
+                  timeout={1500}
+                  position={[740, 100]} />
 
-         <StarLight
-            delay={100}
-            timeout={1500}
-            position={[740, 100]} />
+               <StarLight
+                  delay={300}
+                  timeout={1500}
+                  scale={[-0.9, 0.9]}
+                  position={[670, -40]} />
 
-         <StarLight
-            delay={300}
-            timeout={1500}
-            scale={[-0.9, 0.9]}
-            position={[670, -40]} />
+               <StarLight
+                  delay={100}
+                  timeout={1500}
+                  scale={[-1, 1]}
+                  position={[870, -90]} />
 
-         <StarLight
-            delay={100}
-            timeout={1500}
-            scale={[-1, 1]}
-            position={[870, -90]} />
-
-         <StarLight
-            delay={300}
-            timeout={1500}
-            scale={[-0.8, 0.8]}
-            position={[870, 0]} />
-
+               <StarLight
+                  delay={300}
+                  timeout={1500}
+                  scale={[-0.8, 0.8]}
+                  position={[870, 0]} />
+            </>
+         }
+         
          <PartyEffect
             position={[-1000, 398]} />
 

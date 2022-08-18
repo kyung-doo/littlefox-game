@@ -26,6 +26,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'audioCorrect', url: `${audioPath}correct.mp3` },
       { name: 'audioWrong', url: `${audioPath}wrong.mp3` },
       { name: 'audioBonus', url: `${audioPath}bonus.mp3` },
+      { name: 'audioChange', url: `${audioPath}change.mp3` },
       { name: 'audioGameover', url: `${audioPath}game_over.mp3` },
       { name: 'commonExitBtn', url: `${commonImgPath}exit_btn.png` },
       
@@ -89,8 +90,6 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainBonus1Bg', url: `${mainImgPath}bonus1_bg.png`},
       { name: 'mainBonus1Star', url: `${mainImgPath}bonus1_star.png`},
       { name: 'mainStarLight', url: `${mainImgPath}star_light.png`},
-      { name: 'mainWhiteStar', url: `${mainImgPath}white_star.png`},
-      { name: 'mainWhiteLine', url: `${mainImgPath}white_line.png`},
       { name: 'mainPartyBg', url: `${mainImgPath}party_bg.png`},
       { name: 'mainRibon1', url: `${mainImgPath}ribon1.png`},
       { name: 'mainRibon2', url: `${mainImgPath}ribon2.png`},
@@ -99,11 +98,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainRibon5', url: `${mainImgPath}ribon5.png`},
       { name: 'spritesheetBalloonLight1', url: `${spritesheetPath}balloon_light1.json` },
       { name: 'spritesheetBalloonLight2', url: `${spritesheetPath}balloon_light2.json` },
-      { name: 'spritesheetFireWork1', url: `${spritesheetPath}firework1.json` },
-      { name: 'spritesheetFireWork2', url: `${spritesheetPath}firework2.json` },
-      { name: 'spritesheetFireWork3', url: `${spritesheetPath}firework3.json` },
-      { name: 'spritesheetFireWork4', url: `${spritesheetPath}firework4.json` },
-      { name: 'spritesheetCharactorDefault', url: `${spritesheetPath}charactor_default.json` },
+      { name: 'spritesheetCharactorDefault', url: `${spritesheetPath}charactor_default${low ? '_low' : ''}.json` },
       { name: 'spritesheetCharactorCorrect', url: `${spritesheetPath}charactor_correct.json` },
       { name: 'spritesheetCharactorWrong', url: `${spritesheetPath}charactor_wrong.json` },
       { name: 'spritesheetCharactorBonus', url: `${spritesheetPath}charactor_bonus.json` },
@@ -133,8 +128,15 @@ export default ( langCode: string, low: number ) => {
       resource.push({ name: 'commonWatchBody', url: `${commonImgPath}watch_body.png` });
       resource.push({ name: 'commonWatchButton', url: `${commonImgPath}watch_button.png` });
       resource.push({ name: 'commonWatchBubble', url: `${commonImgPath}watch_bubble.png` });
+      resource.push({ name: 'spritesheetFireWork1', url: `${spritesheetPath}firework1.json` });
+      resource.push({ name: 'spritesheetFireWork2', url: `${spritesheetPath}firework2.json` });
+      resource.push({ name: 'spritesheetFireWork3', url: `${spritesheetPath}firework3.json` });
+      resource.push({ name: 'spritesheetFireWork4', url: `${spritesheetPath}firework4.json` });
+      resource.push({ name: 'mainWhiteStar', url: `${mainImgPath}white_star.png`});
+      resource.push({ name: 'mainWhiteLine', url: `${mainImgPath}white_line.png`});
    } else {
       resource.push({ name: 'commonWatch', url: `${commonImgPath}watch.png` });
+      resource.push({ name: 'spritesheetFireWork1', url: `${spritesheetPath}firework1.json` });
    }
 
    

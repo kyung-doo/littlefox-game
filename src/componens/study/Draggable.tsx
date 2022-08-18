@@ -21,6 +21,7 @@ export interface Props {
    onDragStart?: ( item: HTMLDivElement ) => void;
    onCorrect?: (item: HTMLDivElement, area: HTMLDivElement) => void;
    onWrong?: (item: HTMLDivElement) => void;
+   padding?: number | string;
 }
 
 
@@ -31,7 +32,8 @@ const Draggable: FC<Props> = ({
    dragElm,
    onDragStart,
    onCorrect,
-   onWrong 
+   onWrong,
+   padding 
 }) => {
 
    const dragContainer = useRef<HTMLDivElement>(null);
@@ -46,7 +48,7 @@ const Draggable: FC<Props> = ({
       for(let i=0; i<dragAreas.current.length; i++) {
          var areaItem = dragAreas.current[i];
          if(getComputedStyle(areaItem)['visibility'] === 'hidden' || getComputedStyle(areaItem)['display'] === 'none') continue;
-         if(draggable.hitTest(areaItem)){
+         if(draggable.hitTest(areaItem, padding)){
             if(areaItem.dataset.correct === dragItem.dataset.correct) {
                return [true, areaItem];
             } else {

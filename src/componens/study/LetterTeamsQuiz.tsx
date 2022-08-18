@@ -66,7 +66,8 @@ const LetterTeamsQuiz: FC<Props> = ({syllables, syllableBox, onStudyClear, audio
                dragElm={randomAr.map( i => (<span>{syllables[i].text}</span>))}
                onDragStart={audioStop}
                onCorrect={onDragCorrect}
-               onWrong={onDragWrong} />
+               onWrong={onDragWrong}
+               padding={'20%'} />
          }
       </div>
    )

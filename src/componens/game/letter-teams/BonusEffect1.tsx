@@ -5,6 +5,7 @@ import { gsap, Linear, Power3 } from 'gsap';
 import useAssets from '../../../hooks/useAssets';
 import StarLight from './StarLight';
 import PIXITimeout from '../../../utils/PIXITimeout';
+import { useSelector } from 'react-redux';
 
 
 
@@ -58,6 +59,7 @@ const WhiteStar: FC<_ReactPixi.IContainer> = (props) => {
 const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
 
    const { resources } = useAssets();
+   const gameData: any = useSelector<any>(state => state.root.gameData);
    const container = useRef<PixiRef<typeof Container>>(null);  
    const smallStars = useRef<PixiRef<typeof Container>[]>([]);  
 
@@ -84,12 +86,15 @@ const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
       .to(bigStar, 0.2, {pixi: {scaleX: 1}})
       .to(bigStar, 0.6, {delay:0.2, pixi: {alpha: 0, scale: 2}});
 
-      smallStars.current.forEach((star, i) => {
-         const delay = 0.1 * i + 0.2;
-         gsap.to(star.children, 0.2, {delay: delay, pixi: {alpha: 1}});
-         gsap.to(star.children, 1, {delay: delay, pixi: {y: -randomRange(300, 400)}, ease: Linear.easeOut});
-         gsap.to(star.children, 0.2, {delay: delay+1, pixi: {alpha: 0, scale: 0.2}});
-      });
+      if(!gameData.lowQuality) {
+
+         smallStars.current.forEach((star, i) => {
+            const delay = 0.1 * i + 0.2;
+            gsap.to(star.children, 0.2, {delay: delay, pixi: {alpha: 1}});
+            gsap.to(star.children, 1, {delay: delay, pixi: {y: -randomRange(300, 400)}, ease: Linear.easeOut});
+            gsap.to(star.children, 0.2, {delay: delay+1, pixi: {alpha: 0, scale: 0.2}});
+         });
+      }
 
    }, []);
 
@@ -110,29 +115,33 @@ const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
             y={170}
             alpha={0}
             texture={resources.mainBonus1Light.texture} />
-            
-         {Array.from(WHITE_ROTATIONS, (r, i) => (
-            <WhiteStar
-               key={`white-star-${i}`}
-               rotation={toRadian(r)}
-               scale={randomRange(30, 50) * 0.01}
-               position={[0, 170]} />
-         ))}
-
-         {Array.from(STAR_ROTATIONS, (r, i) => (
-            <Container
-               ref={ref => ref && (smallStars.current[i] = ref)}
-               key={`small-star-${i}`}
-               rotation={toRadian(r)}
-               position={[0, 117]}>
-               <Sprite 
-                  anchor={0.5}
-                  alpha={0}
-                  scale={randomRange(10, 35) * 0.01}
-                  texture={resources.mainBonus1Star.texture} />
-            </Container>
-         ))}
          
+         {!gameData.lowQuality &&
+            <>
+               {Array.from(WHITE_ROTATIONS, (r, i) => (
+                  <WhiteStar
+                     key={`white-star-${i}`}
+                     rotation={toRadian(r)}
+                     scale={randomRange(30, 50) * 0.01}
+                     position={[0, 170]} />
+               ))}
+
+               {Array.from(STAR_ROTATIONS, (r, i) => (
+                  <Container
+                     ref={ref => ref && (smallStars.current[i] = ref)}
+                     key={`small-star-${i}`}
+                     rotation={toRadian(r)}
+                     position={[0, 117]}>
+                     <Sprite 
+                        anchor={0.5}
+                        alpha={0}
+                        scale={randomRange(10, 35) * 0.01}
+                        texture={resources.mainBonus1Star.texture} />
+                  </Container>
+               ))}
+            </>
+         }
+               
          <Sprite
             name="bigStar"
             alpha={0}
@@ -140,30 +149,34 @@ const BonusEffect1: FC<_ReactPixi.IContainer> = ( props ) => {
             anchor={0.5}
             y={170}
             texture={resources.mainBonus1Star.texture} />
-
-         <StarLight
-            name="starLight1"
-            timeout={1300}
-            delay={500}
-            position={[0, 117]} />
-         <StarLight
-            name="starLight2"
-            timeout={1300}
-            delay={600}
-            scale={[-1, 1]}
-            position={[-35, 265]} />
-         <StarLight
-            name="starLight3"
-            timeout={1300}
-            delay={500}
-            scale={[0.7]}
-            position={[-178, 165]} />
-         <StarLight
-            name="starLight4"
-            timeout={1300}
-            delay={600}
-            scale={[-0.7, 0.7]}
-            position={[148, 250]} />
+            
+         {!gameData.lowQuality &&
+            <>
+               <StarLight
+                  name="starLight1"
+                  timeout={1300}
+                  delay={500}
+                  position={[0, 117]} />
+               <StarLight
+                  name="starLight2"
+                  timeout={1300}
+                  delay={600}
+                  scale={[-1, 1]}
+                  position={[-35, 265]} />
+               <StarLight
+                  name="starLight3"
+                  timeout={1300}
+                  delay={500}
+                  scale={[0.7]}
+                  position={[-178, 165]} />
+               <StarLight
+                  name="starLight4"
+                  timeout={1300}
+                  delay={600}
+                  scale={[-0.7, 0.7]}
+                  position={[148, 250]} />
+            </>
+         }
 
       </Container>
    );

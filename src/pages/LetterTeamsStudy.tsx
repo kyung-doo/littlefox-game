@@ -20,7 +20,7 @@ enum QuizStatus {
 }
 
 
-const Study: FC<{idx: number}> = ({ idx }) => {
+const Study: FC<{idx: number, stage: number}> = ({ idx, stage }) => {
    
    const dispatch = useDispatch();
    const studyData: any = useSelector<any>(state => state.studyData);
@@ -107,6 +107,26 @@ const Study: FC<{idx: number}> = ({ idx }) => {
    }, [quizStatus]);
 
    useEffect(() => {
+      const targetWords = studyData.stageTitle.split(' '); 
+      const texts = data.syllables.map((x: any) => x.text);
+      
+      if(stage === 1 || stage === 2) {
+         targetWords.forEach((words: string) => {
+            let count = 0;
+            words.split('_').join('');
+            if(words[0] === texts[1]) count++;
+            if(words[2] === texts[3]) count++;
+            if(count === 2) {
+               data.syllables[1].target = true;
+               data.syllables[3].target = true;
+            }
+         });
+      } else if(stage === 3) {
+
+      } else {
+
+      }
+
       wordsAudio.current = Sound.from({url: data.words.audio, preload: true}); 
       data.syllables.forEach((syllable: any, i: number) => {
          if(syllable.audio) {
@@ -122,7 +142,7 @@ const Study: FC<{idx: number}> = ({ idx }) => {
             <div className="syllable-boxs">
                {data.syllables.map((syllable: any, i: number) => (
                   <div ref={ref => ref && (syllableBox.current[i] = ref)}
-                     className="syllable-box"
+                     className={`syllable-box ${syllable.target ? 'target' : ''}`}
                      style={{letterSpacing: syllable.text.length === 3 ? '-5px' : '0px'}}
                      key={`word-${i}`}>
                      {syllable.text}
@@ -156,11 +176,11 @@ const LetterTeamsStudy: FC<{stage: string | null}> = ({stage}) => {
       <div id="wrap">
          <Provider store={Store}>
             <StudyLayout 
-               title="Letter Teams"
+               title="Balloon Ride"
                type="LetterTeams"
                stage={stage ? parseInt(stage) : 1}
                showGameBtn={true}
-               studyElem={idx => <Study idx={idx} />} />
+               studyElem={idx => <Study idx={idx} stage={stage ? parseInt(stage) : 1} />} />
          </Provider>
       </div>
    )

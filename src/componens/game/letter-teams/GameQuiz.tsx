@@ -51,15 +51,16 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
    const makeQuiz = useCallback(() => {
       const quizList = gameData.quizList[quizNo ? quizNo : 0];
       const lists: any = [];
-      quizList.syllables.forEach((list: any) => {
-         if(!list.isSilent) {
-            lists.push([list.correct, list.wrong1, list.wrong2]);
-         } else {
+      const random = Math.floor(Math.random() * quizList.syllables.length);
+      quizList.syllables.forEach((list: any, i: number) => {
+         if(random === i) {
             lists.push(list.correct);
+         } else {
+            lists.push([list.correct, list.wrong1, list.wrong2]);
          }
-      })
+      });
       setWordLists(lists);
-      startBalloonAni();
+      timer.current = PIXITimeout.start(() => startBalloonAni(), 200);
       
    }, [quizNo]);
 
@@ -71,12 +72,18 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
       const leftBalloon2 = container.current!.getChildByName('balloonLeft2');
       const rightBalloon1 = container.current!.getChildByName('balloonRight1');
       const rightBalloon2 = container.current!.getChildByName('balloonRight2');
-      stopBalloonAni();
-      gsap.to(leftBalloon1, 0.8, {pixi: {rotation: -5, y: -200}, yoyo: true, repeat: -1, ease: Linear.easeNone});
-      gsap.to(leftBalloon2, 0.8, {pixi: {rotation: 3, y: -320}, delay: 0.3, yoyo: true, repeat: -1, ease: Linear.easeNone});
-      gsap.to(rightBalloon1, 0.8, {pixi: {rotation: 5, y: -200}, yoyo: true, repeat: -1, ease: Linear.easeNone});
-      gsap.to(rightBalloon2, 0.8, {pixi: {rotation: -3, y: -320}, delay: 0.3, yoyo: true, repeat: -1, ease: Linear.easeNone});
 
+      gsap.to(container.current, 0.4, {pixi: { y: 0}});
+      gsap.to(leftBalloon1, 0.3, {pixi: {scale: 1}, ease: Cubic.easeOut});
+      gsap.to(leftBalloon2, 0.3, {pixi: {scale: 1, x: -554, y: -325}, ease: Cubic.easeOut});
+      gsap.to(rightBalloon1, 0.3, {pixi: {scale: 1}, ease: Cubic.easeOut});
+      gsap.to(rightBalloon2, 0.3, {pixi: {scale: 1, x: 575, y: -325}, ease: Cubic.easeOut, onComplete: ()=>{
+         stopBalloonAni();
+         gsap.to(leftBalloon1, 0.8, {pixi: {rotation: -5, y: -200}, yoyo: true, repeat: -1, ease: Linear.easeNone});
+         gsap.to(leftBalloon2, 0.8, {pixi: {rotation: 3, y: -320}, delay: 0.3, yoyo: true, repeat: -1, ease: Linear.easeNone});
+         gsap.to(rightBalloon1, 0.8, {pixi: {rotation: 5, y: -200}, yoyo: true, repeat: -1, ease: Linear.easeNone});
+         gsap.to(rightBalloon2, 0.8, {pixi: {rotation: -3, y: -320}, delay: 0.3, yoyo: true, repeat: -1, ease: Linear.easeNone});
+      }});
       charactor.current?.default();
    }, []);
 
@@ -123,6 +130,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
    }, [wordLists, bonusIdx, onSuccess]);
 
    const onQuizWrong = useCallback(() => {
+      container.current!.interactiveChildren = false;
       setScoreTexts(prev => [ ...prev, { 
          id: `scoreText${scoreCount.current}`, 
          texture: resources.mainScoreMinus10.texture, 
@@ -214,9 +222,18 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
          }
       },
       transition: () => {
+         const leftBalloon1 = container.current!.getChildByName('balloonLeft1');
+         const leftBalloon2 = container.current!.getChildByName('balloonLeft2');
+         const rightBalloon1 = container.current!.getChildByName('balloonRight1');
+         const rightBalloon2 = container.current!.getChildByName('balloonRight2');
+         
          gsap.to(container.current, 0.4, {pixi:{y: -1000}, onComplete: () => {
-            gsap.set(container.current, {pixi: {y: 1000}});
-            gsap.to(container.current, 0.4, {delay: 0.2, pixi: { y: 0}});
+            gsap.set(container.current, {delay: 0.3, pixi: {y: 52}});
+            stopBalloonAni();
+            gsap.to(leftBalloon1, 0.2, {pixi: {scale: 0.6}, ease: Cubic.easeOut});
+            gsap.to(leftBalloon2, 0.2, {pixi: {scale: 0.6, x: -585, y: -265}, ease: Cubic.easeOut});
+            gsap.to(rightBalloon1, 0.2, {pixi: {scale: 0.6}, ease: Cubic.easeOut});
+            gsap.to(rightBalloon2, 0.2, {pixi: {scale: 0.6, x: 605, y: -265}, ease: Cubic.easeOut});
          }});
       },
       timeout:() => setTimeout(quizTimeout, 1)

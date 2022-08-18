@@ -3,12 +3,14 @@ import { _ReactPixi, Container, PixiRef, AnimatedSprite } from '@inlet/react-pix
 import { AnimatedSprite as PIXIAnimatedSprite } from 'pixi.js';
 import useAssets from '../../../hooks/useAssets';
 import PIXITimeout from '../../../utils/PIXITimeout';
+import { useSelector } from 'react-redux';
 
 
 
 const BonusEffect2: FC<_ReactPixi.IContainer> = ( props ) => {
 
    const { resources } = useAssets();
+   const gameData: any = useSelector<any>(state => state.root.gameData);
    const container = useRef<PixiRef<typeof Container>>(null); 
 
    const timer = useRef<any[]>([]);
@@ -19,16 +21,24 @@ const BonusEffect2: FC<_ReactPixi.IContainer> = ( props ) => {
    }, []);
 
    const fireworkTexture2 = useMemo(() => {
-      return Object.keys(resources.spritesheetFireWork2.textures).map( name => resources.spritesheetFireWork2.textures[name]);
+      if(!gameData.lowQuality) {
+         return Object.keys(resources.spritesheetFireWork2.textures).map( name => resources.spritesheetFireWork2.textures[name]);
+      }
    }, []);
 
    const fireworkTexture3 = useMemo(() => {
-      return Object.keys(resources.spritesheetFireWork3.textures).map( name => resources.spritesheetFireWork3.textures[name]);
+      if(!gameData.lowQuality) {
+         return Object.keys(resources.spritesheetFireWork3.textures).map( name => resources.spritesheetFireWork3.textures[name]);
+      }
    }, []);
 
    const fireworkTexture4 = useMemo(() => {
-      return Object.keys(resources.spritesheetFireWork4.textures).map( name => resources.spritesheetFireWork4.textures[name]);
+      if(!gameData.lowQuality) {
+         return Object.keys(resources.spritesheetFireWork4.textures).map( name => resources.spritesheetFireWork4.textures[name]);
+      }
    }, []);
+
+   
    
    useEffect(() => {
       const firework1 = container.current!.getChildByName('firework1', true) as PIXIAnimatedSprite;
@@ -108,7 +118,7 @@ const BonusEffect2: FC<_ReactPixi.IContainer> = ( props ) => {
          <AnimatedSprite
             name="firework2"
             position={[750, 0]}
-            textures={fireworkTexture2}
+            textures={gameData.lowQuality ? fireworkTexture1 : fireworkTexture2}
             isPlaying={false}
             loop={false}
             anchor={0.5}
@@ -120,7 +130,7 @@ const BonusEffect2: FC<_ReactPixi.IContainer> = ( props ) => {
          <AnimatedSprite
             name="firework3"
             position={[280, -370]}
-            textures={fireworkTexture3}
+            textures={gameData.lowQuality ? fireworkTexture1 : fireworkTexture3}
             isPlaying={false}
             loop={false}
             anchor={0.5}
@@ -132,7 +142,7 @@ const BonusEffect2: FC<_ReactPixi.IContainer> = ( props ) => {
          <AnimatedSprite
             name="firework4"
             position={[-800, 25]}
-            textures={fireworkTexture4}
+            textures={gameData.lowQuality ? fireworkTexture1 : fireworkTexture4}
             isPlaying={false}
             loop={false}
             anchor={0.5}

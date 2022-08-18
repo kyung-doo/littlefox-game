@@ -1,9 +1,9 @@
 import { useEffect, useRef, useImperativeHandle, memo, useCallback, useState, forwardRef } from 'react';
-import { _ReactPixi, Container, PixiRef, Sprite, Text } from '@inlet/react-pixi';
-import { Container as PIXIContainer, Graphics as PIXIGraphics, Text as PIXIText, Sprite as PIXISprite, Texture } from 'pixi.js';
+import { _ReactPixi, Container, PixiRef, Sprite } from '@inlet/react-pixi';
+import { Container as PIXIContainer, Text as PIXIText, Sprite as PIXISprite, Texture } from 'pixi.js';
 import { gsap, Cubic } from 'gsap';
 import useAssets from '../../../hooks/useAssets';
-import { makeRandom } from '../../../utils';
+import { makeRandomIgnoreFirst } from '../../../utils';
 import PIXITimeout from '../../../utils/PIXITimeout';
 
 
@@ -30,11 +30,13 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
    const { resources } = useAssets();
    const container = useRef<PixiRef<typeof Container>>(null);
    const pickerCon = useRef<PixiRef<typeof Container>>(null);
-   const [isSilient, setIsSilient] = useState<boolean>(false);
+   const [isHold, setIsHold] = useState<boolean>(false);
    const startPointerY = useRef<number>(0);
    const startPosY = useRef<number>(0);
    const isDrag = useRef<number>(-1);
+   const isDraging = useRef<boolean>(false);
    const pickNum = useRef<number>(0);
+   const oldPickNum = useRef<number>(0);
    const [isTransition, setIsTransition] = useState<boolean>(false);
    const pickData = useRef<{word: string, correct: boolean}[]>([]);
    const timer = useRef<any>();
@@ -42,15 +44,12 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
 
    const makePicker = useCallback(() => {
       if(typeof words === 'object'){
-         const g = new PIXIGraphics();
-         g.beginFill(0xFF0000);
-         g.drawRect(0, 0, 259, PICKER_HEIGHT * (words.length+2));
-         g.endFill();
-         g.position.y = -PICKER_HEIGHT;
-         g.alpha = 0;
-         pickerCon.current?.addChild(g);
+         const bg = new PIXISprite(Texture.EMPTY);
+         bg.width = 259;
+         bg.height = PICKER_HEIGHT * (words.length+2)
+         pickerCon.current?.addChild(bg);
 
-         makeRandom(words.length, words.length).forEach((num, i) => {
+         makeRandomIgnoreFirst(0, words.length, words.length).forEach((num, i) => {
             if(i === 0)    pickData.current[num] = { word: words[i], correct: true }
             else           pickData.current[num] = { word: words[i], correct: false }
          });
@@ -71,7 +70,7 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
          });
          maekUpDownPicker();
       } else {
-         setIsSilient(true);
+         setIsHold(true);
          const picker: PIXIContainer = new PIXIContainer();
          const text: PIXIText = new PIXIText(words, TEXT_STYLE);
          text.position.set(130, 105);
@@ -117,6 +116,7 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
 
    const onDragMove = useCallback(( e: any ) => {
       if(isDrag.current === e.data.pointerId) {
+         isDraging.current = true;
          const targetY: number = e.data.global.y - startPointerY.current;
          let scale = 1 - window.scale;
          if(scale < 0.3) scale = 0.3;
@@ -134,12 +134,17 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
          if(pickNum.current > words.length-1) {
             pickNum.current = pickNum.current - words.length;
          }
-         
+         if(oldPickNum.current !== pickNum.current){
+            resources.audioClick.sound.stop();
+            resources.audioClick.sound.play();
+            oldPickNum.current = pickNum.current;  
+         }
       }
    }, []);
 
 
    const onDragEnd = useCallback(( e: any ) => {
+      isDraging.current = false;
       timer.current = PIXITimeout.start(() => isDrag.current = -1, 100);
       const targetY = -PICKER_HEIGHT * pickNum.current;
       if(pickNum.current === 0 && pickerCon.current!.position.y < -(PICKER_HEIGHT/2)) {
@@ -154,7 +159,7 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
 
 
    const onBtnUp = useCallback(() => {
-      if(isDrag.current > 0) return;
+      if(isDraging.current) return;
       setIsTransition(true);
       if(pickNum.current < words.length-1) {
          pickNum.current++;
@@ -166,10 +171,12 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
          const targetY = -PICKER_HEIGHT * pickNum.current;
          gsap.to(pickerCon.current, 0.4, { pixi: {y: targetY}, ease: Cubic.easeOut, onComplete: () => setIsTransition(false)});
       }
+      resources.audioClick.sound.stop();
+      resources.audioClick.sound.play();
    }, []);
 
    const onBtnDown = useCallback(() => {
-      if(isDrag.current > 0) return;
+      if(isDraging.current) return;
       setIsTransition(true);
       if(pickNum.current > 0) {
          pickNum.current--;
@@ -181,6 +188,8 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
          const targetY = -PICKER_HEIGHT * pickNum.current;
          gsap.to(pickerCon.current, 0.4, { pixi: {y: targetY}, ease: Cubic.easeOut, onComplete: () => setIsTransition(false)});
       }
+      resources.audioClick.sound.stop();
+      resources.audioClick.sound.play();
    }, []);
 
    useImperativeHandle(ref, () => ({
@@ -217,7 +226,7 @@ const WordPicker = forwardRef<Refs, Props>(({words, ...props}, ref) => {
                buttonMode={true} />
          </Container>
          
-         {!isSilient &&
+         {!isHold &&
             <>
                <Sprite 
                   name="btnUp"

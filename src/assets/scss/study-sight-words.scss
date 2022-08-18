@@ -25,15 +25,26 @@
          margin: 0 auto;
          border: solid 4px #91bcff;
          border-radius: 34px;
-         background: url('../images/study/sightwords/block_back.png') no-repeat;
-         background-size: 100%;
+         background: #fff;
+         &:before {
+            content:'';
+            @include absolute($left: -1px, $top: 123px, $width: 246px, $height: 139px);
+            background: url('../images/study/sightwords/block_left_off.png') no-repeat;
+            background-size: 100%;
+         }
+         &:after {
+            content:'';
+            @include absolute($left: 219px, $top: 123px, $width: 246px, $height: 139px);
+            background: url('../images/study/sightwords/block_right_off.png') no-repeat;
+            background-size: 100%;
+         }
          .glow {
             position: absolute;
             left: -19px;
             top: -19px;
             width: 478px;
             height: 299px;
-            background: url('../images/study/sightwords/round_glow.png');
+            background: url('../images/study/sightwords/round_glow.png') no-repeat;
             display: none;
          }
          .text-con {
@@ -60,6 +71,10 @@
       &.clear .puzzle-con {
          background: url('../images/study/sightwords/block_back_on.png') no-repeat;
          background-size: 100%;
+         &:before,
+         &:after {
+            display: none;
+         }
       }
 
       .sightwords-quiz {

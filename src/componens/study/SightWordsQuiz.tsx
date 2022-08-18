@@ -87,7 +87,8 @@ const SightWordsQuiz: FC<Props> = ({ correct, wrong1, wrong2, onStudyClear, audi
                   ))}
                   onDragStart={audioStop}
                   onCorrect={onDragCorrect}
-                  onWrong={onDragWrong} />
+                  onWrong={onDragWrong}
+                  padding={'20%'} />
             </>
          }
       </div>

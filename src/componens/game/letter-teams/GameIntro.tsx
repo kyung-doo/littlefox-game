@@ -210,25 +210,29 @@ const GameIntro: FC = () => {
             position={[780, 290]}
             scale={0.7}
             delay={1800}
-            timeout={-1} />
+            timeout={-1}
+            noAnimation={gameData.lowQuality === 0 ? false : true} />
 
          <StarLight 
             position={[1050, 260]}
             scale={[-1, 1]}
             delay={1500}
-            timeout={-1} />
+            timeout={-1}
+            noAnimation={gameData.lowQuality === 0 ? false : true} />
 
          <StarLight 
             position={[730, 530]}
             scale={[-0.5, 0.5]}
             delay={1500}
-            timeout={-1} />
+            timeout={-1}
+            noAnimation={gameData.lowQuality === 0 ? false : true} />
 
          <StarLight 
             position={[1290, 300]}
             scale={0.6}
             delay={1800}
-            timeout={-1} />
+            timeout={-1}
+            noAnimation={gameData.lowQuality === 0 ? false : true} />
 
          <Sprite name="infoTitle"
             position={[1024, 886]}

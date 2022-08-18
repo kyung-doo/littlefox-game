@@ -62,7 +62,7 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem, showGameBtn }) 
       clickAudio.current!.play();
       addClass(introRef.current?.querySelector('.start-btn')?.parentElement, 'disable');
       
-      if(type==='Alphabet' && studyData.reStudy === 0) {
+      if((type==='Alphabet' && studyData.reStudy === 0) || (type==='LetterTeams' && studyData.reStudy === 0)) {
          indexAr.current = Array.from(Array(totalPage)).map((x,i) => i);
       } else {
          indexAr.current = makeRandom(totalPage, totalPage);

@@ -2,6 +2,7 @@ import { forwardRef, useMemo, useRef, useCallback, useImperativeHandle, memo } f
 import { _ReactPixi, Container, AnimatedSprite, PixiRef } from "@inlet/react-pixi";
 import useAssets from "../../../hooks/useAssets";
 import PIXITimeout from "../../../utils/PIXITimeout";
+import { useSelector } from "react-redux";
 
 
 export interface Refs {
@@ -14,6 +15,7 @@ export interface Refs {
 const Charactor = forwardRef<Refs, _ReactPixi.IContainer>((props, ref) => {
 
    const { resources } = useAssets();
+   const gameData: any = useSelector<any>(state => state.root.gameData);
    const charators = useRef<{[key: string]: PixiRef<typeof AnimatedSprite>}>({});
    const timer = useRef<any>(null);
 
@@ -35,11 +37,11 @@ const Charactor = forwardRef<Refs, _ReactPixi.IContainer>((props, ref) => {
 
 
    const onAnimationComp = useCallback(() => {
-      timer.current = PIXITimeout.start(() => charators.current.default.gotoAndPlay(0), 100);
+      timer.current = PIXITimeout.start(() => charators.current.default.gotoAndPlay(0), gameData.lowQuality ? 0 : 100);
    },[]);
 
    const onAnimationComp2 = useCallback(() => {
-      timer.current = PIXITimeout.start(() => charators.current.bonus.gotoAndPlay(0), 100);
+      timer.current = PIXITimeout.start(() => charators.current.bonus.gotoAndPlay(0), gameData.lowQuality ? 0 : 100);
    },[]);
 
    const showDefault = useCallback(() => {
@@ -106,7 +108,7 @@ const Charactor = forwardRef<Refs, _ReactPixi.IContainer>((props, ref) => {
             loop={false}
             onComplete={onAnimationComp}
             initialFrame={0}
-            animationSpeed={0.3} />
+            animationSpeed={gameData.lowQuality ? 0.2 : 0.3} />
 
          <AnimatedSprite
             ref={ref => ref && (charators.current.correct = ref)}
@@ -114,7 +116,7 @@ const Charactor = forwardRef<Refs, _ReactPixi.IContainer>((props, ref) => {
             position={[-145, -661]}
             textures={correctCharactorTextures}
             isPlaying={false}
-            loop={false}
+            loop={true}
             initialFrame={0}
             visible={charators.current.correct ? charators.current.correct.visible : false}
             animationSpeed={0.3} />

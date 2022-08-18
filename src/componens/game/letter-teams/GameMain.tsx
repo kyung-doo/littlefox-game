@@ -75,6 +75,7 @@ const GameMain: FC = () => {
    const [showBonusEffect3, setShowBonusEffect3] = useState<boolean>(false);
    const bonusIdx = useRef<number>(0);
 
+   const isFirst = useRef<boolean>(true);
    const isTimeout = useRef<boolean>(false);
    const timer = useRef<any[]>([]);
 
@@ -96,7 +97,16 @@ const GameMain: FC = () => {
       timer.current[0] = PIXITimeout.start(() => {
          setQuizAudioPlaying(true);
          quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
-      }, 300);
+      }, 800);
+
+      if(isFirst.current) {
+         isFirst.current = false;
+      } else {
+         timer.current[1] = PIXITimeout.start(() => {
+            resources.audioChange.sound.play();
+         }, 100);
+      }
+      
       bonusIdx.current = bonusCount === 2 ? (bonusLength % 3) + 1 : 0;
       quizTargets.current?.start(random.current![quizNo.current], bonusCount === 2 ? (bonusLength % 3) + 1 : 0);
       // bonusIdx.current = 3;
@@ -136,8 +146,9 @@ const GameMain: FC = () => {
       resources.audioWrong.sound.play();
       timer.current.forEach(t => PIXITimeout.clear(t));
       setIsTransition(true);
-      timer.current[1] = PIXITimeout.start(() => {
-         setIsTransition(false);
+      quizStatusRef.current = QuizStatus.END;
+      timer.current[2] = PIXITimeout.start(() => {
+         setQuizStatus(QuizStatus.END);
       }, 600);
    }, []);
 
@@ -154,10 +165,10 @@ const GameMain: FC = () => {
       gsap.to(cloudCon.current, 1.3, {pixi: {y: 1750}, ease: Linear.easeNone});
       gsap.to(shadow.current, 0.5, {pixi: {scale: 0.2, alpha: 0}, ease: Cubic.easeInOut});
       if(isBonus) {
-         timer.current[2] = PIXITimeout.start(() => {
+         timer.current[3] = PIXITimeout.start(() => {
             setShowBonusText(true);
             resources.audioBonus.sound.play();
-            timer.current[3] = PIXITimeout.start(() => endTransition(isBonus), 3000);
+            timer.current[4] = PIXITimeout.start(() => endTransition(isBonus), 3000);
             
             if(bonusIdx.current === 1) {
                setShowBonusEffect1(true);
@@ -169,7 +180,7 @@ const GameMain: FC = () => {
             
          }, 1520);
       } else {
-         timer.current[4] = PIXITimeout.start(() => endTransition(isBonus), 1200);
+         timer.current[5] = PIXITimeout.start(() => endTransition(isBonus), 2100);
       }
    }, [bonusLength]);
 
@@ -177,10 +188,11 @@ const GameMain: FC = () => {
    const endTransition = useCallback((isBonus: boolean) => {
       if(!isTimeout.current) {
          timer.current.forEach(t => PIXITimeout.clear(t));
-         gsap.to(ground.current, 0.7, {delay: 0.3, pixi: {y: 520}, ease: Cubic.easeInOut});
-         gsap.to(sky.current, 0.5, {delay: 0.3, pixi: {y: 0}, ease: Linear.easeNone});
-         gsap.to(cloudCon.current, 0.5, {delay: 0.3, pixi: {y: 1280}, ease: Linear.easeNone});
-         gsap.set(shadow.current, {pixi: {scale: 1, alpha: 1}});
+         gsap.set(ground.current, {delay: 0.6, pixi: {y: 520}});
+         gsap.set(sky.current, {delay: 0.6, pixi: {y: 0}});
+         gsap.set(cloudCon.current, {delay: 0.6, pixi: {y: 1280}});
+         gsap.set(shadow.current, {pixi: {scale: 0.2, alpha: 0}});
+         gsap.to(shadow.current, 0.5, {delay: 0.5, pixi: {scale: 1, alpha: 1}, ease: Cubic.easeInOut});
          quizTargets.current!.transition();
          if(isBonus) {
             dispatch({type: GameActions.ADD_BONUS_LENGTH});
@@ -349,13 +361,20 @@ const GameMain: FC = () => {
 
    },[]);
 
-   useLayoutEffect(()=>{
-      Array.from(Array(4), (k, i) => {
-         const texture = Object.keys(resources[`spritesheetFireWork${i+1}`].textures).map( name => resources[`spritesheetFireWork${i+1}`].textures[name]);
+   useLayoutEffect(() => {
+      if(!gameData.lowQuality) {
+         Array.from(Array(4), (k, i) => {
+            const texture = Object.keys(resources[`spritesheetFireWork${i+1}`].textures).map( name => resources[`spritesheetFireWork${i+1}`].textures[name]);
+            const sprite = new PIXIAnimatedSprite(texture);
+            sprite.position.y = -2000;
+            container.current?.addChild(sprite);
+         });
+      } else {
+         const texture = Object.keys(resources.spritesheetFireWork1.textures).map( name => resources.spritesheetFireWork1.textures[name]);
          const sprite = new PIXIAnimatedSprite(texture);
          sprite.position.y = -2000;
          container.current?.addChild(sprite);
-      })
+      }
    },[]);
    
 

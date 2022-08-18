@@ -2,149 +2,149 @@
    "data": {
      "fu_id": "U201803221135520456",
      "langCode": "ko_KR",
-     "stageTitle": "a_e, i_e",
-     "reStudy": 0,
+     "stageTitle": "a_e i_e",
+     "reStudy": 1,
      "list": [
          {
             "words": {
                "text": "cape",
-               "audio": "./@dummy/learn_1_cape.wav"
+               "audio": "./@dummy/learn_1_cape.mp3"
             },
             "syllables": [
-               {"text": "c", "audio": "./@dummy/learn_1_cape_c.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_1_cape_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "p", "audio": "./@dummy/learn_1_cape_p.wav", "isSilent": false, "withSilient": false},
+               {"text": "c", "audio": "./@dummy/learn_1_cape_c.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_1_cape_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "p", "audio": "./@dummy/learn_1_cape_p.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "maze",
-               "audio": "./@dummy/learn_2_maze.wav"
+               "audio": "./@dummy/learn_2_maze.mp3"
             },
             "syllables": [
-               {"text": "m", "audio": "./@dummy/learn_2_maze_m.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_2_maze_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "z", "audio": "./@dummy/learn_2_maze_z.wav", "isSilent": false, "withSilient": false},
+               {"text": "m", "audio": "./@dummy/learn_2_maze_m.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_2_maze_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "z", "audio": "./@dummy/learn_2_maze_z.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "lake",
-               "audio": "./@dummy/learn_3_lake.wav"
+               "audio": "./@dummy/learn_3_lake.mp3"
             },
             "syllables": [
-               {"text": "l", "audio": "./@dummy/learn_3_lake_l.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_3_lake_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "k", "audio": "./@dummy/learn_3_lake_k.wav", "isSilent": false, "withSilient": false},
+               {"text": "l", "audio": "./@dummy/learn_3_lake_l.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_3_lake_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "k", "audio": "./@dummy/learn_3_lake_k.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "race",
-               "audio": "./@dummy/learn_4_race.wav"
+               "audio": "./@dummy/learn_4_race.mp3"
             },
             "syllables": [
-               {"text": "r", "audio": "./@dummy/learn_4_race_r.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_4_race_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "c", "audio": "./@dummy/learn_4_race_c.wav", "isSilent": false, "withSilient": false},
+               {"text": "r", "audio": "./@dummy/learn_4_race_r.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_4_race_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "c", "audio": "./@dummy/learn_4_race_c.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "face",
-               "audio": "./@dummy/learn_5_face.wav"
+               "audio": "./@dummy/learn_5_face.mp3"
             },
             "syllables": [
-               {"text": "f", "audio": "./@dummy/learn_5_face_f.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_5_face_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "c", "audio": "./@dummy/learn_5_face_c.wav", "isSilent": false, "withSilient": false},
+               {"text": "f", "audio": "./@dummy/learn_5_face_f.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_5_face_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "c", "audio": "./@dummy/learn_5_face_c.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "lace",
-               "audio": "./@dummy/learn_6_lace.wav"
+               "audio": "./@dummy/learn_6_lace.mp3"
             },
             "syllables": [
-               {"text": "l", "audio": "./@dummy/learn_6_lace_l.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_6_lace_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "c", "audio": "./@dummy/learn_6_lace_c.wav", "isSilent": false, "withSilient": false},
+               {"text": "l", "audio": "./@dummy/learn_6_lace_l.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_6_lace_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "c", "audio": "./@dummy/learn_6_lace_c.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "clip",
-               "audio": "./@dummy/learn_7_clip.wav"
+               "audio": "./@dummy/learn_7_clip.mp3"
             },
             "syllables": [
-               {"text": "cl", "audio": "./@dummy/learn_7_clip_cl.wav", "isSilent": false, "withSilient": false},
+               {"text": "cl", "audio": "./@dummy/learn_7_clip_cl.mp3", "isSilent": false, "withSilient": false},
                {"text": "i", "audio": "./@dummy/learn_7_clip_i.mp3", "isSilent": false, "withSilient": false},
-               {"text": "p", "audio": "./@dummy/learn_7_clip_p.wav", "isSilent": false, "withSilient": false}
+               {"text": "p", "audio": "./@dummy/learn_7_clip_p.mp3", "isSilent": false, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "clap",
-               "audio": "./@dummy/learn_8_clap.wav"
+               "audio": "./@dummy/learn_8_clap.mp3"
             },
             "syllables": [
-               {"text": "cl", "audio": "./@dummy/learn_8_clap_cl.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_8_clap_a.wav", "isSilent": false, "withSilient": false},
-               {"text": "p", "audio": "./@dummy/learn_8_clap_p.wav", "isSilent": false, "withSilient": false}
+               {"text": "cl", "audio": "./@dummy/learn_8_clap_cl.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_8_clap_a.mp3", "isSilent": false, "withSilient": false},
+               {"text": "p", "audio": "./@dummy/learn_8_clap_p.mp3", "isSilent": false, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "plate",
-               "audio": "./@dummy/learn_9_plate.wav"
+               "audio": "./@dummy/learn_9_plate.mp3"
             },
             "syllables": [
-               {"text": "pl", "audio": "./@dummy/learn_9_plate_pl.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_9_plate_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "t", "audio": "./@dummy/learn_9_plate_t.wav", "isSilent": false, "withSilient": false},
+               {"text": "pl", "audio": "./@dummy/learn_9_plate_pl.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_9_plate_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "t", "audio": "./@dummy/learn_9_plate_t.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "plane",
-               "audio": "./@dummy/learn_10_plane.wav"
+               "audio": "./@dummy/learn_10_plane.mp3"
             },
             "syllables": [
-               {"text": "pl", "audio": "./@dummy/learn_10_plane_pl.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_10_plane_a.wav", "isSilent": false, "withSilient": true},
-               {"text": "n", "audio": "./@dummy/learn_10_plane_n.wav", "isSilent": false, "withSilient": false},
+               {"text": "pl", "audio": "./@dummy/learn_10_plane_pl.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_10_plane_a.mp3", "isSilent": false, "withSilient": true},
+               {"text": "n", "audio": "./@dummy/learn_10_plane_n.mp3", "isSilent": false, "withSilient": false},
                {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "glasss",
-               "audio": "./@dummy/learn_11_glass.wav"
+               "audio": "./@dummy/learn_11_glass.mp3"
             },
             "syllables": [
-               {"text": "gl", "audio": "./@dummy/learn_11_glass_gl.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_11_glass_a.wav", "isSilent": false, "withSilient": false},
-               {"text": "s", "audio": "./@dummy/learn_11_glass_s.wav", "isSilent": false, "withSilient": false},
-               {"text": "s", "audio": "./@dummy/learn_11_glass_s.wav", "isSilent": false, "withSilient": false},
-               {"text": "s", "audio": "./@dummy/learn_11_glass_s.wav", "isSilent": false, "withSilient": false}
+               {"text": "gl", "audio": "./@dummy/learn_11_glass_gl.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_11_glass_a.mp3", "isSilent": false, "withSilient": false},
+               {"text": "s", "audio": "./@dummy/learn_11_glass_s.mp3", "isSilent": false, "withSilient": false},
+               {"text": "s", "audio": "./@dummy/learn_11_glass_s.mp3", "isSilent": false, "withSilient": false},
+               {"text": "s", "audio": "./@dummy/learn_11_glass_s.mp3", "isSilent": false, "withSilient": false}
             ]
          },
          {
             "words": {
                "text": "glad",
-               "audio": "./@dummy/learn_12_glad.wav"
+               "audio": "./@dummy/learn_12_glad.mp3"
             },
             "syllables": [
-               {"text": "gl", "audio": "./@dummy/learn_12_glad_gl.wav", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_12_glad_a.wav", "isSilent": false, "withSilient": false},
-               {"text": "d", "audio": "./@dummy/learn_12_glad_d.wav", "isSilent": false, "withSilient": false}               
+               {"text": "gl", "audio": "./@dummy/learn_12_glad_gl.mp3", "isSilent": false, "withSilient": false},
+               {"text": "a", "audio": "./@dummy/learn_12_glad_a.mp3", "isSilent": false, "withSilient": false},
+               {"text": "d", "audio": "./@dummy/learn_12_glad_d.mp3", "isSilent": false, "withSilient": false}               
             ]
          }
       ]

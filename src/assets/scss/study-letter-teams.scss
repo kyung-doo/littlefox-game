@@ -39,10 +39,11 @@
          padding: 52px 0;
          height: 100%;
          box-sizing: border-box;
+         
       }
       .syllable-box {
          position: relative;
-         @include displayFlex();
+         @include displayFlex($align: flex-start);
          width: 141px;
          height: 158px;
          background: url('../images/study/letterteams/word_box_bg.png') no-repeat;
@@ -51,6 +52,7 @@
          font-size: 81px;
          font-weight: 600;
          color: #cacaca;
+         line-height: 144px;
          &:nth-child(1){
             z-index: 5;
          }
@@ -126,6 +128,11 @@
          font-weight: 300;
          color: #000;
          transform: translate3d(0, 150px, 0);
+      }
+
+      .drag-item > span{
+         position: relative;
+         top: -7px;
       }
 
       .drag-item.active,

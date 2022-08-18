@@ -123,7 +123,7 @@ const SightWordsStudy: FC<{stage: string | null}> = ({stage}) => {
       <div id="wrap">
          <Provider store={Store}>
             <StudyLayout 
-               title="Speed Fun Up"
+               title="Tap Tap Dinos"
                type="SightWords"
                stage={stage ? parseInt(stage) : 1}
                showGameBtn={true}

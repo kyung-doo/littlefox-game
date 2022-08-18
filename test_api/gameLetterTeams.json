@@ -12,79 +12,79 @@
          {
             "words": {
                "text": "cape",
-               "audio": "./@dummy/learn_1_cape.wav"
+               "audio": "./@dummy/learn_1_cape.mp3"
             },
             "syllables": [
                {"correct": "c", "wrong1": "r", "wrong2": "o", "isSilent": false},
                {"correct": "a", "wrong1": "b", "wrong2": "c", "isSilent": false},
                {"correct": "p", "wrong1": "f", "wrong2": "t", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "maze",
-               "audio": "./@dummy/learn_2_maze.wav"
+               "audio": "./@dummy/learn_2_maze.mp3"
             },
             "syllables": [
                {"correct": "m", "wrong1": "n", "wrong2": "d", "isSilent": false},
                {"correct": "a", "wrong1": "o", "wrong2": "q", "isSilent": false},
                {"correct": "z", "wrong1": "x", "wrong2": "y", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "lake",
-               "audio": "./@dummy/learn_3_lake.wav"
+               "audio": "./@dummy/learn_3_lake.mp3"
             },
             "syllables": [
                {"correct": "l", "wrong1": "i", "wrong2": "h", "isSilent": false},
                {"correct": "a", "wrong1": "o", "wrong2": "q", "isSilent": false},
                {"correct": "k", "wrong1": "h", "wrong2": "n", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "race",
-               "audio": "./@dummy/learn_4_race.wav"
+               "audio": "./@dummy/learn_4_race.mp3"
             },
             "syllables": [
                {"correct": "r", "wrong1": "l", "wrong2": "s", "isSilent": false},
                {"correct": "a", "wrong1": "e", "wrong2": "u", "isSilent": false},
                {"correct": "c", "wrong1": "b", "wrong2": "z", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "face",
-               "audio": "./@dummy/learn_5_face.wav"
+               "audio": "./@dummy/learn_5_face.mp3"
             },
             "syllables": [
                {"correct": "f", "wrong1": "g", "wrong2": "h", "isSilent": false},
                {"correct": "a", "wrong1": "e", "wrong2": "w", "isSilent": false},
                {"correct": "c", "wrong1": "g", "wrong2": "s", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "lace",
-               "audio": "./@dummy/learn_6_lace.wav"
+               "audio": "./@dummy/learn_6_lace.mp3"
             },
             "syllables": [
                {"correct": "l", "wrong1": "r", "wrong2": "w", "isSilent": false},
                {"correct": "a", "wrong1": "u", "wrong2": "o", "isSilent": false},
                {"correct": "c", "wrong1": "k", "wrong2": "g", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "clip",
-               "audio": "./@dummy/learn_7_clip.wav"
+               "audio": "./@dummy/learn_7_clip.mp3"
             },
             "syllables": [
                {"correct": "cl", "wrong1": "kl", "wrong2": "ql", "isSilent": false},
@@ -95,7 +95,7 @@
          {
             "words": {
                "text": "clap",
-               "audio": "./@dummy/learn_8_clap.wav"
+               "audio": "./@dummy/learn_8_clap.mp3"
             },
             "syllables": [
                {"correct": "cl", "wrong1": "kl", "wrong2": "ql", "isSilent": false},
@@ -106,31 +106,31 @@
          {
             "words": {
                "text": "plate",
-               "audio": "./@dummy/learn_9_plate.wav"
+               "audio": "./@dummy/learn_9_plate.mp3"
             },
             "syllables": [
                {"correct": "pl", "wrong1": "ql", "wrong2": "gl", "isSilent": false},
                {"correct": "a", "wrong1": "e", "wrong2": "o", "isSilent": false},
                {"correct": "t", "wrong1": "b", "wrong2": "s", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "plane",
-               "audio": "./@dummy/learn_10_plane.wav"
+               "audio": "./@dummy/learn_10_plane.mp3"
             },
             "syllables": [
                {"correct": "pl", "wrong1": "ql", "wrong2": "gl", "isSilent": false},
                {"correct": "a", "wrong1": "e", "wrong2": "o", "isSilent": false},
                {"correct": "n", "wrong1": "m", "wrong2": "b", "isSilent": false},
-               {"correct": "e", "isSilent": true}
+               {"correct": "e", "wrong1": "o", "wrong2": "n", "isSilent": true}
             ]
          },
          {
             "words": {
                "text": "glasss",
-               "audio": "./@dummy/learn_11_glass.wav"
+               "audio": "./@dummy/learn_11_glass.mp3"
             },
             "syllables": [
                {"correct": "gl", "wrong1": "ql", "wrong2": "bl", "isSilent": false},
@@ -143,7 +143,7 @@
          {
             "words": {
                "text": "glad",
-               "audio": "./@dummy/learn_12_glad.wav"
+               "audio": "./@dummy/learn_12_glad.mp3"
             },
             "syllables": [
                {"correct": "gl", "wrong1": "ql", "wrong2": "bl", "isSilent": false},
