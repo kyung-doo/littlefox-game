@@ -60,7 +60,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
          }
       });
       setWordLists(lists);
-      timer.current = PIXITimeout.start(() => startBalloonAni(), 200);
+      timer.current = PIXITimeout.start(() => startBalloonAni(), 250);
       
    }, [quizNo]);
 
@@ -229,6 +229,8 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
          
          gsap.to(container.current, 0.4, {pixi:{y: -1000}, onComplete: () => {
             gsap.set(container.current, {delay: 0.3, pixi: {y: 52}});
+            gsap.set(pickerCon.current, {alpha: 0});
+            gsap.to(pickerCon.current, 0.3, {delay:0.4, alpha: 1});
             stopBalloonAni();
             gsap.to(leftBalloon1, 0.2, {pixi: {scale: 0.6}, ease: Cubic.easeOut});
             gsap.to(leftBalloon2, 0.2, {pixi: {scale: 0.6, x: -585, y: -265}, ease: Cubic.easeOut});

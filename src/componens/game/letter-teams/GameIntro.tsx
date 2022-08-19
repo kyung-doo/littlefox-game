@@ -110,11 +110,23 @@ const GameIntro: FC = () => {
          balloon5.alpha = 1;
          balloon6.alpha = 1;
          balloon7.alpha = 1;
-         title1.alpha = 1;
-         title2.alpha = 1;
-         infoTxt.alpha = 1;
-         startBtn.alpha = 1;
-         startBtn.position.y = 0;
+         gsap.set(title1, {delay: 0.1, pixi: {alpha: 0, scaleX: 0.3, scaleY: 0.3}});
+         gsap.from(title1, 1.2, {delay: 0.1, pixi: {y: '+=300'}, ease: Cubic.easeOut});
+         gsap.to(title1, 1, {delay: 0.1, pixi: {scaleX: 1}, ease: Elastic.easeOut});
+         gsap.to(title1, 1.3, {delay: 0.1, pixi: {scaleY: 1}, ease: Elastic.easeOut});
+         gsap.to(title1, 0.3, {delay: 0.1, pixi: {alpha: 1}});
+
+         gsap.set(title2, {delay: 0.1, pixi: {alpha: 0, scaleX: 0.3, scaleY: 0.3}});
+         gsap.from(title2, 1.2, {delay: 0.3, pixi: {y: '+=300'}, ease: Cubic.easeOut});
+         gsap.to(title2, 1, {delay: 0.3, pixi: {scaleX: 1}, ease: Elastic.easeOut});
+         gsap.to(title2, 1.3, {delay: 0.3, pixi: {scaleY: 1}, ease: Elastic.easeOut});
+         gsap.to(title2, 0.3, {delay: 0.3,alpha: 1});
+
+         
+
+         gsap.from(infoTxt, 0.6, {delay: 0.8, pixi: {y: '+=100'}, ease: Power2.easeOut});
+         gsap.to(infoTxt, 0.6, {delay: 0.8, pixi: {alpha: 1}});
+         gsap.to(startBtn, 0.6, {delay: 1, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
       }
 
       
@@ -209,30 +221,26 @@ const GameIntro: FC = () => {
          <StarLight 
             position={[780, 290]}
             scale={0.7}
-            delay={1800}
-            timeout={-1}
-            noAnimation={gameData.lowQuality === 0 ? false : true} />
+            delay={gameData.lowQuality === 1 ? 1000 : 1800}
+            timeout={-1} />
 
          <StarLight 
             position={[1050, 260]}
             scale={[-1, 1]}
-            delay={1500}
-            timeout={-1}
-            noAnimation={gameData.lowQuality === 0 ? false : true} />
+            delay={gameData.lowQuality === 1 ? 700 : 1500}
+            timeout={-1} />
 
          <StarLight 
             position={[730, 530]}
             scale={[-0.5, 0.5]}
-            delay={1500}
-            timeout={-1}
-            noAnimation={gameData.lowQuality === 0 ? false : true} />
+            delay={gameData.lowQuality === 1 ? 700 : 1500}
+            timeout={-1} />
 
          <StarLight 
             position={[1290, 300]}
             scale={0.6}
-            delay={1800}
-            timeout={-1}
-            noAnimation={gameData.lowQuality === 0 ? false : true} />
+            delay={gameData.lowQuality === 1 ? 1000 : 1800}
+            timeout={-1} />
 
          <Sprite name="infoTitle"
             position={[1024, 886]}

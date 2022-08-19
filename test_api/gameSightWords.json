@@ -1,0 +1,47 @@
+{
+   "data": {
+      "fu_id": "U201803221135520456",
+      "langCode": "ko_KR",
+      "stage": "1",
+      "reStudy": 0,
+      "gameTimeout": 90,
+      "quizTimeout": 6,
+      "clearScore": 3000,
+      "lowQuality": 0,
+      "quizList": [
+         {
+            "words": "what",
+            "audio": "./@dummy/word_what.mp3"
+         },
+         {
+            "words": "is",
+            "audio": "./@dummy/word_is.mp3"
+         },
+         {
+            "words": "this",
+            "audio": "./@dummy/word_this.mp3"
+         },
+         {
+            "words": "that",
+            "audio": "./@dummy/word_that.mp3"
+         },
+         {
+            "words": "jump",
+            "audio": "./@dummy/word_jump.mp3"
+         },
+         {
+            "words": "in",
+            "audio": "./@dummy/word_in.mp3"
+         },
+         {
+            "words": "out",
+            "audio": "./@dummy/word_out.mp3"
+         },
+         {
+            "words": "the",
+            "audio": "./@dummy/word_the.mp3"
+         }
+      ]
+   },
+   "status": 200
+}

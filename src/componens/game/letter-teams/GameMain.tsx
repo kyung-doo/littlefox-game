@@ -192,7 +192,7 @@ const GameMain: FC = () => {
          gsap.set(sky.current, {delay: 0.6, pixi: {y: 0}});
          gsap.set(cloudCon.current, {delay: 0.6, pixi: {y: 1280}});
          gsap.set(shadow.current, {pixi: {scale: 0.2, alpha: 0}});
-         gsap.to(shadow.current, 0.5, {delay: 0.5, pixi: {scale: 1, alpha: 1}, ease: Cubic.easeInOut});
+         gsap.to(shadow.current, 0.5, {delay: 0.6, pixi: {scale: 1, alpha: 1}, ease: Cubic.easeInOut});
          quizTargets.current!.transition();
          if(isBonus) {
             dispatch({type: GameActions.ADD_BONUS_LENGTH});
