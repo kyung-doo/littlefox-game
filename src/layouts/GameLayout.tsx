@@ -100,7 +100,7 @@ const GameLayout: FC<Props> = ({ children, type, title, stage, step, resultPopup
          path = `/game/${t}/play`;
       }
       window.http
-      .get(path, { params: { stage: stage, step: step, fu_id: getCookie('fx7'), langCode: getCookie('lang_code') }})
+      .get(path, { params: { stage: stage, step: step, fu_id: getCookie('fu_id'), langCode: getCookie('lang_code') }})
       .then(({ data }) => {
          setGameData(data.data);
       });

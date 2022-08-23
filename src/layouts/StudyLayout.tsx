@@ -341,7 +341,7 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem }) => {
          path = `/game/${t}/study`;
       }
       window.http
-      .get(path, {params: { stage: stage, fu_id: getCookie('fx7'), langCode: getCookie('lang_code') }})
+      .get(path, {params: { stage: stage, fu_id: getCookie('fu_id'), langCode: getCookie('lang_code') }})
       .then(({ data }) => {
          let payload: any = { stage: stage, studyData: data.data, totalPage: data.data.list.length };
          if(data.data.reStudy !== 0) {

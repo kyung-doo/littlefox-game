@@ -255,3 +255,7 @@ export const getCookie = ( n: string) => {
       }
    }
 }
+
+window.onbeforeunload = function () {
+   window.opener.window.location.href = getCookie('word_starter_game_url');
+};
