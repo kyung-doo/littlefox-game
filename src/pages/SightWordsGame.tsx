@@ -9,6 +9,7 @@ import GameMain from "../componens/game/sight-words/GameMain";
 import Loading from "../componens/game/Loading";
 import PixiButton from "../componens/game/PixiButton";
 import { isMobile } from "../utils";
+import GameResult from "../componens/game/sight-words/GameResult";
 
 
 
@@ -64,6 +65,17 @@ const SightWordsGame: FC<Props> = ({ stage }) => {
       console.log('ExitApp');
    }, []);
 
+   const getCorrect = (corrects: number[]) => {
+      const ar = [];
+      const correctNum = corrects.reduce((acc: number, curr: number) => acc + curr, 0);
+      const total = corrects.length * 3;
+      for(let i = 0; i < total; i++) {
+         if(i < correctNum) ar.push(true);
+         else               ar.push(false);
+      }
+      return ar;
+   }
+
    useEffect(() => {
       if(showResultPopup){
          const data: any = [];
@@ -71,10 +83,10 @@ const SightWordsGame: FC<Props> = ({ stage }) => {
             const result = resultData.filter((x: any) => x.listNo === i);
             data.push({
                no: i,
-               text: list.words.text,
+               text: list.words,
                sound: resources![`quizAudio${i}`].sound,
-               corrects: result.map((x: any) => x.correct).sort().reverse()
-            })
+               corrects: getCorrect(result.map((x: any) => x.correct))
+            });
          });
          setResultPopupData(data);
       } else {
@@ -131,9 +143,9 @@ const SightWordsGame: FC<Props> = ({ stage }) => {
                         <GameMain />
                      }
 
-                     {/* {status === GameStatus.RESULT && 
+                     {status === GameStatus.RESULT && 
                         <GameResult />
-                     } */}
+                     }
 
                      <PixiButton 
                         name="exitBtn" 

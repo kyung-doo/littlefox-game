@@ -97,7 +97,22 @@ export default ( langCode: string, low: number ) => {
 
 
       // result
-      
+      { name: 'commonResultBg', url: `${commonImgPath}result_bg.png` },
+      { name: 'commonResultButtonDefault', url: `${commonImgPath}result_btn_default.png` },
+      { name: 'commonResultButtonHover', url: `${commonImgPath}result_btn_hover.png` },
+      { name: 'commonAgainButtonDefault', url: `${commonImgPath}again_btn_default.png` },
+      { name: 'commonAgainButtonHover', url: `${commonImgPath}again_btn_hover.png` },
+      { name: 'resultBg', url: `${resultImgPath}bg.png` }, 
+      { name: 'resultLeftSuccess', url: `${resultImgPath}top_left_success_img.png`},
+      { name: 'resultLeftFailed', url: `${resultImgPath}top_left_failed_img.png`},
+      { name: 'resultRightSuccess', url: `${resultImgPath}top_right_success_img.png`},
+      { name: 'resultRightFailed', url: `${resultImgPath}top_right_failed_img.png`},
+      { name: 'resultSuccessMsg1', url: `${resultImgPath}success_message1.png`},
+      { name: 'resultSuccessMsg2', url: `${resultImgPath}success_message2.png`},
+      { name: 'resultSuccessMsg3', url: `${resultImgPath}success_message3.png`},
+      { name: 'resultFailedMsg1', url: `${resultImgPath}failed_message1.png`},
+      { name: 'resultFailedMsg2', url: `${resultImgPath}failed_message2.png`},
+      { name: 'resultFailedMsg3', url: `${resultImgPath}failed_message3.png`},
       
    ];
 

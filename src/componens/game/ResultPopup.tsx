@@ -35,6 +35,8 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
          else           return false;
       } else if(type === 'LetterTeams') {
          return false;
+      } else if(type === 'SightWords') {
+         return false;
       } else {
          return true;
       }
@@ -59,7 +61,7 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
             <div className="list-wrap">
                <div className="list-header">
                   <div><img src={require('../../assets/images/game/common/words_text.png').default} height="23" /></div>
-                  {type === 'LetterTeams' 
+                  {type === 'LetterTeams' || type === 'SightWords'
                      ?
                      <div>
                         <div className="top">
@@ -102,7 +104,7 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
                               </>
                            }
                         </div>
-                        {type === 'LetterTeams' ?
+                        {type === 'LetterTeams' || type === 'SightWords'?
                            <div className="result">
                               <div>
                                  {list.corrects.filter((x: boolean) => x).length}

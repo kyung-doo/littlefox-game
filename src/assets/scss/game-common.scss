@@ -47,7 +47,8 @@
    &[class*=words] .popup-wrap {
       width: 1305px;
    }
-   &[class*=letterteams] .popup-wrap {
+   &[class*=letterteams] .popup-wrap,
+   &[class*=sightwords] .popup-wrap {
       width: 860px;
    }
 
@@ -60,16 +61,18 @@
       @include absolute($right: -14px, $top: -14px, $width: 73px, $height: 77px);
       transform-origin: top right;
    }
-   &[class*=alphabet] .close-btn,
-   &[class*=phonics] .close-btn,
-   &[class*=letterteams] .close-btn {
-      background: url('../images/game/common/exit_btn.png') no-repeat;
-      background-size: 100%;
-   }
    &[class*=words] .close-btn {
       background: url('../images/game/common/exit_btn2.png') no-repeat;
       background-size: 100%;
    }
+   &[class*=alphabet] .close-btn,
+   &[class*=phonics] .close-btn,
+   &[class*=letterteams] .close-btn,
+   &[class*=sightwords] .close-btn {
+      background: url('../images/game/common/exit_btn.png') no-repeat;
+      background-size: 100%;
+   }
+   
 
    .list-wrap {
       background-color: #fff;
@@ -92,7 +95,8 @@
       border-top-left-radius: 25px;
       border-top-right-radius: 25px;
    }
-   &[class*=letterteams] .list-header {
+   &[class*=letterteams] .list-header,
+   &[class*=sightwords] .list-header {
       height: 124px;
       padding: 0;
    }
@@ -124,18 +128,22 @@
       margin-left: 515px;
    }
 
-   &[class*=letterteams] .list-header > div:nth-child(1) {
+   &[class*=letterteams] .list-header > div:nth-child(1),
+   &[class*=sightwords] .list-header > div:nth-child(1) {
       @include displayFlex();
       width: 410px;
       height: 100%;
       border-right: solid 4px #fff;
+      margin-left: 0;
    }
 
-   &[class*=letterteams] .list-header > div:nth-child(2) {
+   &[class*=letterteams] .list-header > div:nth-child(2),
+   &[class*=sightwords] .list-header > div:nth-child(2) {
       @include displayFlex($align: flex-start);
       flex-direction: column;
       width: calc(100% - 406px);
       height: 100%;
+      margin-left: 0;
       .top {
          @include displayFlex();
          width: 100%;
@@ -255,7 +263,8 @@
       height: 86px;
    }
 
-   &[class*=letterteams] .list-body {
+   &[class*=letterteams] .list-body,
+   &[class*=sightwords] .list-body {
       max-height: 730px;
       .list {
          .words {
