@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo, useEffect } from "react";
 import { Container, Sprite, Text, _ReactPixi } from "@inlet/react-pixi";
 import { useSelector } from 'react-redux';
 import useAssets from "../../hooks/useAssets";
@@ -16,9 +16,11 @@ const ScoreContainer: FC<_ReactPixi.IContainer> = ( props ) => {
          {...props}>
 
          <Sprite texture={resources.mainScoreBg.texture} />
-         <Sprite texture={resources.mainScoreTitle.texture} position={[143, 28]} />
+         <Sprite 
+            texture={resources.mainScoreTitle.texture} 
+            position={[resources.mainScoreBg.texture.orig.width/2 - 55, 28]} />
          <Text name="scoreText"
-            position={[200, 110]}
+            position={[resources.mainScoreBg.texture.orig.width/2, 110]}
             text={score.total}
             anchor={0.5}
             style={{

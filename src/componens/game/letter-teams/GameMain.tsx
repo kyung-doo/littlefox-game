@@ -282,7 +282,7 @@ const GameMain: FC = () => {
             dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
          }
       });
-   }, []);
+   }, [score]);
 
 
    const onGameReset = useCallback(() => {

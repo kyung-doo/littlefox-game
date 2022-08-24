@@ -4,8 +4,8 @@
       "langCode": "ko_KR",
       "stage": "1",
       "reStudy": 0,
-      "gameTimeout": 90,
-      "quizTimeout": 6,
+      "gameTimeout": 150,
+      "quizTimeout": 12,
       "clearScore": 3000,
       "lowQuality": 0,
       "quizList": [

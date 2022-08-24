@@ -1,5 +1,5 @@
 import { memo, useRef, VFC, useEffect } from 'react';
-import { Container, PixiRef, Sprite, _ReactPixi } from '@inlet/react-pixi';
+import { Container, PixiRef, Sprite, _ReactPixi, Text } from '@inlet/react-pixi';
 import { gsap, Power2 } from 'gsap';
 import { Texture } from 'pixi.js';
 
@@ -13,15 +13,16 @@ import { Texture } from 'pixi.js';
 */
 export interface Props extends _ReactPixi.IContainer {
    id: string;
-   texture: Texture;
+   texture?: Texture;
    posY?: number;
    scale?: number;
    delay?: number;
+   score?: number;
    onAnimationEnd?: (id: string) => void;
 }
 
 
-const ScoreText: VFC<Props> = ({ id, texture, onAnimationEnd, posY=0, scale=1, delay=0.3, ...props }) => {
+const ScoreText: VFC<Props> = ({ id, texture, score, onAnimationEnd, posY=0, scale=1, delay=0.3, ...props }) => {
 
    const container = useRef<PixiRef<typeof Container>>(null);
 
@@ -43,13 +44,48 @@ const ScoreText: VFC<Props> = ({ id, texture, onAnimationEnd, posY=0, scale=1, d
       <Container 
          name={id}
          ref={container} 
-         anchor={0.5} 
-         skew={[-0.2, 0]}
          alpha={container.current ? container.current.alpha : 0}
          {...props}>
-         <Sprite 
-            texture={texture}
-            anchor={0.5} />
+         {texture && 
+            <Sprite 
+               texture={texture}
+               anchor={0.5} />
+         }
+         {score && 
+            <>
+               <Text 
+                  text={score > 0 ? `+${score}` : `-${Math.abs(score)}`}
+                  anchor={0.5}
+                  position={[0, 0]}
+                  skew={[-0.2, 0]}
+                  style={{
+                     fontSize: 61,
+                     fontFamily: 'Maplestory Bold',
+                     fontWeight: '600',
+                     fill: '#21edff',
+                     align: 'center',
+                     lineJoin: "round",
+                     stroke: "#21edff",
+                     letterSpacing: 5,
+                     strokeThickness: 35}} />
+
+               <Text 
+                  text={score > 0 ? `+${score}` : `-${Math.abs(score)}`}
+                  anchor={0.5}
+                  position={[0, 0]}
+                  skew={[-0.2, 0]}
+                  style={{
+                     fontSize: 61,
+                     fontFamily: 'Maplestory Bold',
+                     fontWeight: '600',
+                     fill: `${score > 0 ? '#ff4958' : '#1088ef'}`,
+                     align: 'center',
+                     lineJoin: "round",
+                     stroke: "#ffffff",
+                     letterSpacing: 5,
+                     strokeThickness: 15}} />
+            </>
+         }
       </Container>
    )
 }

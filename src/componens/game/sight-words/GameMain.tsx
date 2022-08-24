@@ -10,9 +10,13 @@ import PIXITimeout from "../../../utils/PIXITimeout";
 import { isMobile, makeRandom, makeRandomIgnoreFirst } from "../../../utils";
 import PixiButton from "../PixiButton";
 import ScoreContainer from "../ScoreContainer";
-import TimeContainer, { Refs as TimeContainerRefs } from "../TimeContainer";
+import TimeContainer, { Refs as TimeContainerRefs } from "./TimeContainer";
 import useCounter from "../../../hooks/useCounter";
-
+import GameoverText from "../GameoverText";
+import ScoreText, { Props as ScoreTextProps} from "../ScoreText";
+import GameQuiz, { Refs as GameQuizRefs } from "./GameQuiz";
+import EggEffect, { Props as EggEffectProps } from "./EggEffect";
+import BonusText from "../BonusText";
 
 
 export enum QuizStatus {
@@ -30,9 +34,11 @@ const GameMain: FC = () => {
    const quizCount: any = useSelector<any>(state => state.root.quizCount);
    const stage: any = useSelector<any>(state => state.root.stage);
    const score: any = useSelector<any>(state => state.root.score);
+   const bonusLength: any = useSelector<any>(state => state.root.bonusLength);
 
    const app = useApp();
    const container = useRef<PixiRef<typeof Container>>(null);
+   const timeContainer = useRef<TimeContainerRefs>(null);
 
    const quizTimeLength = gameData.quizTimeout * 1000;
    const quizCounter = useCounter(quizTimeLength);
@@ -42,18 +48,306 @@ const GameMain: FC = () => {
    const [quizStatus, setQuizStatus] = useState<QuizStatus>(QuizStatus.INIT);   
    const quizStatusRef = useRef<QuizStatus>(QuizStatus.INIT);
 
+   const quizTargets = useRef<GameQuizRefs>(null);
+   const correctNum = useRef<number>(0);
+
    const quizAudios = useRef<Sound[]>([]);
    const [quizAudioPlaying, setQuizAudioPlaying] = useState<boolean>(false);
 
-   const timer = useRef<any[]>([]);
+   const [quizPlaying, setQuizPlaying] = useState<boolean>(false);
+
+   const [eggEffect, setEggEffect] = useState<EggEffectProps[]>([]);
+   const eggEffectCount = useRef<number>(0);
+
+   const dinosCount = useRef<number>(0);
+
+   const [showBonusText, setShowBonusText] = useState<boolean>(false);
+   const [showGameoverText, setShowGameoverText] = useState<boolean>(false);
+
+   const [scoreTexts, setScoreTexts] = useState<ScoreTextProps[]>([]);
+   const scoreCount = useRef<number>(0);
+   const scoreNum = useRef<number>(0);
+
+   const isTransition = useRef<boolean>(false);
+
+   const bonusIdx = useRef<number>(0);
+   const isTimeout = useRef<boolean>(false);
+   const timer = useRef<any>();
+   
 
 
+   const makeQuiz = useCallback(() => {
+      quizNo.current = quizCount % gameData.quizList.length;
+      if(quizNo.current === 0) {
+         if(!random.current) {
+            random.current = makeRandom(gameData.quizList.length, gameData.quizList.length);
+         } else {
+            random.current = makeRandomIgnoreFirst(random.current[gameData.quizList.length-1], gameData.quizList.length, gameData.quizList.length);
+         }
+      }
 
+      setQuizAudioPlaying(true);
+
+      timer.current = PIXITimeout.start(() => {
+         setQuizPlaying(true);
+         quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
+         quizCounter.start();
+      }, 1200);
+
+      bonusIdx.current = Math.floor(Math.random() * 2) === 0 ? (bonusLength % 3) + 1 : 0;
+      quizTargets.current?.start(random.current![quizNo.current], bonusIdx.current);
+
+   }, [quizCount, bonusLength]);
+
+
+   const onQuizCorrect = useCallback(( pos, isBonus, bonusIdx ) => {
+      correct(pos, isBonus, bonusIdx);
+      if(isBonus) {
+         dispatch({type: GameActions.ADD_BONUS_LENGTH});
+      }
+      isTransition.current = true;
+      timer.current = PIXITimeout.start(() => {
+         isTransition.current = false;
+         checkEnd();
+      }, isBonus ? 4000 : 3000);
+   }, []);
+
+
+   const onQuizWrong = useCallback(( pos ) => {
+      scoreNum.current = 0;
+      dispatch({type: GameActions.INCORRECT_SCORE, payload: 10});
+      resources.audioWrong.sound.stop();
+      resources.audioWrong.sound.play();
+
+      setScoreTexts(prev => [ ...prev, { 
+         id: `scoreText${scoreCount.current}`, 
+         score: -10, 
+         x: pos.x + 595, 
+         y: pos.y + 200,
+         posY: 150
+      }]);
+      scoreCount.current++;
+
+      isTransition.current = true;
+      timer.current = PIXITimeout.start(() => {
+         isTransition.current = false;
+         checkEnd();
+      }, 500);
+   }, []);
+
+
+   const checkEnd = useCallback(() => {
+      if(isTimeout.current) {
+         setShowGameoverText(true);
+         resources.audioGameover.sound.play();
+         dispatch({ 
+            type: GameActions.ADD_RESULT, 
+            payload: { listNo: random.current![quizNo.current], correct: correctNum.current }
+         });
+      } else {
+         if(quizStatusRef.current === QuizStatus.END) {
+            setQuizPlaying(false);
+            scoreNum.current = 0;
+            quizTargets.current!.timeout();
+            timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+         }
+      }
+   },[]);
+
+
+   const onQuizSuccess = useCallback(( pos, isBonus, bonusIdx ) => {
+      correct(pos, isBonus, bonusIdx);
+      quizCounter.pause();
+
+      quizStatusRef.current = QuizStatus.END;
+      setQuizStatus(QuizStatus.END);
+      setQuizPlaying(false);
+
+      if(isBonus) {
+         dispatch({type: GameActions.ADD_BONUS_LENGTH});
+      }
+
+      isTransition.current = true;
+      timer.current = PIXITimeout.start(() => {
+         if(isTimeout.current) {
+            setShowGameoverText(true);
+            resources.audioGameover.sound.play();
+            dispatch({ 
+               type: GameActions.ADD_RESULT, 
+               payload: { listNo: random.current![quizNo.current], correct: correctNum.current }
+            });
+         } else {
+            isTransition.current = false;
+            quizTargets.current!.timeout();
+            timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+         }
+      }, isBonus ? 4000 : 3000);
+   }, []);
+
+
+   const correct = useCallback((pos, isBonus, bonusIdx) => {
+      correctNum.current++;
+      scoreNum.current++;
+      dispatch({type: GameActions.CORRECT_SCORE, payload: scoreNum.current * 50});
+      setEggEffect(prev => [...prev, {
+         id: `eggEffect${eggEffectCount.current}`,
+         idx: isBonus ? bonusIdx : dinosCount.current + 1,
+         startPos: {x: pos.x + 585, y: pos.y + 287},
+         bonus: isBonus
+      }]);
+
+      setScoreTexts(prev => [ ...prev, { 
+         id: `scoreText${scoreCount.current}`, 
+         score: scoreNum.current * 50, 
+         x: pos.x + 595, 
+         y: pos.y + 200, 
+         posY: 150
+      }]);
+      scoreCount.current++;      
+
+      if(isBonus) {
+         timer.current = PIXITimeout.start(() => {
+            setShowBonusText(true);
+            resources.audioBonus.sound.play();
+         }, 500);
+      }
+      
+      eggEffectCount.current++;
+      dinosCount.current++;
+      dinosCount.current = dinosCount.current % 9;
+
+      resources.audioCorrect.sound.stop();
+      resources.audioCorrect.sound.play();
+   }, []);
+
+
+   const nextQuiz = useCallback(() => {
+      dispatch({ 
+         type: GameActions.NEXT_QUIZ, 
+         payload: { listNo: random.current![quizNo.current], correct: correctNum.current }
+      });
+      quizStatusRef.current = QuizStatus.START;
+      setQuizStatus(QuizStatus.START);
+   }, []);
+
+
+   const onEggEffectEnd = useCallback(( id ) => {
+      setEggEffect(prev => prev.filter(egg => egg.id != id));
+   },[]);
+
+
+   const onScoreTextAniEnd = useCallback((id: string) => {
+      setScoreTexts(prev => {
+         return prev.filter( st => st.id !== id);
+      });
+   }, []);
+
+
+   const onPlayQuizAudio = useCallback(( e ) => {
+      setQuizAudioPlaying(true);
+      quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
+   },[]);
+
+
+   const onGameTimeout = useCallback(() => {
+      container.current!.interactiveChildren = false;
+      isTimeout.current = true;
+      if(!isTransition.current) {
+         setShowGameoverText(true);
+         if(!resources.audioGameover.sound.isPlaying ){
+            resources.audioGameover.sound.play();
+         }
+         dispatch({ 
+            type: GameActions.ADD_RESULT, 
+            payload: { listNo: random.current![quizNo.current], correct: correctNum.current }
+         });
+      }
+   }, []);
+
+
+   const goResult = useCallback(() => {
+      gsap.globalTimeline.clear();
+      PIXITimeout.clear(timer.current);
+      let path = '';
+      if (window.isTestAPI) path = `/gameSightWords/history`;
+      else                  path = `/game/sightwords/history`;
+      // window.http
+      // .get(path, { params: {fu_id: gameData.fu_id, play_type: 'G', stage: stage, score: score.total }})
+      // .then(({ data }) => {
+      //    dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
+      //       score: data.data.bestScore, 
+      //       date: data.data.bestScoreDate
+      //    }});
+      //    dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+      // })
+      // .catch( e => {
+      //    if(window.isTestAPI) {
+      //       dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
+      //          score: 5000, 
+      //          date: "2022.3.7"
+      //       }});
+      //       dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+      //    }
+      // });
+   }, [score]);
+   
+
+   const onGameReset = useCallback(() => {
+      gsap.globalTimeline.clear();
+      gsap.globalTimeline.eventCallback('onStart', null);
+      gsap.globalTimeline.eventCallback('onUpdate', null);
+      gsap.globalTimeline.eventCallback('onComplete', null);
+      PIXITimeout.clear(timer.current);
+      resources.audioCorrect.sound.stop();
+      resources.audioWrong.sound.stop();
+      quizAudios.current.forEach(audio => audio.stop());
+      dispatch({type: GameActions.RESET});
+      dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESET});
+      app.ticker.stop();
+      setTimeout(() => {
+         dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.GAME_START});
+         gsap.globalTimeline.clear();
+         app.ticker.start();
+      }, 1000/60);
+   },[]);
+
+
+   useTick(( delta ) => {
+      if(!isTimeout.current){
+         if(quizStatusRef.current === QuizStatus.START) {
+            if(quizCounter.getTime() >= quizTimeLength) {
+               quizStatusRef.current = QuizStatus.END;
+               setQuizStatus(QuizStatus.END);
+            }
+         }
+      }
+   });
+
+
+   useEffect(() => {
+      switch(quizStatus) {
+         case QuizStatus.START : 
+            correctNum.current = 0;
+            if(!isTimeout.current)  makeQuiz();
+         break;
+         case QuizStatus.END : 
+            if(correctNum.current < 3) {
+               if(!isTransition.current){
+                  setQuizPlaying(false);
+                  scoreNum.current = 0;
+                  quizTargets.current!.timeout();
+                  timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+               }
+            }
+            quizCounter.reset();
+         break;
+      }
+   }, [quizStatus]);
 
 
    useEffect(() => {
       const bgmAudio = resources.audioBgm.sound;
-      bgmAudio.play({loop: true, volume: 0.3});
+      // bgmAudio.play({loop: true, volume: 0.3});
 
       gameData.quizList.forEach((list: any, i: number) => {
          quizAudios.current.push(resources[`quizAudio${i}`].sound);
@@ -64,24 +358,105 @@ const GameMain: FC = () => {
          return QuizStatus.START;
       });
 
-      timer.current[0] = PIXITimeout.start(()=>{
-         // timeContainer.current?.start();
+      timer.current = PIXITimeout.start(()=>{
+         timeContainer.current?.start();
       }, 600);
 
       return () => {
-         timer.current.forEach(t => PIXITimeout.clear(t));
+         PIXITimeout.clear(timer.current);
          bgmAudio.stop();
       }
-
    },[]);
 
 
    return (
       <Container ref={container} name="mainContainer">
+
          <Sprite 
             name="bg"
             texture={resources.mainBg.texture}
             position={[-400, 0]} />
+
+
+         <GameQuiz
+            ref={quizTargets}
+            onCorrect={onQuizCorrect}
+            onSuccess={onQuizSuccess}
+            onWrong={onQuizWrong} />
+
+         <Sprite 
+            name="topBg"
+            texture={resources.mainTopBg.texture}
+            position={[-400, 619]} />
+         
+         <Sprite
+            name="charactor"
+            texture={resources.mainCharactor.texture}
+            position={[50, 330]} />
+
+         <PixiButton 
+            name="soundBtnOff"
+            position={[145, 716]}
+            interactive={true}
+            defaultTexture={resources.mainSoundBtnOff.texture}
+            hover={{active: true, texture: resources.mainSoundBtnHover.texture}}
+            onTouchEnd={onPlayQuizAudio} />
+
+         <Sprite 
+            name="soundBtnOn"
+            visible={quizAudioPlaying}
+            alpha={quizPlaying ? 1 : 0}
+            interactive={true}
+            position={[145, 716]}
+            texture={resources.mainSoundBtnOn.texture} />
+
+         {eggEffect.map(props => (
+            <EggEffect 
+               key={props.id} 
+               onAnimationEnd={onEggEffectEnd}
+               {...props} />
+         ))}
+
+         {scoreTexts.map(st => (
+            <ScoreText 
+               key={st.id} 
+               onAnimationEnd={onScoreTextAniEnd}
+               {...st} />
+         ))}
+
+         {showBonusText && 
+            <BonusText 
+               position={[1024, 500]}
+               bonusLength={bonusLength}
+               onAnimationEnd={() => setShowBonusText(false)} />
+         }
+         
+
+         <Container name="bottomUI" position={[0, 1047]}>
+            <ScoreContainer
+               position={[0, 0]} />
+            <TimeContainer
+               ref={timeContainer}
+               position={[1855, 70]}
+               timeLength={gameData.gameTimeout * 1000}
+               onTimeout={onGameTimeout} />
+         </Container>
+
+         {showGameoverText && 
+            <GameoverText 
+               y={620} 
+               onAnimationEnd={goResult} />
+         }
+         
+
+         <PixiButton 
+            name="resetBtn"
+            position={[41, 29]}
+            scale={isMobile() ? 1.5 : 1}
+            defaultTexture={resources.commonResetBtn.texture}
+            sound={resources.audioClick.sound}
+            onTouchEnd={onGameReset}
+            align="LEFT" />
       </Container>
    );
 }
