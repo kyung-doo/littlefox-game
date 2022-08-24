@@ -132,7 +132,7 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
          <Sprite 
             ref={egg}
             name="egg"
-            texture={resources.mainEggBig.texture}
+            texture={bonus ? resources.mainEggBigBonus.texture : resources.mainEggBig.texture}
             anchor={0.5}
             scale={egg.current ? egg.current.scale : 0.64}
             rotation={egg.current ? egg.current.rotation : toRadian(-9)}
@@ -142,7 +142,7 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
          <Sprite 
             ref={leftEgg}
             name="leftAgg"
-            texture={resources.mainEggBigLeft.texture}
+            texture={bonus ? resources.mainEggBigBonusLeft.texture : resources.mainEggBigLeft.texture}
             anchor={[0, 0.5]}
             alpha={leftEgg.current ? leftEgg.current.alpha : 0}
             position={leftEgg.current ? leftEgg.current.position : [794, 760]} />
@@ -150,7 +150,7 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
          <Sprite 
             ref={rightEgg}
             name="rightEgg"
-            texture={resources.mainEggBigRight.texture}
+            texture={bonus ? resources.mainEggBigBonusRight.texture : resources.mainEggBigRight.texture}
             anchor={[1, 0.5]}
             alpha={rightEgg.current ? rightEgg.current.alpha : 0}
             position={rightEgg.current ? rightEgg.current.position : [1255, 760]} />
