@@ -4,42 +4,42 @@
       "langCode": "ko_KR",
       "stage": "1",
       "reStudy": 0,
-      "gameTimeout": 150,
-      "quizTimeout": 12,
+      "gameTimeout": 90,
+      "quizTimeout": 6,
       "clearScore": 3000,
       "lowQuality": 0,
       "quizList": [
          {
             "words": "what",
-            "audio": "./@dummy/word_what.mp3"
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_what.mp3"
          },
          {
             "words": "is",
-            "audio": "./@dummy/word_is.mp3"
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_is.mp3"
          },
          {
             "words": "this",
-            "audio": "./@dummy/word_this.mp3"
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_this.mp3"
          },
          {
-            "words": "that",
-            "audio": "./@dummy/word_that.mp3"
+            "words": "on",
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_on.mp3"
          },
          {
             "words": "jump",
-            "audio": "./@dummy/word_jump.mp3"
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_jump.mp3"
          },
          {
             "words": "in",
-            "audio": "./@dummy/word_in.mp3"
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_in.mp3"
          },
          {
             "words": "out",
-            "audio": "./@dummy/word_out.mp3"
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_out.mp3"
          },
          {
             "words": "the",
-            "audio": "./@dummy/word_the.mp3"
+            "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_the.mp3"
          }
       ]
    },

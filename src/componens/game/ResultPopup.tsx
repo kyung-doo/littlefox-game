@@ -1,6 +1,7 @@
 import { VFC, memo, useCallback, useMemo, useRef, useEffect } from 'react';
 import { Sound } from '@pixi/sound';
 import { gsap, Back} from 'gsap';
+import { isMobile } from '../../utils';
 
 
 
@@ -51,7 +52,7 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
    
 
    return (
-      <div id="result-popup" className={`${type.toLowerCase()}${step}`}>
+      <div id="result-popup" className={`${type.toLowerCase()}${step} ${isMobile() ? 'mobile' : 'pc'}`}>
          <div ref={blind} className="blind" onClick={onClose} style={{display: 'none'}}></div>
          <div ref={popWrap} className="popup-wrap" style={{display: 'none'}}>
             <div className="top-title">

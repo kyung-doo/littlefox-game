@@ -151,4 +151,4 @@ const StarEffect: VFC<Props> = ({bonus, ...props}) => {
    )
 }
 
-export default memo(StarEffect);
+export default memo(StarEffect, () => true);

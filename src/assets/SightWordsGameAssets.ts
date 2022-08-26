@@ -26,6 +26,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'audioCorrect', url: `${audioPath}correct.mp3` },
       { name: 'audioWrong', url: `${audioPath}egg_wrong.mp3` },
       { name: 'audioEgg', url: `${audioPath}egg.mp3` },
+      { name: 'audioEggShort', url: `${audioPath}egg_short.mp3` },
       { name: 'audioEggClear', url: `${audioPath}egg_clear.mp3` },
       { name: 'audioBonus', url: `${audioPath}bonus.mp3` },
       { name: 'audioGameover', url: `${audioPath}game_over.mp3` },
@@ -55,6 +56,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'introLeaf2', url: `${introImgPath}leaf2.png`},
       { name: 'introLeaf3', url: `${introImgPath}leaf3.png`},
       { name: 'introLeaf4', url: `${introImgPath}leaf4.png`},
+      { name: 'introStar', url: `${introImgPath}star.png`},
 
       
 
@@ -68,8 +70,6 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainSoundBtnOff', url: `${mainImgPath}sound_btn_off.png`},
       { name: 'mainSoundBtnOn', url: `${mainImgPath}sound_btn_on.png`},
       { name: 'mainSoundBtnHover', url: `${mainImgPath}sound_btn_hover.png`},
-      { name: 'mainEggDefault', url: `${mainImgPath}egg_default.png`},
-      { name: 'mainEggBonus', url: `${mainImgPath}egg_bonus.png`},
       { name: 'mainEggBig', url: `${mainImgPath}egg_big.png`},
       { name: 'mainEggBigLeft', url: `${mainImgPath}egg_big_left.png`},
       { name: 'mainEggBigRight', url: `${mainImgPath}egg_big_right.png`},
@@ -95,6 +95,12 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainDinosBonus2', url: `${mainImgPath}dinos_bonus2.png`},
       { name: 'mainDinosBonus3', url: `${mainImgPath}dinos_bonus3.png`},
       { name: 'mainBonusBg', url: `${mainImgPath}bonus_bg.png`},
+      { name: 'spritesheetEgg', url: `${spritesheetPath}egg.json` },
+      { name: 'spritesheetEggBonus', url: `${spritesheetPath}egg_bonus.json` },
+      { name: 'spritesheetCharactorDefault', url: `${spritesheetPath}charactor_default.json` },
+      { name: 'spritesheetCharactorCorrect', url: `${spritesheetPath}charactor_correct.json` },
+      { name: 'spritesheetCharactorWrong', url: `${spritesheetPath}charactor_wrong.json` },
+      { name: 'spritesheetCharactorBonus', url: `${spritesheetPath}charactor_bonus.json` },
 
 
 

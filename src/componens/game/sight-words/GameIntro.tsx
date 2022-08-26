@@ -1,13 +1,50 @@
 import { FC, useEffect, useRef, useCallback, memo } from 'react';
-import { Container, PixiRef, Sprite } from '@inlet/react-pixi';
+import { Container, PixiRef, Sprite, _ReactPixi } from '@inlet/react-pixi';
+import { Container as PIXIContainer, Sprite as PIXISprite } from 'pixi.js';
 import { useDispatch, useSelector } from 'react-redux';
 import useAssets from '../../../hooks/useAssets';
 import PixiButton from '../PixiButton';
 import { Sound } from '@pixi/sound';
-import { isMobile} from '../../../utils';
+import { isMobile, randomRange, toRadian } from '../../../utils';
 import { gsap, Linear, Elastic, Power2, Back } from 'gsap';
 import { GameActions, GameStatus } from '../../../stores/game/reducer';
 
+
+
+const IntroStar: FC<_ReactPixi.IContainer> = memo((props) => {
+
+   const { resources } = useAssets();
+   const container = useRef<PIXIContainer>(null);
+
+   const moveStar = useCallback((idx: number, starCon: PIXIContainer, star: PIXISprite, delay: number) => {
+      starCon.alpha = 0;
+      starCon.scale.set(randomRange(20, 100) * 0.01);
+      starCon.position.set(randomRange(-300, 300), 0);
+      starCon.rotation = starCon.position.x > 0 ? toRadian(randomRange(0, 100)) : toRadian(randomRange(0, -100));
+      star.y = 0;
+      const speed = randomRange(300, 500)* 0.01;
+      gsap.to(star, speed, {delay: delay, pixi: {y: `-=${randomRange(500, 700)}`}, ease: Linear.easeNone});
+      gsap.to(starCon, 0.2, {delay: delay, pixi: {alpha: 1}});
+      gsap.to(starCon, 0.5, {delay: delay + speed - 0.5, pixi: {alpha: 0}, onComplete: () => moveStar(idx, starCon, star, 0)});
+   },[]);
+
+   useEffect(() => {
+      Array.from(Array(20), (k, i) => {
+         const starCon = new PIXIContainer();
+         const star = new PIXISprite(resources.introStar.texture);
+         starCon.addChild(star);
+         container.current?.addChild(starCon);
+         moveStar(i, starCon, star, 0.1 * i + 0.3);
+      });
+   }, []);
+
+   return (
+      <Container 
+         ref={container}
+         name="introStar" 
+         {...props} />
+   );
+}, () => true);
 
 
 
@@ -128,16 +165,26 @@ const GameIntro: FC = () => {
          charactor.alpha = 1;
          dinos.alpha = 1;
          dinosLeg.alpha = 1;
-         title1_1.alpha = 1;
-         title1_2.alpha = 1;
-         title2.alpha = 1;
          leaf1.alpha = 1;
          leaf2.alpha = 1;
          leaf3.alpha = 1;
          leaf4.alpha = 1;
-         infoTxt.alpha = 1;
-         startBtn.alpha = 1;
-         startBtn.position.y = 0;
+         gsap.set(title1_1, { pixi: { scale: 1.5 }});
+         gsap.to(title1_1, 0.3, { delay: 0.1, pixi: {alpha: 1}});
+         gsap.to(title1_1, 0.6, { delay: 0.1, pixi: {scale: 1}, ease: Elastic.easeOut.config(3, 1.5)});
+
+         gsap.set(title1_2, { pixi: {  scale: 1.5 }});
+         gsap.to(title1_2, 0.3, { delay: 0.2, pixi: {alpha: 1}});
+         gsap.to(title1_2, 0.6, { delay: 0.2, pixi: { scale: 1 }, ease: Elastic.easeOut.config(3, 1.5)});
+
+         gsap.set(title2, { pixi: { scale: 0}});
+         gsap.to(title2, 0.3, { delay: 0.7, pixi: {alpha: 1}});
+         gsap.to(title2, 0.6, { delay: 0.7, pixi: {scale: 1}, ease: Back.easeOut.config(3)});
+         
+
+         gsap.from(infoTxt, 0.6, {delay: 1, pixi: {y: '+=100'}, ease: Power2.easeOut});
+         gsap.to(infoTxt, 0.6, {delay: 1, pixi: {alpha: 1}});
+         gsap.to(startBtn, 0.6, {delay: 1.2, pixi: {y: 0, alpha: 1}, ease: Power2.easeOut});
       }
       
       return () => {
@@ -165,6 +212,9 @@ const GameIntro: FC = () => {
             texture={resources.introLight.texture}
             anchor={[0.6, 0.8]}
             alpha={0} />
+
+         <IntroStar 
+            position={[1015, 340]} />
 
          <Sprite name="leaf1"
             position={[671, 606]}

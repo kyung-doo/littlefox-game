@@ -13,7 +13,7 @@ const STAR_ROTATIONS = [-10,-36,61,-60,-115,36,70,-49,-10,117];
 const WHITE_ROTATIONS = [10, 55, 100, 145, -10, -55, -100, -145];
 
 
-const WhiteStar: FC<_ReactPixi.IContainer> = (props) => {
+const WhiteStar: FC<_ReactPixi.IContainer> = memo((props) => {
    const { resources } = useAssets();
    const container = useRef<PixiRef<typeof Container>>(null);
    const timer = useRef<any>();
@@ -52,7 +52,7 @@ const WhiteStar: FC<_ReactPixi.IContainer> = (props) => {
          </Container>
       </Container>
    );
-};
+}, () => true);
 
 
 

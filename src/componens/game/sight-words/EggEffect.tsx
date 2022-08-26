@@ -85,7 +85,7 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
       timer.current[0] = PIXITimeout.start(() => {
          gsap.killTweensOf([light1.current, light2.current]);
          if(onAnimationEnd) onAnimationEnd(id);
-      }, bonus ?  4000 : 3000);
+      }, bonus ?  4500 : 3000);
 
       return () => {
          timer.current.forEach(t => PIXITimeout.clear(t));
@@ -172,4 +172,4 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
    );
 }
 
-export default memo(EggEffect);
+export default memo(EggEffect, () => true);

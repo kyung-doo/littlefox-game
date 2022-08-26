@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 
 const RNAD_COLOR = [0xffc568, 0x6fff36, 0xb81dcc, 0xfe2882, 0xff7e22, 0x268241, 0x2c5ec8];
 
-const PartyEffect: FC<_ReactPixi.IContainer> = (props) => {
+const PartyEffect: FC<_ReactPixi.IContainer> = memo((props) => {
    const { resources } = useAssets();
    const gameData: any = useSelector<any>(state => state.root.gameData);
    const container = useRef<PixiRef<typeof Container>>(null); 
@@ -114,7 +114,7 @@ const PartyEffect: FC<_ReactPixi.IContainer> = (props) => {
          
       </Container>
    );
-}
+}, () => true);
 
 
 

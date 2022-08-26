@@ -17,6 +17,7 @@ import ScoreText, { Props as ScoreTextProps} from "../ScoreText";
 import GameQuiz, { Refs as GameQuizRefs } from "./GameQuiz";
 import EggEffect, { Props as EggEffectProps } from "./EggEffect";
 import BonusText from "../BonusText";
+import Charactor, { Refs as CharactorRefs} from "./Charactor";
 
 
 export enum QuizStatus {
@@ -60,6 +61,7 @@ const GameMain: FC = () => {
    const eggEffectCount = useRef<number>(0);
 
    const dinosCount = useRef<number>(0);
+   const gameCount = useRef<number>(0);
 
    const [showBonusText, setShowBonusText] = useState<boolean>(false);
    const [showGameoverText, setShowGameoverText] = useState<boolean>(false);
@@ -70,6 +72,8 @@ const GameMain: FC = () => {
 
    const isTransition = useRef<boolean>(false);
 
+   const charactor = useRef<CharactorRefs>(null);
+
    const bonusIdx = useRef<number>(0);
    const isTimeout = useRef<boolean>(false);
    const timer = useRef<any>();
@@ -78,12 +82,8 @@ const GameMain: FC = () => {
 
    const makeQuiz = useCallback(() => {
       quizNo.current = quizCount % gameData.quizList.length;
-      if(quizNo.current === 0) {
-         if(!random.current) {
-            random.current = makeRandom(gameData.quizList.length, gameData.quizList.length);
-         } else {
-            random.current = makeRandomIgnoreFirst(random.current[gameData.quizList.length-1], gameData.quizList.length, gameData.quizList.length);
-         }
+      if(random.current === null) {
+         random.current = makeRandom(gameData.quizList.length, gameData.quizList.length);
       }
 
       setQuizAudioPlaying(true);
@@ -92,24 +92,39 @@ const GameMain: FC = () => {
          setQuizPlaying(true);
          quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
          quizCounter.start();
-      }, 1200);
+      }, gameCount.current === 0 ? 1200 : 100);
 
-      bonusIdx.current = Math.floor(Math.random() * 2) === 0 ? (bonusLength % 3) + 1 : 0;
-      quizTargets.current?.start(random.current![quizNo.current], bonusIdx.current);
+      if(gameCount.current === 0) {
+         bonusIdx.current = Math.floor(Math.random() * 2) === 0 ? (bonusLength % 3) + 1 : 0;
+         quizTargets.current?.start([
+            random.current![quizNo.current],
+            random.current![(quizNo.current+1) % gameData.quizList.length],
+            random.current![(quizNo.current+2) % gameData.quizList.length]
+         ], bonusIdx.current);
+      } else {
+         quizTargets.current?.start(random.current![quizNo.current]);
+      }
+      
+      charactor.current?.default();
+
+      gameCount.current++;
+      gameCount.current = gameCount.current % 3;
 
    }, [quizCount, bonusLength]);
 
 
    const onQuizCorrect = useCallback(( pos, isBonus, bonusIdx ) => {
-      correct(pos, isBonus, bonusIdx);
+      correct(pos, false, isBonus, bonusIdx);
       if(isBonus) {
          dispatch({type: GameActions.ADD_BONUS_LENGTH});
+         quizCounter.pause();
       }
       isTransition.current = true;
       timer.current = PIXITimeout.start(() => {
          isTransition.current = false;
          checkEnd();
-      }, isBonus ? 4000 : 3000);
+         quizCounter.start();
+      }, isBonus ? 4000 : 0);
    }, []);
 
 
@@ -127,6 +142,7 @@ const GameMain: FC = () => {
          posY: 150
       }]);
       scoreCount.current++;
+      charactor.current?.wrong();
 
       isTransition.current = true;
       timer.current = PIXITimeout.start(() => {
@@ -148,17 +164,22 @@ const GameMain: FC = () => {
          if(quizStatusRef.current === QuizStatus.END) {
             setQuizPlaying(false);
             scoreNum.current = 0;
-            quizTargets.current!.timeout();
-            timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+            console.log('gameCount', gameCount.current)
+            if(gameCount.current === 0) {
+               quizTargets.current!.timeout();
+               timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+            } else {
+               nextQuiz();
+            }
          }
       }
    },[]);
 
 
    const onQuizSuccess = useCallback(( pos, isBonus, bonusIdx ) => {
-      correct(pos, isBonus, bonusIdx);
+      isTransition.current = true;
+      correct(pos, true, isBonus, bonusIdx);
       quizCounter.pause();
-
       quizStatusRef.current = QuizStatus.END;
       setQuizStatus(QuizStatus.END);
       setQuizPlaying(false);
@@ -167,7 +188,7 @@ const GameMain: FC = () => {
          dispatch({type: GameActions.ADD_BONUS_LENGTH});
       }
 
-      isTransition.current = true;
+      
       timer.current = PIXITimeout.start(() => {
          if(isTimeout.current) {
             setShowGameoverText(true);
@@ -178,23 +199,52 @@ const GameMain: FC = () => {
             });
          } else {
             isTransition.current = false;
-            quizTargets.current!.timeout();
-            timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+            console.log('gameCount', gameCount.current);
+            if(gameCount.current === 0) {
+               quizTargets.current!.timeout();
+               timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+            } else {
+               nextQuiz();
+            }
          }
       }, isBonus ? 4000 : 3000);
    }, []);
 
 
-   const correct = useCallback((pos, isBonus, bonusIdx) => {
+   const correct = useCallback((pos, isSuccess, isBonus, bonusIdx) => {
       correctNum.current++;
       scoreNum.current++;
       dispatch({type: GameActions.CORRECT_SCORE, payload: scoreNum.current * 50});
-      setEggEffect(prev => [...prev, {
-         id: `eggEffect${eggEffectCount.current}`,
-         idx: isBonus ? bonusIdx : dinosCount.current + 1,
-         startPos: {x: pos.x + 585, y: pos.y + 287},
-         bonus: isBonus
-      }]);
+      charactor.current?.correct();
+
+      if(isSuccess || (isBonus && !isSuccess)) {
+         setEggEffect(prev => [...prev, {
+            id: `eggEffect${eggEffectCount.current}`,
+            idx: isBonus ? bonusIdx : dinosCount.current + 1,
+            startPos: {x: pos.x + 585, y: pos.y + 287},
+            bonus: isBonus
+         }]);
+         
+         if(isBonus) {
+            timer.current = PIXITimeout.start(() => {
+               setShowBonusText(true);
+               resources.audioBonus.sound.play();
+               timer.current = PIXITimeout.start(() => {
+                  charactor.current?.default();
+               }, 3500);
+               charactor.current?.bonus();
+            }, 500);
+         } else {
+            timer.current = PIXITimeout.start(() => {
+               charactor.current?.bonus();
+            }, 500);
+         }
+         eggEffectCount.current++;
+         dinosCount.current++;
+         dinosCount.current = dinosCount.current % 9;
+      }
+
+      
 
       setScoreTexts(prev => [ ...prev, { 
          id: `scoreText${scoreCount.current}`, 
@@ -203,19 +253,8 @@ const GameMain: FC = () => {
          y: pos.y + 200, 
          posY: 150
       }]);
+
       scoreCount.current++;      
-
-      if(isBonus) {
-         timer.current = PIXITimeout.start(() => {
-            setShowBonusText(true);
-            resources.audioBonus.sound.play();
-         }, 500);
-      }
-      
-      eggEffectCount.current++;
-      dinosCount.current++;
-      dinosCount.current = dinosCount.current % 9;
-
       resources.audioCorrect.sound.stop();
       resources.audioCorrect.sound.play();
    }, []);
@@ -335,8 +374,12 @@ const GameMain: FC = () => {
                if(!isTransition.current){
                   setQuizPlaying(false);
                   scoreNum.current = 0;
-                  quizTargets.current!.timeout();
-                  timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+                  if(gameCount.current === 0) {
+                     quizTargets.current!.timeout();
+                     timer.current = PIXITimeout.start(() => nextQuiz(), 500);
+                  } else {
+                     nextQuiz();
+                  }
                }
             }
             quizCounter.reset();
@@ -389,10 +432,13 @@ const GameMain: FC = () => {
             texture={resources.mainTopBg.texture}
             position={[-400, 619]} />
          
-         <Sprite
+         {/* <Sprite
             name="charactor"
             texture={resources.mainCharactor.texture}
-            position={[50, 330]} />
+            position={[50, 330]} /> */}
+
+         <Charactor ref={charactor} />
+
 
          <PixiButton 
             name="soundBtnOff"

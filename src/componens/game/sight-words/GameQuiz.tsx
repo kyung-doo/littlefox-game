@@ -1,6 +1,6 @@
 import { forwardRef, memo, useCallback, useContext, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { Container, Sprite, Text } from "@inlet/react-pixi";
-import { Container as PIXIContainer, Sprite as PIXISprite } from "pixi.js";
+import { AnimatedSprite, Container, Sprite, Text } from "@inlet/react-pixi";
+import { Container as PIXIContainer, Sprite as PIXISprite, Texture, AnimatedSprite as PIXIAnimatedSprite, Text as PIXIText } from "pixi.js";
 import useAssets from "../../../hooks/useAssets";
 import { useSelector } from "react-redux";
 import { makeRandom, randomRange } from "../../../utils";
@@ -26,7 +26,7 @@ export interface Props {
 *     timeout: 시간초과
 */
 export interface Refs {
-   start: (quizNo: number, bonus: number) => void;
+   start: (quizNo: number[] | number, bonus?: number) => void;
    timeout: () => void;
 }
 
@@ -34,7 +34,6 @@ export interface Refs {
 const MAP_HOR = 4;
 const MAP_VER = 4;
 
-let timeline: gsap.core.Timeline | null = null;
 
 const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref) => {
 
@@ -42,15 +41,19 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
    const { resources } = useAssets();
 
    const container = useRef<PIXIContainer>(null);
-   const aggs = useRef<PIXIContainer[]>([]);
+   const eggs = useRef<PIXIContainer[]>([]);
+   const eggBgs = useRef<PIXIAnimatedSprite[]>([]);
+   const eggTexts = useRef<PIXIText[]>([]);
+   const eggBtns = useRef<PIXISprite[]>([]);
    const stonBlind = useRef<PIXISprite>(null);
 
-   const [quizNo, setQuizNo] = useState<number | null>(null);
+   const [quizNo, setQuizNo] = useState<number[] | number | null>(null);
    const [bonusIdx, setBonusIdx] = useState<number | null>(null);
    const [wordLists, setWordLists] = useState<{[key: string]: any}[] | null>(null);
    const [mapPosition, setMapPosition] = useState<{ x: number, y: number }[]>([]);
 
    const correctNum = useRef<number>(0);
+   const targetNo = useRef<number>(0);
    const isHideTransition = useRef<boolean>(false);
    
    const timer = useRef<any>(null);
@@ -60,52 +63,88 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
 
    const makeQuiz = useCallback(() => {
       const quizList = [...gameData.quizList];
-      const correctData = quizList[quizNo!];
-      const wrongDatas = quizList.filter((li: any) => li.words !== correctData.words);
-      const listRandom = makeRandom(MAP_VER * MAP_HOR, MAP_VER * MAP_HOR);
-      
-      const lists: {[key: string]: any}[] = [];
-      Array.from(Array(3), (k, i) => {
-         lists.push({ idx: listRandom[i], word: correctData.words, correct: true, bonus: i === 0 && bonusIdx! > 0 ?  true : false});
-      });
-      Array.from(Array(MAP_VER * MAP_HOR - 3), (k, i) => {
-         lists.push({ idx: listRandom[i+3], word: wrongDatas[randomRange(0, wrongDatas.length-1)].words, correct: false });
-      });
-      setWordLists(lists);
       container.current!.interactiveChildren = false;
       correctNum.current = 0;
-      const showRandom = makeRandom(MAP_VER * MAP_HOR, MAP_VER * MAP_HOR);
-      
-      timer.current = PIXITimeout.start(() => {
-         aggs.current.forEach((agg, i) => {
-            gsap.to(agg, 0.6, {
-               delay: 0.05 * showRandom[i], 
-               pixi: { scale: 1 }, 
-               ease: Back.easeOut.config(1.5)
-            });
+
+      if(typeof quizNo === 'object'){
+         const correctData = [quizList[quizNo![0]], quizList[quizNo![1]], quizList[quizNo![2]]];
+         const wrongDatas =  quizList.filter((li: any) => !correctData.find(x => x.words === li.words));
+         const listRandom = makeRandom(MAP_VER * MAP_HOR, MAP_VER * MAP_HOR);
+         const lists: {[key: string]: any}[] = [];
+         const bonusNum = randomRange(0, 3);
+
+         targetNo.current = quizNo![0];
+
+         Array.from(Array(9), (k, i) => {
+            if(i < 3) {
+               lists.push({ no: quizNo![0], idx: listRandom[i], word: correctData[0].words, correct: true, bonus: i === 0 && bonusIdx! > 0 && bonusNum === 0  ?  true : false});
+            }
+            else if(i < 6) {
+               lists.push({ no: quizNo![1], idx: listRandom[i], word: correctData[1].words, correct: true, bonus: i === 3 && bonusIdx! > 0 && bonusNum === 1 ?  true : false});
+            }
+            else { 
+               lists.push({ no: quizNo![2], idx: listRandom[i], word: correctData[2].words, correct: true, bonus: i === 6 && bonusIdx! > 0 && bonusNum === 2 ?  true : false});
+            }
          });
+         Array.from(Array(MAP_VER * MAP_HOR - 9), (k, i) => {
+            lists.push({ idx: listRandom[i + 9], word: wrongDatas[randomRange(0, wrongDatas.length-1)].words, correct: false });
+         });
+
+         setWordLists(lists);
+         
+         const showRandom = makeRandom(MAP_VER * MAP_HOR, MAP_VER * MAP_HOR);
+         timer.current = PIXITimeout.start(() => {
+            eggs.current.forEach((agg, i) => {
+               gsap.to(agg, 0.6, {
+                  delay: 0.05 * showRandom[i], 
+                  pixi: { scale: 1 }, 
+                  ease: Back.easeOut.config(1.5)
+               });
+            });
+            timer.current = PIXITimeout.start(() => {
+               container.current!.interactiveChildren = true;
+            }, 1500);
+         }, 100);
+      } else {
+         targetNo.current = quizNo!;
          timer.current = PIXITimeout.start(() => {
             container.current!.interactiveChildren = true;
-         }, 1500);
-      }, 100);
-
+         }, 500);
+      }
+      
    }, [quizNo]);
 
 
    const onAggClick = useCallback(( list: any ) => {
-      const target = aggs.current[list.idx];
-      if(list.correct) {
-         target.visible = false;
+      const target = eggs.current[list.idx];
+      if(list.correct && targetNo.current === list.no) {
          if(correctNum.current < 2) {
             onCorrect({x: target.position.x, y: target.position.y }, list.bonus, bonusIdx!);
+            if(list.bonus) {
+               target.visible = false;
+               stonBlind.current!.visible = true;
+               gsap.to(stonBlind.current, 0.3, {alpha: 1});
+               gsap.to(stonBlind.current, 0.3, {delay: list.bonus ? 4 : 3, alpha: 0, onComplete: () => {
+                  stonBlind.current!.visible = false;
+               }});
+            } else {
+               eggs.current.forEach((egg, i) => egg.zIndex = i);
+               target.zIndex = eggs.current.length;
+               eggBgs.current[list.idx].gotoAndPlay(0);
+               gsap.to(eggTexts.current[list.idx], 0.4, {pixi: {alpha: 0}});
+               eggBtns.current[list.idx].interactive = false;
+               resources.audioEggShort.sound.stop();
+               resources.audioEggShort.sound.play();
+            }
          } else {
+            target.visible = false;
             onSuccess({x: target.position.x, y: target.position.y}, list.bonus, bonusIdx!);
+            stonBlind.current!.visible = true;
+            gsap.to(stonBlind.current, 0.3, {alpha: 1});
+            gsap.to(stonBlind.current, 0.3, {delay: list.bonus ? 4 : 3, alpha: 0, onComplete: () => {
+               stonBlind.current!.visible = false;
+            }});
          }
-         stonBlind.current!.visible = true;
-         gsap.to(stonBlind.current, 0.3, {alpha: 1});
-         gsap.to(stonBlind.current, 0.3, {delay: list.bonus ? 4 : 3, alpha: 0, onComplete: () => {
-            stonBlind.current!.visible = false;
-         }});
          
          correctNum.current++;
       } else {
@@ -120,33 +159,41 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
    
 
    const worngAni = useCallback(( target: PIXIContainer ) => {
-      timeline = gsap.timeline()
-         .to(target, 0.1, {pixi: {rotation: 15, scale: 1.1}, ease: Cubic.easeOut})
-         .to(target, 0.6, {pixi: {rotation: 0, scale: 1}, ease: Elastic.easeOut.config(1.2, 0.4)});
+      gsap.to(target, 0.1, {pixi: {rotation: 15, scale: 1.1}, ease: Cubic.easeOut})
+      gsap.to(target, 0.6, {delay: 0.1, pixi: { rotation: 0, scale: 1}, ease: Elastic.easeOut.config(1.2, 0.4)});
    }, []);
 
 
    
 
    const hideAgg = useCallback(() => {
+      
       container.current!.interactiveChildren = false;
       isHideTransition.current = true;
-      aggs.current.forEach(agg => gsap.killTweensOf(agg));
-      aggs.current.filter(x => x.visible).forEach((agg, i) => {
+      eggs.current.forEach(agg => gsap.killTweensOf(agg));
+      eggs.current.filter(x => x.visible).forEach((agg, i) => {
          gsap.to(agg, 0.4, {pixi: { scale: 0.2, alpha: 0 }, ease: Cubic.easeIn});
       });
       timer.current = PIXITimeout.start(()=>{
-         if(timeline) timeline.kill();
-         aggs.current = [];
+         eggs.current = [];
          setWordLists(null);
          isHideTransition.current = false;
       }, 500);
    }, []);
+
+   const eggTextures = useMemo(() => {
+      return Object.keys(resources.spritesheetEgg.textures).map( name => resources.spritesheetEgg.textures[name]);
+   }, []);
+
+   const eggBonusTextures = useMemo(() => {
+      return Object.keys(resources.spritesheetEggBonus.textures).map( name => resources.spritesheetEggBonus.textures[name]);
+   }, []);
    
 
    useImperativeHandle(ref, () => ({
-      start: ( quizNo: number, bonus: number ) => {
-         setBonusIdx(bonus);
+      start: ( quizNo: number[] | number, bonus?: number ) => {
+         eggs.current.forEach((egg, i) => gsap.killTweensOf(egg));
+         if(bonus) setBonusIdx(bonus);
          setQuizNo(quizNo);
       },
       timeout: () => {
@@ -158,13 +205,13 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
 
    useLayoutEffect(() => {
       let y = -1;
-         const pos: {x: number, y: number}[] = [];
-         Array.from(Array(MAP_HOR * MAP_VER), (k, i) => {
-            const x = i % MAP_HOR;
-            if(x === 0) y++;
-            pos.push({x: x, y: y});
-         });
-         setMapPosition(pos);
+      const pos: {x: number, y: number}[] = [];
+      Array.from(Array(MAP_HOR * MAP_VER), (k, i) => {
+         const x = i % MAP_HOR;
+         if(x === 0) y++;
+         pos.push({x: x, y: y});
+      });
+      setMapPosition(pos);
    }, []);
 
 
@@ -184,24 +231,41 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
          name="quizContainer">
          <Container 
             name="aggCon"
+            sortableChildren={true}
             position={[590, 280]}>
             {wordLists && wordLists.map((list, i) => (
                <Container
-                  ref={ref => ref && (aggs.current[list.idx] = ref)}
+                  ref={ref => ref && (eggs.current[list.idx] = ref)}
                   key={`agg-${quizNo}-${list.idx}`}
                   name={`agg-${list.idx}`}
+                  visible={eggs.current[list.idx] ? eggs.current[list.idx].visible : true}
                   x={288 * mapPosition[list.idx].x}
                   y={234 * mapPosition[list.idx].y}
-                  buttonMode={true}
-                  interactive={true}
-                  pointerdown={() => onAggClick(list)}
-                  scale={aggs.current[list.idx] ? aggs.current[list.idx].scale : 0}>
+                  scale={eggs.current[list.idx] ? eggs.current[list.idx].scale : 0}>
                   <Sprite 
+                     ref={ref => ref && (eggBtns.current[list.idx] = ref)}
+                     name="button"
+                     buttonMode={true}
+                     interactive={true}
+                     pointerdown={() => onAggClick(list)}
+                     width={259}
+                     height={173}
+                     position={[-120, -86]}
+                     texture={Texture.EMPTY} />
+                  <AnimatedSprite 
                      name="aggBg"
-                     position={[-130, -86]}
-                     texture={list.bonus ? resources.mainEggBonus.texture : resources.mainEggDefault.texture} />
+                     ref={ref => ref && (eggBgs.current[list.idx] = ref)}
+                     isPlaying={eggBgs.current[list.idx] ? eggBgs.current[list.idx].playing : false}
+                     loop={false}
+                     position={[-279, -110]}
+                     initialFrame={0}
+                     animationSpeed={0.5}
+                     onComplete={() => eggs.current[list.idx].visible = false}
+                     textures={list.bonus ? eggBonusTextures : eggTextures} />
                   <Text 
+                     ref={ref => ref && (eggTexts.current[list.idx] = ref)}
                      text={list.word} 
+                     visible={true}
                      anchor={0.5}
                      style={{
                         fontSize: 56,

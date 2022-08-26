@@ -172,6 +172,7 @@
 
    .list-body {
       overflow-y: auto;
+      overflow-x: hidden;
       min-height: 730px;
       max-height: 794px;
       .list {
@@ -268,7 +269,7 @@
       max-height: 730px;
       .list {
          .words {
-            width: 430px;
+            width: 408px;
             height: 120px;
             @include displayFlex($justify: flex-start);
          }
@@ -291,6 +292,16 @@
             }
          }
       }
-      
+   }
+   &[class*=letterteams].pc,
+   &[class*=sightwords].pc {
+      .list-body .list .result > div:nth-child(1) {
+         position: relative;
+         left: 7px;
+      }
+      .list-body .list .result > div:nth-child(2) {
+         position: relative;
+         left: 14px;
+      }
    }
 }

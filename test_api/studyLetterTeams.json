@@ -3,151 +3,201 @@
      "fu_id": "U201803221135520456",
      "langCode": "ko_KR",
      "stageTitle": "a_e i_e",
-     "reStudy": 1,
+     "reStudy": 0,
      "list": [
-         {
-            "words": {
-               "text": "cape",
-               "audio": "./@dummy/learn_1_cape.mp3"
-            },
-            "syllables": [
-               {"text": "c", "audio": "./@dummy/learn_1_cape_c.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_1_cape_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "p", "audio": "./@dummy/learn_1_cape_p.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
+       {
+         "words": {
+           "text": "cape",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape.mp3"
          },
-         {
-            "words": {
-               "text": "maze",
-               "audio": "./@dummy/learn_2_maze.mp3"
-            },
-            "syllables": [
-               {"text": "m", "audio": "./@dummy/learn_2_maze_m.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_2_maze_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "z", "audio": "./@dummy/learn_2_maze_z.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
+         "syllables": [
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape_c.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape_a.mp3",
+             "isSilent": false,
+             "withSilient": true
+           },
+           {
+             "text": "p",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape_p.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "maze",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze.mp3"
          },
-         {
-            "words": {
-               "text": "lake",
-               "audio": "./@dummy/learn_3_lake.mp3"
-            },
-            "syllables": [
-               {"text": "l", "audio": "./@dummy/learn_3_lake_l.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_3_lake_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "k", "audio": "./@dummy/learn_3_lake_k.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
+         "syllables": [
+           {
+             "text": "m",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze_m.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze_a.mp3",
+             "isSilent": false,
+             "withSilient": true
+           },
+           {
+             "text": "z",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze_z.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "lake",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake.mp3"
          },
-         {
-            "words": {
-               "text": "race",
-               "audio": "./@dummy/learn_4_race.mp3"
-            },
-            "syllables": [
-               {"text": "r", "audio": "./@dummy/learn_4_race_r.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_4_race_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "c", "audio": "./@dummy/learn_4_race_c.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
+         "syllables": [
+           {
+             "text": "l",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake_l.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake_a.mp3",
+             "isSilent": false,
+             "withSilient": true
+           },
+           {
+             "text": "k",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake_k.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "race",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race.mp3"
          },
-         {
-            "words": {
-               "text": "face",
-               "audio": "./@dummy/learn_5_face.mp3"
-            },
-            "syllables": [
-               {"text": "f", "audio": "./@dummy/learn_5_face_f.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_5_face_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "c", "audio": "./@dummy/learn_5_face_c.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
+         "syllables": [
+           {
+             "text": "r",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race_r.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race_a.mp3",
+             "isSilent": false,
+             "withSilient": true
+           },
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race_c.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "face",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face.mp3"
          },
-         {
-            "words": {
-               "text": "lace",
-               "audio": "./@dummy/learn_6_lace.mp3"
-            },
-            "syllables": [
-               {"text": "l", "audio": "./@dummy/learn_6_lace_l.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_6_lace_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "c", "audio": "./@dummy/learn_6_lace_c.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
+         "syllables": [
+           {
+             "text": "f",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face_f.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face_a.mp3",
+             "isSilent": false,
+             "withSilient": true
+           },
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face_c.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "lace",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace.mp3"
          },
-         {
-            "words": {
-               "text": "clip",
-               "audio": "./@dummy/learn_7_clip.mp3"
-            },
-            "syllables": [
-               {"text": "cl", "audio": "./@dummy/learn_7_clip_cl.mp3", "isSilent": false, "withSilient": false},
-               {"text": "i", "audio": "./@dummy/learn_7_clip_i.mp3", "isSilent": false, "withSilient": false},
-               {"text": "p", "audio": "./@dummy/learn_7_clip_p.mp3", "isSilent": false, "withSilient": false}
-            ]
-         },
-         {
-            "words": {
-               "text": "clap",
-               "audio": "./@dummy/learn_8_clap.mp3"
-            },
-            "syllables": [
-               {"text": "cl", "audio": "./@dummy/learn_8_clap_cl.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_8_clap_a.mp3", "isSilent": false, "withSilient": false},
-               {"text": "p", "audio": "./@dummy/learn_8_clap_p.mp3", "isSilent": false, "withSilient": false}
-            ]
-         },
-         {
-            "words": {
-               "text": "plate",
-               "audio": "./@dummy/learn_9_plate.mp3"
-            },
-            "syllables": [
-               {"text": "pl", "audio": "./@dummy/learn_9_plate_pl.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_9_plate_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "t", "audio": "./@dummy/learn_9_plate_t.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
-         },
-         {
-            "words": {
-               "text": "plane",
-               "audio": "./@dummy/learn_10_plane.mp3"
-            },
-            "syllables": [
-               {"text": "pl", "audio": "./@dummy/learn_10_plane_pl.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_10_plane_a.mp3", "isSilent": false, "withSilient": true},
-               {"text": "n", "audio": "./@dummy/learn_10_plane_n.mp3", "isSilent": false, "withSilient": false},
-               {"text": "e", "audio": "", "isSilent": true, "withSilient": false}
-            ]
-         },
-         {
-            "words": {
-               "text": "glasss",
-               "audio": "./@dummy/learn_11_glass.mp3"
-            },
-            "syllables": [
-               {"text": "gl", "audio": "./@dummy/learn_11_glass_gl.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_11_glass_a.mp3", "isSilent": false, "withSilient": false},
-               {"text": "s", "audio": "./@dummy/learn_11_glass_s.mp3", "isSilent": false, "withSilient": false},
-               {"text": "s", "audio": "./@dummy/learn_11_glass_s.mp3", "isSilent": false, "withSilient": false},
-               {"text": "s", "audio": "./@dummy/learn_11_glass_s.mp3", "isSilent": false, "withSilient": false}
-            ]
-         },
-         {
-            "words": {
-               "text": "glad",
-               "audio": "./@dummy/learn_12_glad.mp3"
-            },
-            "syllables": [
-               {"text": "gl", "audio": "./@dummy/learn_12_glad_gl.mp3", "isSilent": false, "withSilient": false},
-               {"text": "a", "audio": "./@dummy/learn_12_glad_a.mp3", "isSilent": false, "withSilient": false},
-               {"text": "d", "audio": "./@dummy/learn_12_glad_d.mp3", "isSilent": false, "withSilient": false}               
-            ]
-         }
-      ]
+         "syllables": [
+           {
+             "text": "l",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace_l.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace_a.mp3",
+             "isSilent": false,
+             "withSilient": true
+           },
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace_c.mp3",
+             "isSilent": false,
+             "withSilient": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false
+           }
+         ]
+       }
+     ]
    },
    "status": 200
 }
