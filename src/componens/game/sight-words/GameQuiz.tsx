@@ -56,7 +56,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
    const targetNo = useRef<number>(0);
    const isHideTransition = useRef<boolean>(false);
    
-   const timer = useRef<any>(null);
+   const timer = useRef<any[]>([]);
    
 
 
@@ -89,25 +89,26 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
          Array.from(Array(MAP_VER * MAP_HOR - 9), (k, i) => {
             lists.push({ idx: listRandom[i + 9], word: wrongDatas[randomRange(0, wrongDatas.length-1)].words, correct: false });
          });
-
+         stonBlind.current!.visible = false;
          setWordLists(lists);
-         
+         timer.current.forEach(t => PIXITimeout.clear(t));
          const showRandom = makeRandom(MAP_VER * MAP_HOR, MAP_VER * MAP_HOR);
-         timer.current = PIXITimeout.start(() => {
+         timer.current[0] = PIXITimeout.start(() => {
             eggs.current.forEach((agg, i) => {
+               agg.visible = true;
                gsap.to(agg, 0.6, {
                   delay: 0.05 * showRandom[i], 
-                  pixi: { scale: 1 }, 
+                  pixi: { scale: 1, alpha: 1 }, 
                   ease: Back.easeOut.config(1.5)
                });
             });
-            timer.current = PIXITimeout.start(() => {
+            timer.current[1] = PIXITimeout.start(() => {
                container.current!.interactiveChildren = true;
             }, 1500);
          }, 100);
       } else {
          targetNo.current = quizNo!;
-         timer.current = PIXITimeout.start(() => {
+         timer.current[2] = PIXITimeout.start(() => {
             container.current!.interactiveChildren = true;
          }, 500);
       }
@@ -135,6 +136,10 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
                eggBtns.current[list.idx].interactive = false;
                resources.audioEggShort.sound.stop();
                resources.audioEggShort.sound.play();
+               stonBlind.current!.visible = true;
+               timer.current[3] = PIXITimeout.start(() => {
+                  stonBlind.current!.visible = false;
+               }, 100);
             }
          } else {
             target.visible = false;
@@ -151,7 +156,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
          onWrong({x: target.position.x, y: target.position.y});
          worngAni(target);
          stonBlind.current!.visible = true;
-         timer.current = PIXITimeout.start(() => {
+         timer.current[4] = PIXITimeout.start(() => {
             stonBlind.current!.visible = false;
          }, 500);
       }
@@ -162,19 +167,17 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
       gsap.to(target, 0.1, {pixi: {rotation: 15, scale: 1.1}, ease: Cubic.easeOut})
       gsap.to(target, 0.6, {delay: 0.1, pixi: { rotation: 0, scale: 1}, ease: Elastic.easeOut.config(1.2, 0.4)});
    }, []);
-
-
    
 
    const hideAgg = useCallback(() => {
-      
+      timer.current.forEach(t => PIXITimeout.clear(t));
       container.current!.interactiveChildren = false;
       isHideTransition.current = true;
       eggs.current.forEach(agg => gsap.killTweensOf(agg));
       eggs.current.filter(x => x.visible).forEach((agg, i) => {
          gsap.to(agg, 0.4, {pixi: { scale: 0.2, alpha: 0 }, ease: Cubic.easeIn});
       });
-      timer.current = PIXITimeout.start(()=>{
+      timer.current[5] = PIXITimeout.start(()=>{
          eggs.current = [];
          setWordLists(null);
          isHideTransition.current = false;
@@ -220,7 +223,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
          makeQuiz();
       }
       return ()=> {
-         PIXITimeout.clear(timer.current);
+         timer.current.forEach(t => PIXITimeout.clear(t));
       }
    }, [quizNo]);
 

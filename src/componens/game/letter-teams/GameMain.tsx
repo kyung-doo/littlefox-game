@@ -339,7 +339,7 @@ const GameMain: FC = () => {
 
    useEffect(() => {
       const bgmAudio = resources.audioBgm.sound;
-      bgmAudio.play({loop: true, volume: 0.3});
+      bgmAudio.play({loop: true, volume: 0.2});
 
       gameData.quizList.forEach((list: any, i: number) => {
          quizAudios.current.push(resources[`quizAudio${i}`].sound);

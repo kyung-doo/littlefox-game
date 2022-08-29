@@ -9,6 +9,7 @@ import { isMobile, randomRange} from '../../../utils';
 import { gsap, Linear, Cubic, Elastic, Power2, Back } from 'gsap';
 import { GameActions, GameStatus } from '../../../stores/game/reducer';
 import StarLight from './StarLight';
+import Guide, { Refs as GuideRefs } from '../Guide';
 
 
 
@@ -18,6 +19,7 @@ const GameIntro: FC = () => {
    const { resources } = useAssets();
    const container = useRef<PixiRef<typeof Container>>(null);
    const bgmAudio = useRef<Sound>();
+   const guideRef = useRef<GuideRefs>(null);
 
 
    const onStartGame = useCallback(() => {
@@ -28,7 +30,7 @@ const GameIntro: FC = () => {
    
    const onBgmToggle = useCallback(( target, isToggle ) => {
       if(isToggle){
-         bgmAudio.current?.play({loop: true, volume: 0.3});
+         bgmAudio.current?.play({loop: true, volume: 0.2});
       } else {
          bgmAudio.current?.pause();
       }
@@ -265,7 +267,7 @@ const GameIntro: FC = () => {
             scale={isMobile() ? 1.5 : 1}
             sound={resources.audioClick.sound}
             defaultTexture={resources.introInfoBtn.texture}
-            // onTouchEnd={() => guideRef.current?.show()}
+            onTouchEnd={() => guideRef.current?.show()}
             align="LEFT" />
 
          <PixiButton 
@@ -277,6 +279,9 @@ const GameIntro: FC = () => {
             toggle={{active: true, initToggle: true, texture: resources.commonBgmOffBtn.texture}}
             onToggle={onBgmToggle}
             align="LEFT" />
+         
+         <Guide ref={guideRef} />
+         
       </Container>
    );
 }
