@@ -94,6 +94,14 @@
             background-size: 100%;
             animation: flash-btn-ani 0.8s infinite;
          }
+         &.target {
+            color: #fec27e;
+         }
+         
+         &.target.playing,
+         &.target.clear {
+            color: #ff8800;
+         }
       }
       
    }
@@ -133,6 +141,9 @@
       .drag-item > span{
          position: relative;
          top: -7px;
+         &.target{
+            color: #ff8800;
+         }
       }
 
       .drag-item.active,

@@ -1,5 +1,5 @@
 import { FC, useState, useRef, useCallback, useLayoutEffect, useEffect } from 'react';
-import { addClass, elementIndex, makeRandom, removeClass } from '../../utils';
+import { addClass, elementIndex, makeRandomIgnoreFirst, removeClass } from '../../utils';
 import Draggable from './Draggable';
 import { Sound } from '@pixi/sound';
 
@@ -43,7 +43,7 @@ const LetterTeamsQuiz: FC<Props> = ({syllables, syllableBox, onStudyClear, audio
    }, []);
 
    useLayoutEffect(() => {
-      setRandomAr(makeRandom(syllables.length, syllables.length));
+      setRandomAr(makeRandomIgnoreFirst(0, syllables.length, syllables.length));
    },[]);
 
    useEffect(() => {
@@ -63,7 +63,9 @@ const LetterTeamsQuiz: FC<Props> = ({syllables, syllableBox, onStudyClear, audio
             <Draggable 
                areaAr={syllables.map(syllable => syllable.text)}
                dragAr={randomAr.map(i => syllables[i].text)}
-               dragElm={randomAr.map( i => (<span>{syllables[i].text}</span>))}
+               dragElm={randomAr.map( i => (
+                  <span className={`${syllables[i].isTarget ? 'target' : ''}`}>{syllables[i].text}</span>
+               ))}
                onDragStart={audioStop}
                onCorrect={onDragCorrect}
                onWrong={onDragWrong}
