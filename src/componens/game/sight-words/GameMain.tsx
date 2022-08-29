@@ -431,29 +431,23 @@ const GameMain: FC = () => {
             name="topBg"
             texture={resources.mainTopBg.texture}
             position={[-400, 619]} />
-         
-         {/* <Sprite
-            name="charactor"
-            texture={resources.mainCharactor.texture}
-            position={[50, 330]} /> */}
 
          <Charactor ref={charactor} />
 
-
-         <PixiButton 
+         <Sprite 
             name="soundBtnOff"
-            position={[145, 716]}
-            interactive={true}
-            defaultTexture={resources.mainSoundBtnOff.texture}
-            hover={{active: true, texture: resources.mainSoundBtnHover.texture}}
-            onTouchEnd={onPlayQuizAudio} />
+            texture={resources.mainSoundBtnOff.texture}
+            position={[119, 700]}   
+            interactive={!quizAudioPlaying}
+            pointerup={onPlayQuizAudio}
+            buttonMode={true} />
 
          <Sprite 
             name="soundBtnOn"
             visible={quizAudioPlaying}
             alpha={quizPlaying ? 1 : 0}
             interactive={true}
-            position={[145, 716]}
+            position={[119, 700]}
             texture={resources.mainSoundBtnOn.texture} />
 
          {eggEffect.map(props => (
