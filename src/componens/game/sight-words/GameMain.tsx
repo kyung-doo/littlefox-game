@@ -68,7 +68,6 @@ const GameMain: FC = () => {
 
    const [scoreTexts, setScoreTexts] = useState<ScoreTextProps[]>([]);
    const scoreCount = useRef<number>(0);
-   const scoreNum = useRef<number>(0);
 
    const isTransition = useRef<boolean>(false);
 
@@ -129,14 +128,13 @@ const GameMain: FC = () => {
 
 
    const onQuizWrong = useCallback(( pos ) => {
-      scoreNum.current = 0;
       dispatch({type: GameActions.INCORRECT_SCORE, payload: 10});
       resources.audioWrong.sound.stop();
       resources.audioWrong.sound.play();
 
       setScoreTexts(prev => [ ...prev, { 
          id: `scoreText${scoreCount.current}`, 
-         score: -10, 
+         texture: resources.mainScoreMinus10.texture, 
          x: pos.x + 595, 
          y: pos.y + 200,
          posY: 150
@@ -163,7 +161,6 @@ const GameMain: FC = () => {
       } else {
          if(quizStatusRef.current === QuizStatus.END) {
             setQuizPlaying(false);
-            scoreNum.current = 0;
             console.log('gameCount', gameCount.current)
             if(gameCount.current === 0) {
                quizTargets.current!.timeout();
@@ -213,8 +210,6 @@ const GameMain: FC = () => {
 
    const correct = useCallback((pos, isSuccess, isBonus, bonusIdx) => {
       correctNum.current++;
-      scoreNum.current++;
-      dispatch({type: GameActions.CORRECT_SCORE, payload: scoreNum.current * 50});
       charactor.current?.correct();
 
       if(isSuccess || (isBonus && !isSuccess)) {
@@ -244,15 +239,16 @@ const GameMain: FC = () => {
          dinosCount.current = dinosCount.current % 9;
       }
 
-      
-
-      setScoreTexts(prev => [ ...prev, { 
-         id: `scoreText${scoreCount.current}`, 
-         score: scoreNum.current * 50, 
-         x: pos.x + 595, 
-         y: pos.y + 200, 
-         posY: 150
-      }]);
+      if(!isBonus){
+         dispatch({type: GameActions.CORRECT_SCORE, payload: 50 });
+         setScoreTexts(prev => [ ...prev, { 
+            id: `scoreText${scoreCount.current}`, 
+            texture: resources.mainScorePlus50.texture, 
+            x: pos.x + 595, 
+            y: pos.y + 200, 
+            posY: 150
+         }]);
+      }
 
       scoreCount.current++;      
       resources.audioCorrect.sound.stop();
@@ -373,7 +369,6 @@ const GameMain: FC = () => {
             if(correctNum.current < 3) {
                if(!isTransition.current){
                   setQuizPlaying(false);
-                  scoreNum.current = 0;
                   if(gameCount.current === 0) {
                      quizTargets.current!.timeout();
                      timer.current = PIXITimeout.start(() => nextQuiz(), 500);
@@ -474,7 +469,7 @@ const GameMain: FC = () => {
 
          <Container name="bottomUI" position={[0, 1047]}>
             <ScoreContainer
-               position={[0, 0]} />
+               position={[30, -15]} />
             <TimeContainer
                ref={timeContainer}
                position={[1855, 70]}

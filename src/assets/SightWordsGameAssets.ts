@@ -70,6 +70,8 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainProgressBg', url: `${mainImgPath}progress_bg.png`},
       { name: 'mainSoundBtnOff', url: `${mainImgPath}sound_btn_off.png`},
       { name: 'mainSoundBtnOn', url: `${mainImgPath}sound_btn_on.png`},
+      { name: 'mainScorePlus50', url: `${mainImgPath}score_plus_50.png`},
+      { name: 'mainScoreMinus10', url: `${mainImgPath}score_minus_10.png`},
       { name: 'mainEggBig', url: `${mainImgPath}egg_big.png`},
       { name: 'mainEggBigLeft', url: `${mainImgPath}egg_big_left.png`},
       { name: 'mainEggBigRight', url: `${mainImgPath}egg_big_right.png`},

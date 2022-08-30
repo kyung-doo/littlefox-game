@@ -106,7 +106,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onSuccess, onWrong, onTimeoutComp },
 
 
    const onQuizSuccess = useCallback(() => {
-      const score = 20 * wordLists.length;
+      const score = 50 * wordLists.length;
       container.current!.interactiveChildren = false;
       setScoreTexts(prev => [ ...prev, { 
          id: `scoreText${scoreCount.current}`, 
