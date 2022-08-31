@@ -46,7 +46,7 @@ const TimeContainer = forwardRef<Refs, Props>(({ timeLength, onTimeout, ...props
          progressBar.current!.clear();
          progressBar.current!.lineStyle({
             width: 22,
-            color: (timeLength - gameCounter.getTime()) / 1000 > 10 ? 0xffc000 : 0xe8540b,
+            color: (timeLength - gameCounter.getTime()) / 1000 >= 11 ? 0xffc000 : 0xe8540b,
             cap: LINE_CAP.ROUND
          });
          progressBar.current!.arc(0, 0, 109, toRadian(angle), 0)

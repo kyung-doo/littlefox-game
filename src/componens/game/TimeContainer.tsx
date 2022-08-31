@@ -48,9 +48,9 @@ const TimeContainer = forwardRef<Refs, Props>(({ timeLength, textColor, onTimeou
                timeText.current.text = gameCounter.getFormat();
             }
             if(progressBar.current) {
-               progressBar.current.update(percent);
+               progressBar.current.update(percent, );
             }
-            if(percent > 0.8 && !isFast.current) {
+            if((timeLength - gameCounter.getTime()) / 1000 <= 11 && !isFast.current) {
                clock.current?.fast();
                progressBar.current!.fast();
                isFast.current = true;
