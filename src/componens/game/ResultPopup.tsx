@@ -1,6 +1,7 @@
 import { VFC, memo, useCallback, useMemo, useRef, useEffect } from 'react';
 import { Sound } from '@pixi/sound';
 import { gsap, Back} from 'gsap';
+import { isMobile } from '../../utils';
 
 
 
@@ -30,11 +31,15 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
    },[data]);
 
    const withImage = useMemo<boolean>(() => {
-      if(type !== 'Alphabet') {
-         return true;
-      } else {
+      if(type === 'Alphabet') {
          if(step === 3) return true;
          else           return false;
+      } else if(type === 'LetterTeams') {
+         return false;
+      } else if(type === 'SightWords') {
+         return false;
+      } else {
+         return true;
       }
    },[]);
 
@@ -47,7 +52,7 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
    
 
    return (
-      <div id="result-popup" className={`${type.toLowerCase()}${step}`}>
+      <div id="result-popup" className={`${type.toLowerCase()}${step} ${isMobile() ? 'mobile' : 'pc'}`}>
          <div ref={blind} className="blind" onClick={onClose} style={{display: 'none'}}></div>
          <div ref={popWrap} className="popup-wrap" style={{display: 'none'}}>
             <div className="top-title">
@@ -57,7 +62,20 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
             <div className="list-wrap">
                <div className="list-header">
                   <div><img src={require('../../assets/images/game/common/words_text.png').default} height="23" /></div>
-                  <div><img src={require('../../assets/images/game/common/my_result_text.png').default} height="30" /></div>
+                  {type === 'LetterTeams' || type === 'SightWords'
+                     ?
+                     <div>
+                        <div className="top">
+                           <img src={require('../../assets/images/game/common/my_result_text.png').default} height="30" />
+                        </div>
+                        <div className="bottom">
+                           <div><img src={require('../../assets/images/game/common/my_result_o.png').default} height="22" /></div>
+                           <div><img src={require('../../assets/images/game/common/my_result_x.png').default} height="22" /></div>
+                        </div>
+                     </div>
+                     :
+                     <div><img src={require('../../assets/images/game/common/my_result_text.png').default} height="30" /></div>
+                  }
                </div>
                <div className="list-body">
                   {data.map((list, i) => (
@@ -87,20 +105,31 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
                               </>
                            }
                         </div>
-                        <div className="result">
-                           {Array.from(Array(Math.ceil(list.corrects.length/10)), (n, j) => (
-                              <div key={`hart-group-${i}-${j}`} className="hart-group">
-                                 {Array.from(Array(10), (n, k)=> {
-                                    const num = k + 10 * j;
-                                    if(num < list.corrects.length) {
-                                       return (
-                                          <span key={`hart-${i}-${num}`} className={`hart ${list.corrects[num] ? 'on' : 'off'}`}></span>
-                                       )
-                                    }
-                                 })}   
+                        {type === 'LetterTeams' || type === 'SightWords'?
+                           <div className="result">
+                              <div>
+                                 {list.corrects.filter((x: boolean) => x).length}
                               </div>
-                           ))}
-                        </div>
+                              <div>
+                                 {list.corrects.filter((x: boolean) => !x).length}
+                              </div>
+                           </div>
+                           :
+                           <div className="result">
+                              {Array.from(Array(Math.ceil(list.corrects.length/10)), (n, j) => (
+                                 <div key={`hart-group-${i}-${j}`} className="hart-group">
+                                    {Array.from(Array(10), (n, k)=> {
+                                       const num = k + 10 * j;
+                                       if(num < list.corrects.length) {
+                                          return (
+                                             <span key={`hart-${i}-${num}`} className={`hart ${list.corrects[num] ? 'on' : 'off'}`}></span>
+                                          )
+                                       }
+                                    })}   
+                                 </div>
+                              ))}
+                           </div>
+                        }
                      </div>
                   ))}
                </div>

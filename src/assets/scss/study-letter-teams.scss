@@ -1,0 +1,153 @@
+@charset "utf-8";
+@import './mixin.scss';
+
+#intro .deco {
+   .left {
+      @include absolute($top: 352px, $left: 27px, $width: 202px, $height: 236px);
+      background: url('../images/study/letterteams/left_deco.png') no-repeat;
+      background-size: 100%;
+   }
+   .right {
+      @include absolute($top: 333px, $right: 5px, $width: 224px, $height: 260px);
+      background: url('../images/study/letterteams/right_deco.png') no-repeat;
+      background-size: 100%;
+   }
+}
+
+#study {
+   @keyframes flash-btn-ani {
+      0% {
+         opacity: 0.5;
+      }
+      50% {
+         opacity: 1;
+      }
+      100% {
+         opacity: 0.5;
+      }
+   }
+   .audio-button {
+      z-index: 9;
+   }
+   .quiz-view {
+      @include absolute($top: 147px, $left: 91px, $width: 780px, $height: 260px);
+      background-color: #b8d9ff;
+      border-radius: 28px;
+
+      .syllable-boxs {
+         @include displayFlex();
+         padding: 52px 0;
+         height: 100%;
+         box-sizing: border-box;
+         
+      }
+      .syllable-box {
+         position: relative;
+         @include displayFlex($align: flex-start);
+         width: 141px;
+         height: 158px;
+         background: url('../images/study/letterteams/word_box_bg.png') no-repeat;
+         background-size: 100%;
+         font-family: LexendDeca;
+         font-size: 81px;
+         font-weight: 600;
+         color: #cacaca;
+         line-height: 144px;
+         margin: 0 1px;
+         &:nth-child(1){
+            z-index: 5;
+         }
+         &:nth-child(2){
+            z-index: 4;
+         }
+         &:nth-child(3){
+            z-index: 3;
+         }
+         &:nth-child(4){
+            z-index: 2;
+         }
+         &:nth-child(5){
+            z-index: 1;
+         }
+         &.playing,
+         &.clear {
+            color: #071f3d;
+         }
+         &.playing,
+         &.active {
+            background: url('../images/study/letterteams/word_box_bg_on.png') no-repeat;
+            background-size: 100%;
+         }
+         &.clear {
+            background: url('../images/study/letterteams/word_box_bg_clear.png') no-repeat;
+            background-size: 100%;
+         }
+         &.playing:after{
+            content: '';
+            @include absolute($top: -17px, $left: -16px, $width: 174px, $height: 191px);   
+            background: url('../images/study/letterteams/box_glow.png') no-repeat;
+            background-size: 100%;
+         }
+         &.active:after{
+            content: '';
+            @include absolute($top: -17px, $left: -16px, $width: 174px, $height: 191px);   
+            background: url('../images/study/letterteams/box_line.png') no-repeat;
+            background-size: 100%;
+            animation: flash-btn-ani 0.8s infinite;
+         }
+         
+         &.target.playing,
+         &.target.clear {
+            color: #ff8800;
+         }
+      }
+      
+   }
+
+   .letter-teams-quiz {
+      .drag-areas {
+         @include absolute($top: 147px, $left: 91px, $width: 780px, $height: 260px);
+         @include displayFlex();
+      }
+      .drag-area {
+         width: 141px;
+         height: 158px;
+      }
+      .drag-area:nth-child(2),
+      .drag-area:nth-child(3),
+      .drag-area:nth-child(4),
+      .drag-area:nth-child(5) {
+         visibility: hidden;
+      }
+      .drag-items {
+         @include absolute($top: 436px, $left: 91px, $width: 780px, $height: 112px);
+         @include displayFlex();
+      }
+      .drag-item {
+         @include displayFlex();
+         width: 118px;
+         height: 130px;
+         background: url('../images/study/letterteams/item_box.png') no-repeat;
+         background-size: 100%;
+         font-family: LexendDeca;
+         font-size: 50px;
+         font-weight: 300;
+         color: #000;
+         transform: translate3d(0, 150px, 0);
+      }
+
+      .drag-item > span{
+         position: relative;
+         top: -7px;
+         &.target{
+            color: #ff8800;
+         }
+      }
+
+      .drag-item.active,
+      .drag-area.active {
+         visibility: hidden !important;
+         pointer-events: none !important;
+      }
+   }
+}

@@ -185,7 +185,7 @@ const GameMain: FC = () => {
    const goResult = useCallback(() => {
       gsap.globalTimeline.clear();
       let path = '';
-      if (window.isTestAPI) path = `/studyPhonics/history`;
+      if (window.isTestAPI) path = `/gamePhonics/history`;
       else                  path = `/game/phonics/history`;
       window.http
       .get(path, { params: { fu_id: gameData.fu_id, play_type: 'G', stage: stage, round: step, score: score.total }})
@@ -195,6 +195,15 @@ const GameMain: FC = () => {
             date: data.data.bestScoreDate}
          });
          dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+      })
+      .catch( e => {
+         if(window.isTestAPI) {
+            dispatch({type: GameActions.SET_BEST_SCORE, payload: { 
+               score: 5000, 
+               date: "2022.3.7"
+            }});
+            dispatch({type: GameActions.CHANGE_STATUS, payload: GameStatus.RESULT});
+         }
       });
    }, [score]);
 

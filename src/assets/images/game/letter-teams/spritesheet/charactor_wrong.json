@@ -1,0 +1,107 @@
+﻿{"frames": {
+
+"charactor_wrong 인스턴스 10000":
+{
+	"frame": {"x":5,"y":5,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10001":
+{
+	"frame": {"x":393,"y":5,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10002":
+{
+	"frame": {"x":781,"y":5,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10003":
+{
+	"frame": {"x":1169,"y":5,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10004":
+{
+	"frame": {"x":1169,"y":5,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10005":
+{
+	"frame": {"x":1557,"y":5,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10006":
+{
+	"frame": {"x":5,"y":440,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10007":
+{
+	"frame": {"x":393,"y":440,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10008":
+{
+	"frame": {"x":781,"y":440,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10009":
+{
+	"frame": {"x":1169,"y":440,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10010":
+{
+	"frame": {"x":1557,"y":440,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+},
+"charactor_wrong 인스턴스 10011":
+{
+	"frame": {"x":5,"y":875,"w":383,"h":430},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":383,"h":430},
+	"sourceSize": {"w":383,"h":430}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.2.0.405",
+	"image": "charactor_wrong.png",
+	"format": "RGBA8888",
+	"size": {"w":2048,"h":2048},
+	"scale": "1"
+}
+}

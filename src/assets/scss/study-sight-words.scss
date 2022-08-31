@@ -1,0 +1,336 @@
+@charset "utf-8";
+@import './mixin.scss';
+
+#intro .deco {
+   .left {
+      @include absolute($bottom: 20px, $left: 0, $width: 264px, $height: 221px);
+      background: url('../images/study/sightwords/left_deco.png') no-repeat;
+      background-size: 100%;
+   }
+   .right {
+      @include absolute($bottom: 15px, $right: 12px, $width: 225px, $height: 240px);
+      background: url('../images/study/sightwords/right_deco.png') no-repeat;
+      background-size: 100%;
+   }
+}
+
+#study {
+   
+   .quiz-view {
+      @include absolute($top: 139px, $width: 100%);
+      .puzzle-con {
+         position: relative;
+         width: 438px;
+         height: 260px;
+         margin: 0 auto;
+         border: solid 4px #91bcff;
+         border-radius: 34px;
+         background: #fff;
+         &:before {
+            content:'';
+            @include absolute($left: -1px, $top: 123px, $width: 246px, $height: 139px);
+            background: url('../images/study/sightwords/block_left_off.png') no-repeat;
+            background-size: 100%;
+         }
+         &:after {
+            content:'';
+            @include absolute($left: 219px, $top: 123px, $width: 246px, $height: 139px);
+            background: url('../images/study/sightwords/block_right_off.png') no-repeat;
+            background-size: 100%;
+         }
+         .glow {
+            position: absolute;
+            left: -19px;
+            top: -19px;
+            width: 478px;
+            height: 299px;
+            background: url('../images/study/sightwords/round_glow.png') no-repeat;
+            display: none;
+         }
+         .text-con {
+            width: 100%;
+            height: 130px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'LexendDeca';
+            font-weight: 600;
+            font-size: 85px;
+            overflow: hidden;
+         }
+         
+      }
+      
+      &.active{
+         .puzzle-con {
+            border-color: #ffaa00;
+         }
+         .glow{display: block;}
+      }
+
+      &.clear .puzzle-con {
+         background: url('../images/study/sightwords/block_back_on.png') no-repeat;
+         background-size: 100%;
+         &:before,
+         &:after {
+            display: none;
+         }
+      }
+
+      .sightwords-quiz {
+         &.disable {
+            pointer-events: none;
+         }
+         .drag-item { 
+            position: absolute;
+            top: 307px;
+            width: 187px;
+            height: 113px;
+            transform: translate3d(0, 150px, 0);
+         }
+         .drag-item > div { 
+            @include displayFlex();
+            width: 187px;
+            height: 113px;
+            font-family: 'LexendDeca';
+            font-weight: 300;
+            font-size: 30px;
+         }
+         
+         .drag-item:nth-child(1) {
+            left: 120px;
+         }
+         .drag-item:nth-child(2) {
+            left: 302px;
+         }
+         .drag-item:nth-child(3) {
+            left: 486px;
+         }
+         .drag-item:nth-child(4) {
+            left: 668px;
+         }
+
+         .drag-item[data-correct="0"] > div[data-color="0"] { 
+            background: url('../images/study/sightwords/block_correct_1_green.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="0"] > div[data-color="1"] { 
+            background: url('../images/study/sightwords/block_correct_1_yellow.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="0"] > div[data-color="2"] { 
+            background: url('../images/study/sightwords/block_correct_1_blue.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="0"] > div[data-color="3"] { 
+            background: url('../images/study/sightwords/block_correct_1_red.png') no-repeat;
+            background-size: 100%;
+         }
+         
+         .drag-item[data-correct="1"] > div[data-color="0"] { 
+            background: url('../images/study/sightwords/block_correct_2_green.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="1"] > div[data-color="1"] { 
+            background: url('../images/study/sightwords/block_correct_2_yellow.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="1"] > div[data-color="2"] { 
+            background: url('../images/study/sightwords/block_correct_2_blue.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="1"] > div[data-color="3"] { 
+            background: url('../images/study/sightwords/block_correct_2_red.png') no-repeat;
+            background-size: 100%;
+         }
+
+         .drag-item[data-correct="2"] > div[data-color="0"] { 
+            background: url('../images/study/sightwords/block_wrong_1_green.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="2"] > div[data-color="1"] { 
+            background: url('../images/study/sightwords/block_wrong_1_yellow.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="2"] > div[data-color="2"] { 
+            background: url('../images/study/sightwords/block_wrong_1_blue.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="2"] > div[data-color="3"] { 
+            background: url('../images/study/sightwords/block_wrong_1_red.png') no-repeat;
+            background-size: 100%;
+         }
+
+         .drag-item[data-correct="3"] > div[data-color="0"] { 
+            background: url('../images/study/sightwords/block_wrong_2_green.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="3"] > div[data-color="1"] { 
+            background: url('../images/study/sightwords/block_wrong_2_yellow.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="3"] > div[data-color="2"] { 
+            background: url('../images/study/sightwords/block_wrong_2_blue.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-item[data-correct="3"] > div[data-color="3"] { 
+            background: url('../images/study/sightwords/block_wrong_2_red.png') no-repeat;
+            background-size: 100%;
+         }
+
+         .drag-item > div > span { 
+            position: relative;
+            left: -8px;
+            top: 5px;
+         }
+
+         .drag-item.active{
+            cursor: default;
+            pointer-events: none;
+         }
+
+
+         .drag-area {
+            @include absolute($top: 151px, $width: 218px, $height: 113px);
+         }
+         
+         .drag-area:nth-child(1) {
+            left: 260px;
+         }
+         .drag-area:nth-child(2) {
+            left: 480px;
+         }
+
+         .drag-area > span {
+            display: block;
+            pointer-events: none;
+            width: 246px;
+            height: 139px;
+            position: absolute;
+            top: -24px;
+            opacity: 0;
+         }
+
+         .drag-area:nth-child(1) > span {
+            background: url('../images/study/sightwords/block_left_on.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-area:nth-child(2) > span {
+            background: url('../images/study/sightwords/block_right_on.png') no-repeat;
+            background-size: 100%;
+         }
+         .drag-area.hit > span {
+            opacity: 1;
+         }
+         .drag-area.active,
+         .drag-item.active {
+            display: none !important;
+         }
+
+         .correct-block {
+            @include absolute($top: 128px, $width: 246px, $height: 137px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0;
+            > span {
+               position: relative;
+               top: 10px;
+               left: -10px;
+               font-family: 'LexendDeca';
+               font-size: 45px;
+               font-weight: 300;
+            }
+            &.active {
+               opacity: 1;
+            }
+            &.block1 {
+               left: 260px;
+            }
+            &.block2 {
+               left: 480px;
+            }
+            &.block1[data-color="0"] {
+               background: url('../images/study/sightwords/block_large_1_green.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block1[data-color="1"] {
+               background: url('../images/study/sightwords/block_large_1_yellow.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block1[data-color="2"] {
+               background: url('../images/study/sightwords/block_large_1_blue.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block1[data-color="3"] {
+               background: url('../images/study/sightwords/block_large_1_red.png') no-repeat;
+               background-size: 100%;
+            }
+            
+            &.block2[data-color="0"] {
+               background: url('../images/study/sightwords/block_large_2_green.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block2[data-color="1"] {
+               background: url('../images/study/sightwords/block_large_2_yellow.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block2[data-color="2"] {
+               background: url('../images/study/sightwords/block_large_2_blue.png') no-repeat;
+               background-size: 100%;
+            }
+            &.block2[data-color="3"] {
+               background: url('../images/study/sightwords/block_large_2_red.png') no-repeat;
+               background-size: 100%;
+            }
+         }
+
+         &.clear .correct-block {
+            background: transparent !important;
+         }
+      }
+
+      .effect-con {
+         position: absolute;
+         left: 50%;
+         top: -140px;
+
+         .star {
+            position: absolute;
+            left: 0;
+            top: 0;
+            &:before {
+               content: '';
+               position: absolute;
+               left: -40px;
+               top: -44px;
+               width: 80px;
+               height: 77px;
+            }
+            &.star1:before{
+               background: url('../images/study/sightwords/star1.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star2:before{
+               background: url('../images/study/sightwords/star2.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star3:before{
+               background: url('../images/study/sightwords/star3.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star4:before{
+               background: url('../images/study/sightwords/star4.png') no-repeat;
+               background-size: 100%;
+            }
+            &.star5:before{
+               background: url('../images/study/sightwords/star5.png') no-repeat;
+               background-size: 100%;
+            }
+         }
+      }
+
+
+   }
+}

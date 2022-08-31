@@ -1,0 +1,227 @@
+{
+   "data": {
+     "fu_id": "U201803221135520456",
+     "langCode": "ko_KR",
+     "stageTitle": "a_e i_e",
+     "reStudy": 0,
+     "list": [
+       {
+         "words": {
+           "text": "cape",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape.mp3"
+         },
+         "syllables": [
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape_c.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape_a.mp3",
+             "isSilent": false,
+             "withSilient": true,
+             "isTarget": true
+           },
+           {
+             "text": "p",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape_p.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false,
+             "isTarget": true
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "maze",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze.mp3"
+         },
+         "syllables": [
+           {
+             "text": "m",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze_m.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze_a.mp3",
+             "isSilent": false,
+             "withSilient": true,
+             "isTarget": true
+           },
+           {
+             "text": "z",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze_z.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false,
+             "isTarget": true
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "lake",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake.mp3"
+         },
+         "syllables": [
+           {
+             "text": "l",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake_l.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake_a.mp3",
+             "isSilent": false,
+             "withSilient": true,
+             "isTarget": true
+           },
+           {
+             "text": "k",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake_k.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false,
+             "isTarget": true
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "race",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race.mp3"
+         },
+         "syllables": [
+           {
+             "text": "r",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race_r.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race_a.mp3",
+             "isSilent": false,
+             "withSilient": true,
+             "isTarget": true
+           },
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race_c.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false,
+             "isTarget": true
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "face",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face.mp3"
+         },
+         "syllables": [
+           {
+             "text": "f",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face_f.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face_a.mp3",
+             "isSilent": false,
+             "withSilient": true,
+             "isTarget": true
+           },
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face_c.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false,
+             "isTarget": true
+           }
+         ]
+       },
+       {
+         "words": {
+           "text": "lace",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace.mp3"
+         },
+         "syllables": [
+           {
+             "text": "l",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace_l.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "a",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace_a.mp3",
+             "isSilent": false,
+             "withSilient": true,
+             "isTarget": true
+           },
+           {
+             "text": "c",
+             "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace_c.mp3",
+             "isSilent": false,
+             "withSilient": false,
+             "isTarget": false
+           },
+           {
+             "text": "e",
+             "audio": "",
+             "isSilent": true,
+             "withSilient": false,
+             "isTarget": true
+           }
+         ]
+       }
+     ]
+   },
+   "status": 200
+}

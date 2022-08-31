@@ -1,0 +1,59 @@
+﻿{"frames": {
+
+"심볼 3 인스턴스 10000":
+{
+	"frame": {"x":5,"y":5,"w":106,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":149},
+	"sourceSize": {"w":106,"h":149}
+},
+"심볼 3 인스턴스 10001":
+{
+	"frame": {"x":116,"y":5,"w":106,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":149},
+	"sourceSize": {"w":106,"h":149}
+},
+"심볼 3 인스턴스 10002":
+{
+	"frame": {"x":5,"y":159,"w":106,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":149},
+	"sourceSize": {"w":106,"h":149}
+},
+"심볼 3 인스턴스 10003":
+{
+	"frame": {"x":116,"y":159,"w":106,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":149},
+	"sourceSize": {"w":106,"h":149}
+},
+"심볼 3 인스턴스 10004":
+{
+	"frame": {"x":5,"y":313,"w":106,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":149},
+	"sourceSize": {"w":106,"h":149}
+},
+"심볼 3 인스턴스 10005":
+{
+	"frame": {"x":5,"y":5,"w":106,"h":149},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":106,"h":149},
+	"sourceSize": {"w":106,"h":149}
+}},
+"meta": {
+	"app": "Adobe Animate",
+	"version": "19.2.0.405",
+	"image": "balloon_light1.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":512},
+	"scale": "1"
+}
+}

@@ -1,0 +1,387 @@
+{
+   "data": {
+     "fu_id": "U201803221135520456",
+     "langCode": "ko_KR",
+     "lowQuality": 0,
+     "stage": "1",
+     "reStudy": 0,
+     "gameTimeout": 150,
+     "quizTimeout": 15,
+     "clearScore": 3000,
+     "quizList": [
+       {
+         "words": {
+           "text": "cape",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_cape.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "c",
+               "wrong1": "r",
+               "wrong2": "o",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "b",
+               "wrong2": "c",
+               "isSilent": false
+            },
+            {
+               "correct": "p",
+               "wrong1": "f",
+               "wrong2": "t",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "maze",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_maze.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "m",
+               "wrong1": "n",
+               "wrong2": "d",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "o",
+               "wrong2": "q",
+               "isSilent": false
+            },
+            {
+               "correct": "z",
+               "wrong1": "x",
+               "wrong2": "y",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "lake",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lake.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "l",
+               "wrong1": "i",
+               "wrong2": "h",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "o",
+               "wrong2": "q",
+               "isSilent": false
+            },
+            {
+               "correct": "k",
+               "wrong1": "h",
+               "wrong2": "n",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "race",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_race.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "r",
+               "wrong1": "l",
+               "wrong2": "s",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "e",
+               "wrong2": "u",
+               "isSilent": false
+            },
+            {
+               "correct": "c",
+               "wrong1": "b",
+               "wrong2": "z",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "face",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_face.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "f",
+               "wrong1": "g",
+               "wrong2": "h",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "e",
+               "wrong2": "w",
+               "isSilent": false
+            },
+            {
+               "correct": "c",
+               "wrong1": "g",
+               "wrong2": "s",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "lace",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_lace.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "l",
+               "wrong1": "r",
+               "wrong2": "w",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "u",
+               "wrong2": "o",
+               "isSilent": false
+            },
+            {
+               "correct": "c",
+               "wrong1": "k",
+               "wrong2": "g",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "clip",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_clip.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "cl",
+               "wrong1": "kl",
+               "wrong2": "ql",
+               "isSilent": false
+            },
+            {
+               "correct": "i",
+               "wrong1": "l",
+               "wrong2": "y",
+               "isSilent": false
+            },
+            {
+               "correct": "p",
+               "wrong1": "q",
+               "wrong2": "b",
+               "isSilent": false
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "clap",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_clap.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "cl",
+               "wrong1": "kl",
+               "wrong2": "ql",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "u",
+               "wrong2": "o",
+               "isSilent": false
+            },
+            {
+               "correct": "p",
+               "wrong1": "q",
+               "wrong2": "z",
+               "isSilent": false
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "plate",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_plate.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "pl",
+               "wrong1": "ql",
+               "wrong2": "gl",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "e",
+               "wrong2": "o",
+               "isSilent": false
+            },
+            {
+               "correct": "t",
+               "wrong1": "b",
+               "wrong2": "s",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "plane",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_plane.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "pl",
+               "wrong1": "ql",
+               "wrong2": "gl",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "e",
+               "wrong2": "o",
+               "isSilent": false
+            },
+            {
+               "correct": "n",
+               "wrong1": "m",
+               "wrong2": "b",
+               "isSilent": false
+            },
+            {
+               "correct": "e",
+               "wrong1": "o",
+               "wrong2": "n",
+               "isSilent": true
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "glass",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_glass.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "gl",
+               "wrong1": "ql",
+               "wrong2": "bl",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "e",
+               "wrong2": "o",
+               "isSilent": false
+            },
+            {
+               "correct": "s",
+               "wrong1": "z",
+               "wrong2": "t",
+               "isSilent": false
+            },
+            {
+               "correct": "s",
+               "wrong1": "z",
+               "wrong2": "t",
+               "isSilent": false
+            },
+            {
+               "correct": "s",
+               "wrong1": "z",
+               "wrong2": "t",
+               "isSilent": false
+            }
+         ]
+       },
+       {
+         "words": {
+           "text": "glad",
+           "audio": "https://cdn.littlefox.co.kr/game/letterteams/mp3/word_glad.mp3"
+         },
+         "syllables": [
+            {
+               "correct": "gl",
+               "wrong1": "ql",
+               "wrong2": "bl",
+               "isSilent": false
+            },
+            {
+               "correct": "a",
+               "wrong1": "e",
+               "wrong2": "o",
+               "isSilent": false
+            },
+            {
+               "correct": "d",
+               "wrong1": "b",
+               "wrong2": "p",
+               "isSilent": false
+            }
+         ]
+       }
+     ]
+   },
+   "status": 200
+}

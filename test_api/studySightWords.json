@@ -1,0 +1,59 @@
+{
+   "data": {
+     "fu_id": "U201803221135520456",
+     "langCode": "ko_KR",
+     "stageTitle": "Sight Words ①",
+     "reStudy": 0,
+     "list": [
+       {
+         "correct": "what",
+         "wrong1": "whet",
+         "wrong2": "where",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_what.mp3"
+       },
+       {
+         "correct": "is",
+         "wrong1": "us",
+         "wrong2": "es",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_is.mp3"
+       },
+       {
+         "correct": "this",
+         "wrong1": "that",
+         "wrong2": "thot",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_this.mp3"
+       },
+       {
+         "correct": "on",
+         "wrong1": "an",
+         "wrong2": "en",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_on.mp3"
+       },
+       {
+         "correct": "jump",
+         "wrong1": "yump",
+         "wrong2": "jumm",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_jump.mp3"
+       },
+       {
+         "correct": "in",
+         "wrong1": "on",
+         "wrong2": "un",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_in.mp3"
+       },
+       {
+         "correct": "out",
+         "wrong1": "ont",
+         "wrong2": "eut",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_out.mp3"
+       },
+       {
+         "correct": "the",
+         "wrong1": "eth",
+         "wrong2": "tho",
+         "audio": "https://cdn.littlefox.co.kr/game/sightwords/mp3/word_the.mp3"
+       }
+     ]
+   },
+   "status": 200
+}
