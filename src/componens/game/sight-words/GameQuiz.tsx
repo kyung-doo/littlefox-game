@@ -107,6 +107,8 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
             }, 1500);
          }, 100);
       } else {
+         
+         stonBlind.current!.visible = false;
          targetNo.current = quizNo!;
          timer.current[2] = PIXITimeout.start(() => {
             container.current!.interactiveChildren = true;
@@ -131,8 +133,8 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
             } else {
                eggs.current.forEach((egg, i) => egg.zIndex = i);
                target.zIndex = eggs.current.length;
-               eggBgs.current[list.idx].gotoAndPlay(0);
-               gsap.to(eggTexts.current[list.idx], 0.4, {pixi: {alpha: 0}});
+               eggBgs.current[list.idx].play();
+               eggTexts.current[list.idx].visible = false;
                eggBtns.current[list.idx].interactive = false;
                resources.audioEggShort.sound.stop();
                resources.audioEggShort.sound.play();
@@ -236,7 +238,8 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
             name="aggCon"
             sortableChildren={true}
             position={[590, 280]}>
-            {wordLists && wordLists.map((list, i) => (
+            {wordLists && wordLists.map((list, i) => {
+               return(
                <Container
                   ref={ref => ref && (eggs.current[list.idx] = ref)}
                   key={`agg-${quizNo}-${list.idx}`}
@@ -261,7 +264,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
                      isPlaying={eggBgs.current[list.idx] ? eggBgs.current[list.idx].playing : false}
                      loop={false}
                      position={[-279, -110]}
-                     initialFrame={0}
+                     initialFrame={eggBgs.current[list.idx] && eggBgs.current[list.idx].playing ? eggBgs.current[list.idx].currentFrame : 0}
                      animationSpeed={0.5}
                      onComplete={() => eggs.current[list.idx].visible = false}
                      textures={list.bonus ? eggBonusTextures : eggTextures} />
@@ -276,7 +279,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
                         fill: '#000000'
                      }} />
                </Container>
-            ))}
+            )})}
          </Container>
 
          <Sprite

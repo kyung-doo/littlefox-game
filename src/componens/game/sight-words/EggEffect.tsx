@@ -43,9 +43,9 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
       });
       
       gsap.timeline({delay: bonus ? 1 : 0, onStart: () => {
-         timer.current[1] = PIXITimeout.start(() => {
-            resources.audioEgg.sound.play()
-         }, 800);
+         // timer.current[1] = PIXITimeout.start(() => {
+         //    resources.audioEgg.sound.play()
+         // }, 800);
       }})
       .to(egg.current, 0.1, {delay: 0.7, pixi: {rotation: 15, scale: 1.1}, ease: Cubic.easeOut})
       .to(egg.current, 0.3, {pixi: {rotation: 0, scale: 1}, ease: Elastic.easeOut.config(1.2, 0.5), onComplete: () =>{
@@ -77,9 +77,7 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
             gsap.to(bonusBg.current, 0.3, {delay: 1.5, pixi: {alpha: 0}});
          }
 
-         timer.current[2] = PIXITimeout.start(() => {
-            resources.audioEggClear.sound.play();
-         }, 200);
+         resources.audioEggClear.sound.play();
       }});
 
       timer.current[0] = PIXITimeout.start(() => {
@@ -89,7 +87,7 @@ const EggEffect: FC<Props> = ({id, idx, startPos, bonus, onAnimationEnd, ...prop
 
       return () => {
          timer.current.forEach(t => PIXITimeout.clear(t));
-         resources.audioEgg.sound.stop();
+         // resources.audioEgg.sound.stop();
          resources.audioEggClear.sound.stop();
       }
    },[]);

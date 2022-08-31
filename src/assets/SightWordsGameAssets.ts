@@ -29,6 +29,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'audioEggShort', url: `${audioPath}egg_short.mp3` },
       { name: 'audioEggClear', url: `${audioPath}egg_clear.mp3` },
       { name: 'audioBonus', url: `${audioPath}bonus.mp3` },
+      { name: 'audioTimeout', url: `${audioPath}wrong2.mp3` },
       { name: 'audioGameover', url: `${audioPath}game_over.mp3` },
       { name: 'commonExitBtn', url: `${commonImgPath}exit_btn.png` },
       

@@ -354,6 +354,9 @@ const GameMain: FC = () => {
          timeContainer.current?.start();
       }, 600);
 
+      const enterAni = container.current!.getChildByName('enterBtnAni');
+      gsap.to(enterAni, 0.5, {pixi: {alpha: 0}, yoyo: true, repeat: -1});
+
       return () => {
          timer.current.forEach(t => PIXITimeout.clear(t));
          bgmAudio.stop();
@@ -451,6 +454,12 @@ const GameMain: FC = () => {
             visible={!isTransition}
             position={[1826, 740]}
             texture={resources.mainEnterOffBtn.texture} />
+
+         <Sprite 
+            name="enterBtnAni"
+            visible={!isTransition}
+            position={[1826, 740]}
+            texture={resources.mainEnterAniBtn.texture} />
 
          <Sprite 
             ref={enterBtn}

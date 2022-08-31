@@ -58,11 +58,11 @@ export default ( langCode: string, low: number ) => {
 
       // main
       { name: 'commonResetBtn', url: `${commonImgPath}reset_btn.png` },
+      { name: 'commonProgressBar1', url: `${commonImgPath}progress_bar1.png` },
+      { name: 'commonProgressBar2', url: `${commonImgPath}progress_bar2.png` },
       { name: 'mainPickerBg', url: `${mainImgPath}picker_bg.png` },
       { name: 'mainPickerUp', url: `${mainImgPath}picker_up.png` },
       { name: 'mainPickerDown', url: `${mainImgPath}picker_down.png` },
-      { name: 'commonProgressBar1', url: `${commonImgPath}progress_bar1.png` },
-      { name: 'commonProgressBar2', url: `${commonImgPath}progress_bar2.png` },
       { name: 'mainBottomUiBg', url: `${mainImgPath}bottom_ui_bg.png` },
       { name: 'mainScoreBg', url: `${mainImgPath}score_bg.png`},
       { name: 'mainScoreTitle', url: `${mainImgPath}score_title.png`},
@@ -78,6 +78,7 @@ export default ( langCode: string, low: number ) => {
       { name: 'mainSoundBtn', url: `${mainImgPath}sound_btn.png`},
       { name: 'mainEnterOffBtn', url: `${mainImgPath}enter_btn_off.png`},
       { name: 'mainEnterOnBtn', url: `${mainImgPath}enter_btn_on.png`},
+      { name: 'mainEnterAniBtn', url: `${mainImgPath}enter_btn_ani.png`},
       { name: 'mainBalloonLeft1', url: `${mainImgPath}balloon_left_1.png`},
       { name: 'mainBalloonLeft2', url: `${mainImgPath}balloon_left_2.png`},
       { name: 'mainBalloonRight1', url: `${mainImgPath}balloon_right_1.png`},

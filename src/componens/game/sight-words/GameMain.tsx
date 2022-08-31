@@ -91,7 +91,7 @@ const GameMain: FC = () => {
          setQuizPlaying(true);
          quizAudios.current[random.current![quizNo.current]].play(() => setQuizAudioPlaying(false));
          quizCounter.start();
-      }, gameCount.current === 0 ? 1200 : 100);
+      }, gameCount.current === 0 ? 1200 : 500);
 
       if(gameCount.current === 0) {
          bonusIdx.current = Math.floor(Math.random() * 2) === 0 ? (bonusLength % 3) + 1 : 0;
@@ -161,11 +161,12 @@ const GameMain: FC = () => {
       } else {
          if(quizStatusRef.current === QuizStatus.END) {
             setQuizPlaying(false);
-            console.log('gameCount', gameCount.current)
             if(gameCount.current === 0) {
                quizTargets.current!.timeout();
+               resources.audioTimeout.sound.play();
                timer.current = PIXITimeout.start(() => nextQuiz(), 500);
             } else {
+               resources.audioTimeout.sound.play();
                nextQuiz();
             }
          }
@@ -371,8 +372,10 @@ const GameMain: FC = () => {
                   setQuizPlaying(false);
                   if(gameCount.current === 0) {
                      quizTargets.current!.timeout();
+                     resources.audioTimeout.sound.play();
                      timer.current = PIXITimeout.start(() => nextQuiz(), 500);
                   } else {
+                     resources.audioTimeout.sound.play();
                      nextQuiz();
                   }
                }
