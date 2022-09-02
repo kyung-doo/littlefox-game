@@ -355,7 +355,7 @@ const GameMain: FC = () => {
       }, 600);
 
       const enterAni = container.current!.getChildByName('enterBtnAni');
-      gsap.to(enterAni, 0.5, {pixi: {alpha: 0}, yoyo: true, repeat: -1});
+      gsap.to(enterAni, 0, {delay: 0.5, pixi: {alpha: 0}, yoyo: true, repeat: -1, repeatDelay: 0.4});
 
       return () => {
          timer.current.forEach(t => PIXITimeout.clear(t));

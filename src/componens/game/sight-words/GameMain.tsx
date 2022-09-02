@@ -241,10 +241,10 @@ const GameMain: FC = () => {
       }
 
       if(!isBonus){
-         dispatch({type: GameActions.CORRECT_SCORE, payload: 50 });
+         dispatch({type: GameActions.CORRECT_SCORE, payload: correctNum.current < 3 ? 50 :100 });
          setScoreTexts(prev => [ ...prev, { 
             id: `scoreText${scoreCount.current}`, 
-            texture: resources.mainScorePlus50.texture, 
+            texture: correctNum.current < 3 ? resources.mainScorePlus50.texture : resources.mainScorePlus100.texture, 
             x: pos.x + 595, 
             y: pos.y + 200, 
             posY: 150
