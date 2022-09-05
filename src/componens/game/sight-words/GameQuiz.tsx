@@ -71,10 +71,10 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
          const wrongDatas =  quizList.filter((li: any) => !correctData.find(x => x.words === li.words));
          const listRandom = makeRandom(MAP_VER * MAP_HOR, MAP_VER * MAP_HOR);
          const lists: {[key: string]: any}[] = [];
-         const bonusNum = randomRange(0, 3);
+         const bonusNum = randomRange(0, 2);
 
          targetNo.current = quizNo![0];
-
+         
          Array.from(Array(9), (k, i) => {
             if(i < 3) {
                lists.push({ no: quizNo![0], idx: listRandom[i], word: correctData[0].words, correct: true, bonus: i === 0 && bonusIdx! > 0 && bonusNum === 0  ?  true : false});
@@ -115,7 +115,7 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess }, ref
          }, 500);
       }
       
-   }, [quizNo]);
+   }, [quizNo, bonusIdx]);
 
 
    const onAggClick = useCallback(( list: any ) => {

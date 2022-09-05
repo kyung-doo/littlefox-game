@@ -94,7 +94,7 @@ const GameMain: FC = () => {
       }, gameCount.current === 0 ? 1200 : 500);
 
       if(gameCount.current === 0) {
-         bonusIdx.current = Math.floor(Math.random() * 2) === 0 ? (bonusLength % 3) + 1 : 0;
+         bonusIdx.current = (bonusLength % 3) + 1;
          quizTargets.current?.start([
             random.current![quizNo.current],
             random.current![(quizNo.current+1) % gameData.quizList.length],
