@@ -112,7 +112,7 @@ const WordsGame: FC<Props> = ({ stage }) => {
       <div id="wrap">
          <GameLayout 
             type="Words"
-            title="Words Melody"
+            title="Word Melody"
             stage={stage ? parseInt(stage) : 1}
             resultPopupData={resultPopupData}
             onLoaded={onDataLoaded}

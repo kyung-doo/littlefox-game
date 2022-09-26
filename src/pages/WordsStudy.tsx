@@ -115,7 +115,7 @@ const WordsStudy: FC<{stage: string | null}> = ({stage}) => {
       <div id="wrap">
          <Provider store={Store}>
             <StudyLayout 
-               title="Words Melody"
+               title="Word Melody"
                type="Words"
                stage={stage ? parseInt(stage) : 1}
                studyElem={idx => <Study idx={idx} />} />
