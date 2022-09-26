@@ -161,7 +161,7 @@ const PhonicsStudy: FC<{stage: string | null}> = ({stage}) => {
       <div id="wrap">
          <Provider store={Store}>
             <StudyLayout 
-               title="Phonics Golden Shooting"
+               title="Flying Arrow"
                type="Phonics"
                stage={stage ? parseInt(stage) : 1}
                studyElem={ idx => (

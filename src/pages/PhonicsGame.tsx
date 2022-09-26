@@ -9,7 +9,7 @@ import GameIntro from '../componens/game/phonics/GameIntro';
 import GameMain from '../componens/game/phonics/GameMain';
 import GameResult from '../componens/game/phonics/GameResult';
 import Loading from '../componens/game/Loading';
-import { isMobile } from '../utils';
+import {exitPage, getCookie, isMobile} from '../utils';
 
 
 /*
@@ -58,7 +58,7 @@ const PhonicsGame: FC<Props> = ({ stage, step }) => {
 
    const onExitApp = useCallback(( e ) => {
       window.self.close();
-      console.log('ExitApp');
+      exitPage();
    }, []);
 
 
@@ -113,7 +113,7 @@ const PhonicsGame: FC<Props> = ({ stage, step }) => {
       <div id="wrap">
         <GameLayout 
             type="Phonics"
-            title="Phonics Golden Shooting"
+            title="Flying Arrow"
             stage={stage ? parseInt(stage) : 1}
             step={step ? parseInt(step) : 1}
             resultPopupData={resultPopupData}

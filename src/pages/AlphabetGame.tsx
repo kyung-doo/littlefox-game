@@ -9,7 +9,7 @@ import GameMain from '../componens/game/alphabet/GameMain';
 import useAssets from '../hooks/useAssets';
 import GameResult from '../componens/game/alphabet/GameResult';
 import Loading from '../componens/game/Loading';
-import { isMobile } from '../utils';
+import {exitPage, isMobile} from '../utils';
 import '@pixi/sound';
 
 
@@ -68,7 +68,7 @@ const AlphabetGame: FC<Props> = ({ stage, step }) => {
 
    const onExitApp = useCallback(( e ) => {
       window.self.close();
-      console.log('ExitApp');
+      exitPage();
    }, []);
 
    const groupData = useCallback(( data: any[] ) => {
@@ -161,7 +161,7 @@ const AlphabetGame: FC<Props> = ({ stage, step }) => {
       <div id="wrap">
          <GameLayout 
             type="Alphabet"
-            title='ABC Bubble Pang'
+            title='Bubble Pop'
             stage={stage ? parseInt(stage) : 1}
             step={step ? parseInt(step) : 1}
             resultPopupData={resultPopupData}

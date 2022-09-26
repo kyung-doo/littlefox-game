@@ -7,7 +7,7 @@ import { Transition  } from 'react-transition-group';
 import { gsap, Cubic, Power2, Back, Linear } from 'gsap';
 import { sound } from '@pixi/sound';
 import Ripples from 'react-ripples';
-import { getCookie, addClass, makeRandom, removeClass } from '../utils';
+import {getCookie, addClass, makeRandom, removeClass, exitPage} from '../utils';
 
 import Draggable from "gsap/Draggable";
 import { MotionPathPlugin } from 'gsap/all';
@@ -282,7 +282,7 @@ const StudyLayout: FC<Prors> = ({ title, stage, type, studyElem, showGameBtn }) 
    const onExitApp = useCallback(( e ) => {
       clickAudio.current!.play();
       window.self.close();
-      console.log('ExitApp');
+      exitPage();
    }, []);
 
 

@@ -87,11 +87,36 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess, onTra
          const wrongData = getWorngWords(wrongDatas, [correctData.words[correctRandom.current[0]]]);
          const wrongRandom = makeRandom(wrongData.length, 2);
          const list: {[key: string]: any}[] = [];
+
+         let wrongWord1 = wrongData[wrongRandom[0]];
+         let wrongWord2 = wrongData[wrongRandom[1]];
+         let correctWord = correctData.words[correctRandom.current[0]];
+
+         if (wrongWord1.toLowerCase() === wrongWord2.toLowerCase()) {
+            while (true) {
+               wrongWord2 = wrongData[makeRandom(wrongData.length, 2)[1]];
+
+               if (wrongWord1.toLowerCase() !== wrongWord2.toString()) {
+                  break;
+               }
+            }
+         }
+
+         if (correctWord.toLowerCase() === wrongWord1.toLowerCase() || correctWord.toLowerCase() === wrongWord2.toLowerCase()) {
+            while (true) {
+               correctWord = correctData.words[makeRandom(3, step)[0]];
+
+               if (correctWord.toLowerCase() !== wrongWord1.toLowerCase() || correctWord.toLowerCase() !== wrongWord2.toLowerCase()) {
+                  break;
+               }
+            }
+         }
+
          makeRandom(3, 3).forEach(( num, i ) => {
             switch(i) {
-               case 0 : list[num] = { word: correctData.words[correctRandom.current[0]], correct: true}; break;
-               case 1 : list[num] = { word: wrongData[wrongRandom[0]], correct: false}; break;
-               case 2 : list[num] = { word: wrongData[wrongRandom[1]], correct: false}; break;
+               case 0 : list[num] = { word: correctWord, correct: true}; break;
+               case 1 : list[num] = { word: wrongWord1, correct: false}; break;
+               case 2 : list[num] = { word: wrongWord2, correct: false}; break;
             } 
          });
          setWordLists(list);
@@ -100,11 +125,24 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess, onTra
          const wrongData = getWorngWords(wrongDatas, [correctData.words[correctRandom.current[0]], correctData.words[correctRandom.current[1]]]);
          const wrongRandom = randomRange(0, wrongData.length-1);
          const list: {[key: string]: any}[] = [];
+         let wrongWord = wrongData[wrongRandom];
+
+         if (wrongData[wrongRandom].toLowerCase() === correctData.words[correctRandom.current[0]].toLowerCase() || wrongData[wrongRandom].toLowerCase() === correctData.words[correctRandom.current[1]].toLowerCase()) {
+            while (true) {
+               wrongWord = wrongData[randomRange(0, wrongData.length-1)];
+
+               if (wrongWord.toLowerCase() !== correctData.words[correctRandom.current[0]].toLowerCase() || wrongWord.toLowerCase() !== correctData.words[correctRandom.current[1]].toLowerCase()) {
+                  console.log('replace word = ' + wrongWord);
+                  break;
+               }
+            }
+         }
+
          makeRandom(3, 3).forEach(( num, i ) => {
             switch(i) {
                case 0 : list[num] = { word: correctData.words[correctRandom.current[0]], correct: true}; break;
                case 1 : list[num] = { word: correctData.words[correctRandom.current[1]], correct: true}; break;
-               case 2 : list[num] = { word: wrongData[wrongRandom], correct: false}; break;
+               case 2 : list[num] = { word: wrongWord, correct: false}; break;
             } 
          });
          setWordLists(list);
@@ -114,12 +152,27 @@ const GameQuiz = forwardRef<Refs, Props>(({ onCorrect, onWrong, onSuccess, onTra
          const wrongData = getWorngWords(wrongDatas, [correctData.words[0], correctData.words[1], correctData.words[2]]);
          const wrongRandom = randomRange(0, wrongData.length-1);
          const list: {[key: string]: any}[] = [];
+         let wrongWord = wrongData[wrongRandom];
+         let correctWord1 = correctData.words[correctRandom.current[0]];
+         let correctWord2 = correctData.words[correctRandom.current[1]];
+         let correctWord3 = correctData.words[correctRandom.current[2]];
+
+         if (wrongData[wrongRandom].toLowerCase() === correctWord1.toLowerCase() || wrongData[wrongRandom].toLowerCase() === correctWord2.toLowerCase() || wrongData[wrongRandom].toLowerCase() === correctWord3.toLowerCase()) {
+            while (true) {
+               wrongWord = wrongData[randomRange(0, wrongData.length-1)];
+
+               if (wrongWord.toLowerCase() !== correctWord1.toLowerCase() || wrongWord.toLowerCase() !== correctWord2.toLowerCase() || wrongWord.toLowerCase() !== correctWord3.toLowerCase()) {
+                  break;
+               }
+            }
+         }
+
          makeRandom(4, 4).forEach(( num, i ) => {
             switch(i) {
                case 0 : list[num] = { word: correctData.words[correctRandom.current[0]], correct: true}; break;
                case 1 : list[num] = { word: correctData.words[correctRandom.current[1]], correct: true}; break;
                case 2 : list[num] = { word: correctData.words[correctRandom.current[2]], correct: true}; break;
-               case 3 : list[num] = { word: wrongData[wrongRandom], correct: false}; break;
+               case 3 : list[num] = { word: wrongWord, correct: false}; break;
             } 
          });
          setWordLists(list);

@@ -142,7 +142,7 @@ const AlphabetStudy: FC<{stage: string | null}> = ({stage}) => {
       <div id="wrap">
          <Provider store={Store}>
             <StudyLayout 
-               title="ABC Bubble Pang"
+               title="Bubble Pop"
                type="Alphabet"
                stage={stage ? parseInt(stage) : 1}
                studyElem={idx => <Study idx={idx} />} />

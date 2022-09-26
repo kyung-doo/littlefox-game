@@ -85,10 +85,10 @@ const ResultPopup: VFC<Props> = ({ data, type, step, onClose }) => {
                            {type === 'Alphabet' 
                               ?
                               <>
-                                 <div className="text" style={{fontSize: '38px'}}>{list.text}</div>
                                  {withImage &&
                                     <div className="image"><img src={list.image} /></div>
                                  }
+                                 <div className="text" style={{fontSize: '38px'}}>{list.text}</div>
                               </>
                               :
                               <>

@@ -256,6 +256,27 @@ export const getCookie = ( n: string) => {
    }
 }
 
+/**
+ * 페이지 닫기 처리
+ */
+declare var littlefoxJavaInterface: DataInterfaceBridge;
+
+interface DataInterfaceBridge {
+   onInterfaceExitView() : any;
+}
+
+export const exitPage = () => {
+   let deviceType = getCookie('device_type');
+   if (deviceType === 'app') {
+      let deviceOs = getCookie('device_os');
+      if (deviceOs === 'android') {
+         littlefoxJavaInterface.onInterfaceExitView();
+      } else if (deviceOs === 'ios') {
+         (window as any).webkit.messageHandlers.onInterfaceExitView.postMessage('');
+      }
+   }
+}
+
 window.onbeforeunload = function () {
    window.opener.window.location.href = getCookie('word_starter_game_url');
 };

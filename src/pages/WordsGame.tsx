@@ -9,7 +9,7 @@ import GameIntro from '../componens/game/words/GameIntro';
 import GameMain from '../componens/game/words/GameMain';
 import GameResult from '../componens/game/words/GameResult';
 import Loading from '../componens/game/Loading';
-import { isMobile } from '../utils';
+import { isMobile, exitPage } from '../utils';
 
 
 
@@ -56,7 +56,7 @@ const WordsGame: FC<Props> = ({ stage }) => {
 
    const onExitApp = useCallback(( e ) => {
       window.self.close();
-      console.log('ExitApp');
+      exitPage();
    }, []);
 
 
@@ -112,7 +112,7 @@ const WordsGame: FC<Props> = ({ stage }) => {
       <div id="wrap">
          <GameLayout 
             type="Words"
-            title="Basic Words Melody"
+            title="Words Melody"
             stage={stage ? parseInt(stage) : 1}
             resultPopupData={resultPopupData}
             onLoaded={onDataLoaded}
